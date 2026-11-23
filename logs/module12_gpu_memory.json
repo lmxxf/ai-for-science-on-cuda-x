@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T00:16:00.588441+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-u",
+    "exp10_gpuhmmer_viterbi_hip.py",
+    "--stage",
+    "gpu"
+  ],
+  "elapsed_s": 13.772806076100096,
+  "min_available_gib": 110.2581672668457,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

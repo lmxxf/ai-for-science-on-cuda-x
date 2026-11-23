@@ -1,0 +1,19 @@
+RUN nvcc -x cu -std=c++17 -O3 --fmad=false -arch=sm_121 /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cuphoton_xbeam_fx/fx.cpp -o /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_build/fx_cuda
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module11_cuda_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_build/fx_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_data /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_cuda
+timebin 0/64
+timebin 8/64
+timebin 16/64
+timebin 24/64
+timebin 32/64
+timebin 40/64
+timebin 48/64
+timebin 56/64
+RUN scp -r /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cuphoton_xbeam_fx amd9070:C:/AI4S-HIP-Lab/
+RUN ssh amd9070 cmd /c "mkdir C:\AI4S-HIP-Lab\cuphoton_xbeam_fx\data 2>nul & exit /b 0"
+RUN scp /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_data/voltage.bin amd9070:C:/AI4S-HIP-Lab/cuphoton_xbeam_fx/data/
+RUN ssh amd9070 C:\AI4S-HIP-Lab\cuphoton_xbeam_fx\build_windows.cmd
+RUN ssh amd9070 C:\AI4S-HIP-Lab\cuphoton_xbeam_fx\run_windows.cmd
+RUN scp amd9070:C:/AI4S-HIP-Lab/cuphoton_xbeam_fx/out_hip_vis.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_hip_vis.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/cuphoton_xbeam_fx/out_hip_timings.json /home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_hip_timings.json
+RUN scp amd9070:C:/AI4S-HIP-Lab/cuphoton_xbeam_fx/run.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cuphoton_xbeam_fx/run.log
+RUN scp amd9070:C:/AI4S-HIP-Lab/cuphoton_xbeam_fx/build.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cuphoton_xbeam_fx/build.log

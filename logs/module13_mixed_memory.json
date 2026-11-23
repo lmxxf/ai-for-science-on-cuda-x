@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:21:11.339547+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-u",
+    "amd_hip_port/unimol_full15_hip/run_mixed_gaussian.py"
+  ],
+  "elapsed_s": 31.29365742392838,
+  "min_available_gib": 108.89535522460938,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

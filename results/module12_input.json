@@ -1,0 +1,36 @@
+{
+  "seed": 20261123,
+  "sequences": 100000,
+  "positives": 500,
+  "negatives": 99500,
+  "length_range": [
+    128,
+    256
+  ],
+  "residues": 19179665,
+  "real_profile_source": "data/gb1/splits/sampled.csv",
+  "real_profile_source_sha256": "19bcb946fb9f8fe5ac1d5ed0aa85d4a85848b44744560d9684cc278935f3bd16",
+  "real_profile_sequences": 8733,
+  "profile_length": 56,
+  "alphabet": "ACDEFGHIKLMNPQRSTVWY",
+  "profile": "position-specific emission log2 odds with symmetric 0.5 per-amino-acid pseudocount and uniform0.05 background",
+  "transition_probability": {
+    "MM": 0.9999086027647665,
+    "MI": 4.569861761681709e-05,
+    "MD": 4.569861761681709e-05,
+    "IM": 0.7,
+    "II": 0.3,
+    "DM": 0.7,
+    "DD": 0.3
+  },
+  "transition_estimation": "gapless experimental GB1 alignments observe MM only; MI/MD and I/D continuation rates supplied by explicit Dirichlet/geometric priors, not inferred wet-experiment indels",
+  "database": "synthetic iid amino-acid background, 500 planted experimental-domain-derived sequences with 0..11 random point mutations; not 100000 experimentally annotated proteins",
+  "semantics": "glocal full 56-position domain, free restart over sequence; starts at match1, ends at match56 or delete56; insert emissions have background odds1; no HMMER Evalue calibration or MSV filter",
+  "hashes": {
+    "sequences.bin": "c89d2a2c97b2a74e7e12e9b238be9423f61e18e8d4c9cd066b4241e1c7a1da8c",
+    "lengths.bin": "75cd96897ebeaf27acf9c0dc20f5f136c6b99079a865b1483aea2e441bf69cf4",
+    "emissions.bin": "8e28411796314b1c69cc8f867a87ad096b4821a764ad9ed4022f31a08a1f195a",
+    "transitions.bin": "071e8f4711f1223968017fdd3ce9576fbcf0d8e0764da53cb6522552d7be32ab",
+    "labels.bin": "63f966809c001add8ea90378214ef4785cf3e6f2a15bad7a746eedc6d207a7d4"
+  }
+}

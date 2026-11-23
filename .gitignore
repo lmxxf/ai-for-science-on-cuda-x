@@ -27,3 +27,20 @@ amd_hip_port/**/*.obj
 amd_hip_port/**/*.pdb
 # Raw FLIP archive is retained; extracted alternative splits regenerate from it.
 data/gb1/splits/
+# Phase 3 regenerable native builds and large numerical evidence
+results/module9_build/
+results/module9_data/
+results/module9_*/*.bin
+results/module10_build/
+results/module10_data/
+results/module10_*.bin
+results/module11_build/
+results/module11_data/
+results/module11_*.bin
+results/module12_build/
+results/module12_data/
+results/module12_*/*.bin
+amd_hip_port/unimol_full15_hip/input/
+amd_hip_port/unimol_full15_hip/*.bin
+amd_hip_port/unimol_full15_hip/out_hip/*.bin
+amd_hip_port/unimol_full15_hip/out_hip_mixed/*.bin

@@ -186,6 +186,8 @@ AMD H2D {aa['h2d_ms']:.4f}ms，驻留{aa['pipeline_median_wall_ms']:.4f}ms，D2H
 """
  from phase2_report import report_text
  text+=report_text()
+ from phase3_report import report_text as phase3_text
+ text+=phase3_text()
  (R/'REPORT.md').write_text(text)
  print('REPORT.md written from measured results')
 if __name__=='__main__':main()

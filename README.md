@@ -61,3 +61,21 @@
 .venv/bin/python run_pipeline.py
 .venv/bin/python run_pipeline.py --phase 2
 ```
+
+## 第三阶段：五领域跨平台实算
+
+[PHASE3_GRAND_SLAM_AMD_PLAN.md](PHASE3_GRAND_SLAM_AMD_PLAN.md)对应模块九至十三，全部真机完成；细节、限度和独立参考见[REPORT.md](REPORT.md)。这些为原创科学计算原型与真实模型移植，不是NVIDIA专有库的完整API克隆。
+
+- **PME+轨迹**：81原子含键角/实空间/PME的1000步NVE，CPU2.873s / GB101.063s / 9070XT0.797s；步长减半能量漂移改善4倍，BAOAB约297K。64³网格对直接Ewald仍有4.94e-5受力相对误差，明确保留。
+- **Block-Davidson**：64×384系统求1024本征值，误差<=4.73e-14；GPU批处理核心提速1.77×/2.80×，端到端仅1.06×/1.15×，没有假造22倍。
+- **射电FX**：6710万complex128采样，合成天空协方差→电压→FFT/120基线相关→CPU CLEAN。两GPU可见度相对差2.84e-16，环恢复PSNR15.23dB；非真实EHT观测。
+- **Profile-HMM**：真实GB1 profile、100k合成植入/诱饵库；CPU1136ms / GB10234ms / 9070XT60.7ms，全部score逐字节一致。AUC1仅为合成检出任务。
+- **完整Uni-Mol**：真实47.3M、全部15层、原112测试分子已在原生HIP/hipBLAS端到端执行；同FP64预测差7.1e-15。另补官方FP32 Gaussian兼容模式，对官方完整FP32差2.27e-6，满足1e-5；原BF16预测不改。
+
+```bash
+.venv/bin/python run_pipeline.py --phase 3
+.venv/bin/python run_pipeline.py --phase 3 --reuse-results
+.venv/bin/python verify_phase3.py
+```
+
+新增可视化：[PME/MD](visuals/fig8_pme_kspace_and_1000step_md_trajectory.svg) · [Davidson](visuals/fig9_daviator_batched_davidson_vasp_band.svg) · [射电FX](visuals/fig10_cuphoton_eht_blackhole_correlator.svg) · [100k HMM](visuals/fig11_gpuhmmer_100k_protein_viterbi.svg) · [全15层Uni-Mol](visuals/fig12_unimol_full15layer_end2end_amd9070.svg)。

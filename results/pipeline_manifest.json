@@ -1,48 +1,83 @@
 {
-  "timestamp": "2026-11-23T23:52:18.180090+08:00",
+  "timestamp": "2026-11-24T00:26:58.047821+08:00",
   "python": "/home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python",
   "modules": [
     {
       "module": "rdkit",
       "mode": "validated_cached_result",
-      "elapsed_s": 9.436882100999355e-05,
+      "elapsed_s": 9.55360010266304e-05,
       "result": "results/module1_results.json",
       "sha256": "a5b3c7db8ecbf6583a2ee5afefe729efe16df8c8ca28c57463344b7cac689258"
     },
     {
       "module": "unimol",
       "mode": "validated_cached_result",
-      "elapsed_s": 9.276904165744781e-05,
+      "elapsed_s": 9.230407886207104e-05,
       "result": "results/module2_results.json",
       "sha256": "7b21caa476d3337ff8edb33a43b7f7021e605d21c6e2281cf3ffefd6a9d1f53b"
     },
     {
       "module": "cuspa",
       "mode": "validated_cached_result",
-      "elapsed_s": 2.556806430220604e-05,
+      "elapsed_s": 2.5280052796006203e-05,
       "result": "results/module3_results.json",
       "sha256": "dce162f9b63e4f9136e098aca9187706dcb7e9b68d2d05df2d91f3ff6268d4c9"
     },
     {
       "module": "bbbp",
       "mode": "validated_cached_result",
-      "elapsed_s": 0.0006927598733454943,
+      "elapsed_s": 0.0006772160995751619,
       "result": "results/module6_results.json",
       "sha256": "09d8ed73907c2eb11ef5110efd7ca19617490f626b6cb4214ce2e23ae5b743b3"
     },
     {
       "module": "forcefield",
       "mode": "validated_cached_result",
-      "elapsed_s": 6.916793063282967e-05,
+      "elapsed_s": 6.812787614762783e-05,
       "result": "results/module7_results.json",
       "sha256": "d5708b461df91d66519be2d4a378b9e1772b231a95b7f4bd59a782caad5253c4"
     },
     {
       "module": "protein",
       "mode": "validated_cached_result",
-      "elapsed_s": 0.00016889814287424088,
+      "elapsed_s": 0.0001696001272648573,
       "result": "results/module8_results.json",
       "sha256": "6ab80aa321279ea7fcb013fd78a73b87f8da3b66550d3fe5d55c7274fa95113a"
+    },
+    {
+      "module": "pme_md",
+      "mode": "validated_cached_result",
+      "elapsed_s": 5.192006938159466e-05,
+      "result": "results/module9_results.json",
+      "sha256": "b9315dae5d1f59b2a6c7d28bc9cd49d2bb831c12c2d6bddf00b9269f43375bc7"
+    },
+    {
+      "module": "davidson",
+      "mode": "validated_cached_result",
+      "elapsed_s": 2.7919886633753777e-05,
+      "result": "results/module10_results.json",
+      "sha256": "54534fe0758d8faa8b0cf22a6a96ed94ffa2086283f8cd2e6466c1f84ca7f0ad"
+    },
+    {
+      "module": "blackhole_fx",
+      "mode": "validated_cached_result",
+      "elapsed_s": 3.070407547056675e-05,
+      "result": "results/module11_results.json",
+      "sha256": "0eef77c8b7f59f34d36c161c566bd33fdeb0bcd76f30793f48c96d52ff16ef58"
+    },
+    {
+      "module": "profile_hmm",
+      "mode": "validated_cached_result",
+      "elapsed_s": 0.0015564179047942162,
+      "result": "results/module12_results.json",
+      "sha256": "1100f37065266a2f138b77dcb77e79db7ee2f2736103290736c54f3cd2c28bee"
+    },
+    {
+      "module": "unimol_full15",
+      "mode": "validated_cached_result",
+      "elapsed_s": 0.00021361606195569038,
+      "result": "results/module13_results.json",
+      "sha256": "81f0388210c839326e3be46e0157bf54905e5123b4f350a51d7ea19e4ebc42b9"
     }
   ]
 }

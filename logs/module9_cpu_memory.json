@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:11:08.130001+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp7_pme_and_fused_md_hip.py",
+    "--cpu-only"
+  ],
+  "elapsed_s": 12.015082234982401,
+  "min_available_gib": 111.05298233032227,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

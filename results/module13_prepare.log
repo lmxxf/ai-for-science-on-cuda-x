@@ -1,0 +1,17 @@
+2026-11-24 00:10:18 | unimol_tools/models/unimol.py | 136 | INFO | Uni-Mol Tools | Loading pretrained weights from /home/lmxxf/work/ai-for-science-on-cuda-x/weights/mol_pre_no_h_220816.pt
+RUN ['ssh', 'amd9070', 'mkdir C:\\AI4S-HIP-Lab\\unimol_full15_hip 2>NUL & exit /b 0']
+RUN ['scp', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip/unimol_full.cpp', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip/build_windows.cmd', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip/run_windows.cmd', 'amd9070:C:/AI4S-HIP-Lab/unimol_full15_hip/']
+RUN ['scp', '-r', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip/input', 'amd9070:C:/AI4S-HIP-Lab/unimol_full15_hip/']
+RUN ['ssh', 'amd9070', 'C:\\AI4S-HIP-Lab\\unimol_full15_hip\\build_windows.cmd']
+Traceback (most recent call last):
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp11_unimol_full15layer_amd9070.py", line 102, in <module>
+    if a.stage in ['prepare','all']:prepare()
+                                    ^^^^^^^^^
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp11_unimol_full15layer_amd9070.py", line 34, in prepare
+    run(['ssh','amd9070','C:\\AI4S-HIP-Lab\\unimol_full15_hip\\build_windows.cmd'])
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp11_unimol_full15layer_amd9070.py", line 15, in run
+    def run(cmd):print('RUN',cmd,flush=True);subprocess.run(cmd,check=True,cwd=ROOT)
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/lib/python3.12/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['ssh', 'amd9070', 'C:\\AI4S-HIP-Lab\\unimol_full15_hip\\build_windows.cmd']' returned non-zero exit status 1.

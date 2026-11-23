@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T00:09:40.588292+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module10_build/davidson_cpu",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module10_data",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module10_cpu",
+    "cpu",
+    "100"
+  ],
+  "elapsed_s": 3.5081268360372633,
+  "min_available_gib": 110.53778076171875,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

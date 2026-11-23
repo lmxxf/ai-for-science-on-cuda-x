@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-24T00:19:30.580509+08:00",
+  "command": [
+    ".venv/bin/python",
+    "amd_hip_port/unimol_full15_hip/probe_mixed_precision.py"
+  ],
+  "elapsed_s": 4.506710662972182,
+  "min_available_gib": 109.08109283447266,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

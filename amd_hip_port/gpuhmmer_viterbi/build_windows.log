@@ -1,0 +1,74 @@
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+viterbi.cpp:69:89: note: in instantiation of member function 'Mem<unsigned char>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                         ^
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+viterbi.cpp:69:111: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                                               ^
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+viterbi.cpp:69:127: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                                                               ^
+3 warnings generated when compiling for gfx1201.
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+viterbi.cpp:69:89: note: in instantiation of member function 'Mem<unsigned char>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                         ^
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+viterbi.cpp:69:111: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                                               ^
+viterbi.cpp:54:97: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                                 ^~~~~~~~~~~
+viterbi.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+viterbi.cpp:69:127: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   69 |  DeviceProp prop{};CHECK(RT(GetDeviceProperties)(&prop,0));device=prop.name;Mem<uint8_t>s(seq.size());Mem<int>l(n);Mem<double>e(em.size()),t(trans.size()),o(n);
+      |                                                                                                                               ^
+3 warnings generated when compiling for host.

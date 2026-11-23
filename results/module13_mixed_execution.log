@@ -1,0 +1,36 @@
+2026-11-24 00:20:41 | unimol_tools/models/unimol.py | 136 | INFO | Uni-Mol Tools | Loading pretrained weights from /home/lmxxf/work/ai-for-science-on-cuda-x/weights/mol_pre_no_h_220816.pt
+RUN ['ssh', 'amd9070', 'cmd /c "set PATH=C:\\Strata-Lab\\Strata\\.rocm-win\\Lib\\site-packages\\_rocm_sdk_devel\\bin;%PATH%&&cd /d C:\\AI4S-HIP-Lab\\unimol_full15_hip&&unimol_full_hip.exe input out_hip_mixed gaussian_fp32 > run_mixed.log 2>&1"']
+RUN ['scp', '-r', 'amd9070:C:/AI4S-HIP-Lab/unimol_full15_hip/out_hip_mixed', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip']
+RUN ['scp', 'amd9070:C:/AI4S-HIP-Lab/unimol_full15_hip/run_mixed.log', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_full15_hip/run_mixed_windows.log']
+{
+  "scope": "same full15layer HIP/hipBLAS FP64 weights and network, optional only Gaussian arithmetic FP32 matching upstream official; no prediction calibration",
+  "samples": 112,
+  "AMD_vs_official_GB10_FP32_max_abs_logS": 2.2684548782378955e-06,
+  "AMD_vs_precision_matched_GB10_mixed_max_abs_logS": 1.571898933442675e-06,
+  "GB10_mixed_vs_official_FP32_max_abs_logS": 1.3583843484290831e-06,
+  "AMD_metrics": {
+    "RMSE": 0.5736334022941321,
+    "R2": 0.9304668498584057
+  },
+  "precision_matched_reference_metrics": {
+    "RMSE": 0.5736333855212612,
+    "R2": 0.9304668539246631
+  },
+  "AMD_runtime": {
+    "device": "AMD Radeon RX 9070 XT",
+    "samples": 112,
+    "layers": 15,
+    "dtype": "float64",
+    "gpu_compute_ms": 5405.54196387529,
+    "wall_including_weights_and_trace_s": 10.8160135,
+    "free_before_bytes": 16937582592,
+    "weight_device_bytes": 359399424,
+    "peak_estimated_device_bytes": 434831360,
+    "total_device_bytes": 17095983104,
+    "gaussian_fp32": true,
+    "hipblas": true,
+    "head": "actual LinearHead512to1; no tanh"
+  },
+  "pass_official_FP32": true,
+  "pass_matched_reference": true
+}

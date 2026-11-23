@@ -1,0 +1,9 @@
+{
+  "device": "NVIDIA GB10",
+  "dtype": "FP64, including Gaussian formulas (upstream forced .float() removed only for precision)",
+  "gpu_compute_ms": 1756.4687350057065,
+  "wall_with_trace_s": 2.0887272239197046,
+  "peak_cuda_allocated_bytes": 439619072,
+  "scope": "per-molecule forward15 layers including Gaussian, linear actual head; traces excluded from device-event sums",
+  "TF32": false
+}

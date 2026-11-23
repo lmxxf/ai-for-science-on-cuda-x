@@ -110,3 +110,63 @@
 - 所有实验已结束，GPU释放；完成最后报告与同步哈希检查后本地提交两仓。本轮未执行git push或对外发布。
 - 最后回归发现第一阶段旧校验器把目录SVG总数写死为4；新增图后误报。已改为明确核对fig1–fig4，第二阶段继续独立核对fig5–fig7；全阶段入口`--phase all --reuse-results`随后PASS。
 - 原始Windows编译/计时日志保留CRLF和工具输出尾空格，不为Git空白检查改写实验原始日志；源码差异单独检查。
+
+## 2026-11-24 00:06 +08:00 — 第三阶段启动
+
+- 完整读取`PHASE3_GRAND_SLAM_AMD_PLAN.md`，目标模块九PME/1000步MD、十Block-Davidson、十一FX/CLEAN、十二100k Profile-HMM、十三全15层原生HIP Uni-Mol；GPU严格按九→十三顺序放行，CPU准备与编译并行。
+- 原型均为自主实现，不冒称获得或完整复制NVIDIA专有库；合成轨迹、天空电压、搜索库明确标注，不编造真实观测/湿实验。
+- 全15层导出按真实checkpoint结构：线性预测头而非图纸假设tanh头。原ESOL数字来自BF16 autocast，跨平台高精度对账另保留同权重FP64参考，不改预测贴旧数字。
+- 模块十二先完成CPU：真实8733条GB1域序列统计PSSM，gapless数据只观测MM，I/D转移明确用先验；100k合成库植入500变异域，固定种子20261123。同源C++原型与独立二维DP小样本逐值一致，100k CPU扫描真实约1.136秒，GPU待模块十一放行。
+
+## 2026-11-24 00:09–00:25 +08:00 — 第三阶段全部真机闭环
+
+### 模块九 PME/MD
+
+- `exp7_pme_and_fused_md_hip.py`完成81原子/27柔性中性三原子合成分子、24Å周期盒。每步实空间LJ/erfc库仑/自能、harmonic bonds/angles与64³ 4阶B样条PME；CUDA cuFFT/HIP hipFFT，CPU SciPy FFT worker1。
+- 独立直接Ewald（含邻周期实空间、k16并与k18检收敛）验证：64³受力相对误差4.938e-5，128³5.84e-6；不是跨卡误差或机器精度。用B样条导数保证同一离散能量的力，有限差分4.81e-9，有限mesh净力3.82e-4明确保留。
+- 真实1000步NVE dt0.5fs同0.5ps：CPU2.8727s/GB101.0629s/AMD0.7968s，最大相对能量漂移1.09019e-4；dt减半、2000步同0.5ps降为2.72519e-5，改善4.0004倍。
+- BAOAB 1000步/1ps后半段297.35±27.57K，NVT总能量不守恒属热浴；不冒称SETTLE/刚性约束。CUDA/HIP初始受力L2=4.66e-16，最终XYZ对CPU约2.5e-14Å。逐步U/K/E/T/首键长/首x与全体最终XYZ保存。
+- 两GPU结果完成后汇编第一次因render_module9尚未落盘失败；补渲染器只重新summarize，不重复GPU。确认通过即放行模块十。
+
+### 模块十 Block-Davidson
+
+- 64×384周期余弦局域势平面波系统，16最低带；CPU独立NumPy eigvalsh参考，实际9轮收敛，全部1024本征值max_abs<=4.73e-14、完整H残差3.524e-8。
+- 原GPU实现补上RR投影、Ritz重构、残差与对角预条件批处理；小子空间Jacobi和两遍MGS仍CPU，逐次传输时间单列，不称完整GPU驻留Daviator。
+- GB10 seq/batch端到端0.856/0.811s、GPU核心1.77倍；AMD1.195/1.041s、核心2.80倍。端到端仅1.055/1.149倍，不造22倍。NumPy全eigh参考0.231s更快，图中保留。
+- 两GPU严格精度验证通过后放行模块十一。周期势是合成模型，非硅自洽DFT能带。
+
+### 模块十一 FX/CLEAN
+
+- 同一合成非对称环天空的Fourier协方差→Cholesky相关高斯谱→IFFT时域电压。16天线/120基线、64时段×64帧×1024FFT，67,108,864 complex128采样实际1GiB；不是EHT实测数据或连续12h采样。
+- 全负载CPU/GB10/AMD F+X=1.09454/0.14011/0.29227s；含I/O=1.1877/0.2625/1.3297s，分账而不偷用驻留时间宣称端到端。
+- GPU执行原生FP64 FFT与复数相关，uv网格/2D IFFT/Hogbom CLEAN是共同CPU后处理。恢复函数只接FX可见度，不读目标图。四项独立逐像素Fourier误差<=1.3e-16。
+- 跨GPU可见度L2=2.836e-16、恢复图7.508e-16，真实PSNR15.226dB。uv每格均值属于uniform-per-cell，非natural；固定sigma0.7恢复beam不是uv拟合。缺DC、CLEAN2000轮触顶与有限重建质量全部记录。
+- Windows构建纠正为现成Strata SDK/vcvars64路径，不凭空假设C:\Program Files的ROCm安装。两GPU完成后放行模块十二。
+
+### 模块十二 Profile-HMM
+
+- 原创C++三后端glocal M/I/D Viterbi，真实GB1 8733序列PSSM，I/D转移是明示先验。seed20261123、100k128–256AA合成库、植入500变异域。独立2D DP小样本先通过，非官方HMMER分数校准。
+- NVCC最初编译发现cudaDeviceProp_t类型误用、CHECK宏局部e与emission缓冲重名、ofstream s与sequence缓冲重名；修正后实际编译通过。
+- CPU1136.210ms/GB10234.400ms/AMD60.701ms，吞吐16.88/81.82/315.97百万残基每秒，所有100000分数逐值逐字节一致，SHA同为aaf96d109052bc6d5e83077f67d5b3289269b8086a2198dc86e290bc57ccb429。
+- 合成检出AUC1.0，不外推真实注释准确率；两类直方图分别按本类峰值归一。完成两GPU及图11后放行模块十三。
+
+### 模块十三完整15层
+
+- 真checkpoint SHA d4ef9f1436baa8373ce5fa762104ef30d3a2a835398acdd3a03689964833e052；195张量/47,331,139参数导出FP64共378649112字节。远端只收到真实权重与112分子tokens/edge/dist，无预测或标签。
+- 原生HIP/hipBLAS完整embedding/Gaussian/15层node+pair传播/末LN/真实LinearHead512→1。原checkpoint没有图纸假定两层tanh头；final_head_layer_norm本来None，非遗漏预测分支。BOS/EOS保留、eval关闭dropout、单分子无padding。
+- 全FP64：112预测对GB10 FP64 max_abs7.105e-15，RMSE0.573633556/R²0.930466813；全部50,501,632中间元素核验node9.09e-13/pair7.70e-13。GB10设备累计1.756s/AMD2.291s，墙钟含权重加载与trace另报。
+- 旧BF16原预测全部保留，旧RMSE0.57377856。全FP64对官方FP32最大差1.9189e-5，一度未满足原1e-5目标，主线程要求继续定位，未以切换参考掩盖。
+- 定位官方GBF helper强制FP32：仅Gaussian官方FP32/rest15层FP64的GB10探针把误差降1.36e-6；随后原生HIP同模式真跑全112，最大差2.268e-6<1e-5，对精度匹配参考1.572e-6。兼容模式RMSE0.573633402/R²0.930466850、AMD设备累计5.406s。原全FP64/旧BF16未覆盖，所有路径无标签校准或输出修饰。
+- 结果合入official_fp32_compatibility，完整独立JSON与预测112条、实际精度定义、运行时均保存。所有GPU已释放。
+
+### 最后验证与图表
+
+- 图8..12均640px白底中文、文泉驿、禁ᵀ，已逐张CairoSVG转PNG并由主线程view_image目检。图9/10保留CPU/混合路径、CLEAN实际质量与范围，没有强行做漂亮数据。
+- `verify_phase3.py`在guard下重读原始轨迹、全部本征对/H残差、全频FX vis/图像、100k score/hash和50M全模型trace，重新算指标与误差，全部PASS。官方FP32兼容1e-5项也独立从112输出复核。
+- run_pipeline支持--phase 3与--phase all；reuse模式明确只重验现有产物，真实实验另有执行日志。大数据/权重/trace仅保留实验机，轻量证据与生成脚本随两仓提交。
+
+## 2026-11-24 00:25 +08:00 — 第三阶段最终交付准备
+
+- 完成官方FP32 Gaussian兼容补验后再跑完整原始产物校验，全部PASS；没有用切换到FP64参考替代原1e-5官方FP32目标，两个目标均单列满足。
+- 全部5张图已主线程PNG目检，完整报告/README/Skill/run_pipeline/verify_phase3更新。三阶段reuse入口将再次执行独立原始产物检查，明确不重跑模拟。
+- 双仓同步仅源码、许可、脚本、JSON/CSV/小NPZ与图，FP64权重、逐层trace、1GiB电压、H矩阵等大输入和编译产物留本机并忽略Git；两仓本地提交，不执行git push。

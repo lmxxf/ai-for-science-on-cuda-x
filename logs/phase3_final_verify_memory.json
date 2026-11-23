@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-24T00:23:06.290163+08:00",
+  "command": [
+    ".venv/bin/python",
+    "verify_phase3.py"
+  ],
+  "elapsed_s": 1.0011776480823755,
+  "min_available_gib": 111.09700012207031,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

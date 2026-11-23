@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:16:49.816617+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-c",
+    "import exp7_pme_and_fused_md_hip as m; x,v,q,a=m.generate();m.validate(x,q)"
+  ],
+  "elapsed_s": 0.5012129570823163,
+  "min_available_gib": 108.60211181640625,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

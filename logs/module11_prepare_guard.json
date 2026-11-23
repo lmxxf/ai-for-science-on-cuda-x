@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:12:20.252514+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp9_cuphoton_blackhole_fx_hip.py",
+    "--prepare-only"
+  ],
+  "elapsed_s": 4.759774437872693,
+  "min_available_gib": 110.06342697143555,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

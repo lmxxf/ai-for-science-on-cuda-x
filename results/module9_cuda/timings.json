@@ -1,0 +1,1 @@
+{"device":"NVIDIA GB10","grid":64,"atoms":81,"trajectories":[{"name":"nve","steps":1000,"dt_ps":0.0005,"seconds":1.06289305},{"name":"nve_halfdt","steps":2000,"dt_ps":0.00025,"seconds":2.124769264},{"name":"nvt","steps":1000,"dt_ps":0.001,"seconds":1.066722483}]}

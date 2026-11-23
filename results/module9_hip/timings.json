@@ -1,0 +1,1 @@
+{"device":"AMD Radeon RX 9070 XT","grid":64,"atoms":81,"trajectories":[{"name":"nve","steps":1000,"dt_ps":0.0005,"seconds":0.7967642},{"name":"nve_halfdt","steps":2000,"dt_ps":0.00025,"seconds":1.3477049},{"name":"nvt","steps":1000,"dt_ps":0.001,"seconds":0.6576316}]}

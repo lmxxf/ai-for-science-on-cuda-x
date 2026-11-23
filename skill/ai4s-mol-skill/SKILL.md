@@ -30,3 +30,13 @@ description: 在本实验仓复现真实分子清洗、三维构象、Uni-Mol �
 - 非键力场：说明PBC最小镜像、单位、截断、反应场介电参数、LJ是否平移。27邻格要求每轴至少3格，避免周期重复。每原子遍历邻居时总能量除2、受力不除2；先做小体系bruteforce、解析力有限差分和总力检查，再跑32k/128k。报告是force evaluation/s，不把未跑的完整MD轨迹换算成ns/day。
 - 蛋白质：真实实验CSV保留来源、哈希、去重和抽样协议；Biopython校验20种标准氨基酸。ESM-2按真实config打印词表与RoPE，训练和标签标准化均只用train。单点突变热图是模型预测变化，不假称已做湿实验。
 - GPU计时依次运行，CPU准备可并行。本地重进程仍用统一内存看护。SVG禁止Unicode上标ᵀ，使用`^T`。
+
+## 第三阶段：跨领域原型与完整Uni-Mol
+
+`PHASE3_GRAND_SLAM_AMD_PLAN.md`对应`.venv/bin/python run_pipeline.py --phase 3`，GPU顺序为PME/MD→Davidson→FX→Profile-HMM→完整Uni-Mol。`verify_phase3.py`从原始数值复核；镜像仓仅保留轻量证据，不把摘要检查说成重新跑GPU。
+
+- PME：Ewald实空间、倒易与自能口径一致；四阶B样条的能量和力用同一离散模型，另对直接Ewald、网格细化、有限差分及NVE步长减半。网格误差与跨GPU浮点误差分别报。NVT热浴不要求总能量守恒，无SETTLE就不宣称刚性约束。
+- Davidson：保留完整H与独立精确解，只比较最后收敛迭代输出；同查本征值、H残差与正交性。CPU子空间/正交化和传输必须分账，不预设22倍，不把模型周期势称为硅自洽DFT。
+- FX：电压协方差必须来自同一天空傅里叶可见度；恢复只读真实FX输出。标明合成天空、uv格权重、缺失DC、CLEAN迭代上限与固定恢复beam。FFT/X与CPU成像、I/O耗时分开。
+- HMM：真实PSSM与合成植入/诱饵分开，gapless数据的I/D转移先验明说。用独立二维DP核对就地更新，全100k score/hash验证。glocal M/I/D原型不是官方HMMER校准分数或E-value。
+- 全Uni-Mol：真实47,331,139参数、15层pair与node路径全导出，禁止用GB10预测作为AMD输入。保留旧BF16结果；同精度FP64逐层对齐，并额外验证官方FP32 Gaussian兼容路径对官方完整FP32的最大差<1e-5。不同精度指标不硬贴。

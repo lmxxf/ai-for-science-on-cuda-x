@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:14:20.242072+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp8_daviator_batched_davidson_hip.py",
+    "--gpu-only"
+  ],
+  "elapsed_s": 21.779383927816525,
+  "min_available_gib": 110.14659881591797,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

@@ -1,0 +1,229 @@
+{
+  "validation": {
+    "ewald_reference_net_force_l2": 1.4607767620765455e-14,
+    "finite_difference_cutoff_margin_angstrom": 0.0007738086308606285,
+    "ewald_reference_energy_kj_mol": -409.3801148374025,
+    "ewald_kmax": 16,
+    "ewald_convergence_energy_abs_diff": 5.684341886080802e-14,
+    "ewald_convergence_force_l2": 2.248658992478334e-15,
+    "mesh_sizes": {
+      "32": {
+        "energy_kj_mol": -409.3790452749485,
+        "energy_abs_error": 0.0010695624540062454,
+        "energy_relative_error": 2.6126390003848962e-06,
+        "force_relative_l2": 0.0004639051431556628,
+        "force_max_abs_error": 0.0030786321708696773,
+        "net_force_l2": 0.007597427171658973
+      },
+      "64": {
+        "energy_kj_mol": -409.3799776321763,
+        "energy_abs_error": 0.0001372052262240686,
+        "energy_relative_error": 3.3515361702061114e-07,
+        "force_relative_l2": 4.938229069595098e-05,
+        "force_max_abs_error": 0.0003526450388133817,
+        "net_force_l2": 0.0003822560422577208
+      },
+      "128": {
+        "energy_kj_mol": -409.38011200280556,
+        "energy_abs_error": 2.83459695538113e-06,
+        "energy_relative_error": 6.9241197914729555e-09,
+        "force_relative_l2": 5.842115993216346e-06,
+        "force_max_abs_error": 4.0837878333421784e-05,
+        "net_force_l2": 0.00010894196396854916
+      }
+    },
+    "mesh_gradient_checks": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": 2.5510221234981145,
+        "analytic": 2.5510221218078195,
+        "abs_error": 1.6902950150665674e-09
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "finite_difference": -2.9020453098382855,
+        "analytic": -2.9020453050279187,
+        "abs_error": 4.810366771579311e-09
+      },
+      {
+        "atom": 7,
+        "axis": 2,
+        "finite_difference": -2.3118784952202986,
+        "analytic": -2.3118784965070613,
+        "abs_error": 1.2867626963952716e-09
+      },
+      {
+        "atom": 45,
+        "axis": 0,
+        "finite_difference": 0.26149191683089157,
+        "analytic": 0.2614919143479953,
+        "abs_error": 2.482896277467006e-09
+      },
+      {
+        "atom": 70,
+        "axis": 2,
+        "finite_difference": 3.1553869717981793,
+        "analytic": 3.1553869725410704,
+        "abs_error": 7.428910819839984e-10
+      }
+    ],
+    "mesh_gradient_max_abs_error": 4.810366771579311e-09,
+    "notes": "All comparisons include real erfc, reciprocal, self, LJ, bonds and angles. PME force is derivative of B-spline charge interpolation, hence gradient of same discrete energy; no ik-field inconsistency."
+  },
+  "backends": {
+    "cpu": {
+      "device": "CPU NumPy/SciPy FFT workers=1, Python dynamics",
+      "grid": 64,
+      "atoms": 81,
+      "trajectories": {
+        "nve": {
+          "name": "nve",
+          "steps": 1000,
+          "dt_ps": 0.0005,
+          "seconds": 2.872697427868843,
+          "energy_initial": -106.31781520049071,
+          "energy_final": -106.31431202492695,
+          "energy_relative_max_drift": 0.00010901944613789458,
+          "temperature_mean_second_half": 252.67484145000438,
+          "temperature_std_second_half": 13.974861882529899,
+          "final_bond01": 1.992190667549831
+        },
+        "nve_halfdt": {
+          "name": "nve_halfdt",
+          "steps": 2000,
+          "dt_ps": 0.00025,
+          "seconds": 5.74931246903725,
+          "energy_initial": -106.31781520049071,
+          "energy_final": -106.31692499221225,
+          "energy_relative_max_drift": 2.725189533900079e-05,
+          "temperature_mean_second_half": 252.67499247457576,
+          "temperature_std_second_half": 13.981235535438003,
+          "final_bond01": 1.9922093931745095
+        },
+        "nvt": {
+          "name": "nvt",
+          "steps": 1000,
+          "dt_ps": 0.001,
+          "seconds": 2.87204457889311,
+          "energy_initial": -106.31781520049071,
+          "energy_final": 1.0107865202974153,
+          "energy_relative_max_drift": 1.638965671517092,
+          "temperature_mean_second_half": 297.3491976734995,
+          "temperature_std_second_half": 27.571674027072067,
+          "final_bond01": 1.9503890191135804
+        }
+      },
+      "initial_force_relative_l2_vs_cpu": 0.0,
+      "nve_dt_halving_drift_ratio": 4.00043537455813,
+      "nvt_temperature_target_K": 300
+    },
+    "cuda": {
+      "device": "NVIDIA GB10",
+      "grid": 64,
+      "atoms": 81,
+      "trajectories": {
+        "nve": {
+          "name": "nve",
+          "steps": 1000,
+          "dt_ps": 0.0005,
+          "seconds": 1.06289305,
+          "energy_initial": -106.31781520049088,
+          "energy_final": -106.31431202492723,
+          "energy_relative_max_drift": 0.00010901944613949837,
+          "temperature_mean_second_half": 252.67484145000427,
+          "temperature_std_second_half": 13.974861882529915,
+          "final_bond01": 1.9921906675498304,
+          "final_position_max_abs_error_vs_cpu_angstrom": 1.7763568394002505e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 9.094947017729282e-13
+        },
+        "nve_halfdt": {
+          "name": "nve_halfdt",
+          "steps": 2000,
+          "dt_ps": 0.00025,
+          "seconds": 2.124769264,
+          "energy_initial": -106.31781520049088,
+          "energy_final": -106.31692499221248,
+          "energy_relative_max_drift": 2.7251895342743336e-05,
+          "temperature_mean_second_half": 252.67499247457567,
+          "temperature_std_second_half": 13.981235535438014,
+          "final_bond01": 1.9922093931745088,
+          "final_position_max_abs_error_vs_cpu_angstrom": 2.3092638912203256e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 7.389644451905042e-13
+        },
+        "nvt": {
+          "name": "nvt",
+          "steps": 1000,
+          "dt_ps": 0.001,
+          "seconds": 1.066722483,
+          "energy_initial": -106.31781520049088,
+          "energy_final": 1.0107865202963353,
+          "energy_relative_max_drift": 1.638965671517098,
+          "temperature_mean_second_half": 297.3491976734994,
+          "temperature_std_second_half": 27.57167402707213,
+          "final_bond01": 1.9503890191135833,
+          "final_position_max_abs_error_vs_cpu_angstrom": 2.4868995751603507e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 1.3642420526593924e-12
+        }
+      },
+      "initial_force_relative_l2_vs_cpu": 4.254946133050932e-16,
+      "nve_dt_halving_drift_ratio": 4.000435374067594,
+      "nvt_temperature_target_K": 300
+    },
+    "hip": {
+      "device": "AMD Radeon RX 9070 XT",
+      "grid": 64,
+      "atoms": 81,
+      "trajectories": {
+        "nve": {
+          "name": "nve",
+          "steps": 1000,
+          "dt_ps": 0.0005,
+          "seconds": 0.7967642,
+          "energy_initial": -106.31781520049088,
+          "energy_final": -106.3143120249274,
+          "energy_relative_max_drift": 0.00010901944613949837,
+          "temperature_mean_second_half": 252.67484145000452,
+          "temperature_std_second_half": 13.974861882530197,
+          "final_bond01": 1.992190667549831,
+          "final_position_max_abs_error_vs_cpu_angstrom": 2.1316282072803006e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 1.0231815394945443e-12
+        },
+        "nve_halfdt": {
+          "name": "nve_halfdt",
+          "steps": 2000,
+          "dt_ps": 0.00025,
+          "seconds": 1.3477049,
+          "energy_initial": -106.31781520049088,
+          "energy_final": -106.31692499221327,
+          "energy_relative_max_drift": 2.725189534327799e-05,
+          "temperature_mean_second_half": 252.6749924745755,
+          "temperature_std_second_half": 13.981235535437841,
+          "final_bond01": 1.9922093931745082,
+          "final_position_max_abs_error_vs_cpu_angstrom": 2.1316282072803006e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 1.4210854715202004e-12
+        },
+        "nvt": {
+          "name": "nvt",
+          "steps": 1000,
+          "dt_ps": 0.001,
+          "seconds": 0.6576316,
+          "energy_initial": -106.31781520049088,
+          "energy_final": 1.0107865202961648,
+          "energy_relative_max_drift": 1.6389656715171022,
+          "temperature_mean_second_half": 297.3491976734995,
+          "temperature_std_second_half": 27.571674027072305,
+          "final_bond01": 1.9503890191135824,
+          "final_position_max_abs_error_vs_cpu_angstrom": 2.4868995751603507e-14,
+          "history_total_energy_max_abs_error_vs_cpu": 1.7621459846850485e-12
+        }
+      },
+      "initial_force_relative_l2_vs_cpu": 5.426344976776976e-16,
+      "nve_dt_halving_drift_ratio": 4.00043537398911,
+      "nvt_temperature_target_K": 300
+    }
+  },
+  "scope": "Original MIT prototype, 27 synthetic neutral flexible trimers/81 atoms; full real+reciprocal+self/LJ/bonds/angles. Not SETTLE or production libcupo replica.",
+  "hip_vs_cuda_initial_force_relative_l2": 4.657809967722857e-16
+}

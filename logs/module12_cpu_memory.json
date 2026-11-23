@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-24T00:10:33.105198+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module12_build/viterbi_cpu",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module12_data",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module12_cpu",
+    "3"
+  ],
+  "elapsed_s": 4.755958057940006,
+  "min_available_gib": 110.02840042114258,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

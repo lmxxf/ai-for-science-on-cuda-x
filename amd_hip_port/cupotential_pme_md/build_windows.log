@@ -1,0 +1,50 @@
+pme_md.cpp:51:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   51 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+pme_md.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:326:1: note: expanded from here
+  326 | hipFree
+      | ^
+pme_md.cpp:55:541: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   55 | int main(int argc,char**argv){try{if(argc<3)return 2;std::string in=argv[1],out=argv[2];std::filesystem::create_directories(out);Cfg c{};std::ifstream p(path(in,"params.txt"));p>>c.n>>c.m>>c.L>>c.alpha>>c.rc>>c.kbond>>c.kangle>>c.l0>>c.theta0;if(c.n%3||c.n<3)throw std::runtime_error("trimer topology required");auto a=load<double>(path(in,"atoms.bin"),c.n*8);std::vector<double>x(c.n*3),v(c.n*3),q(c.n),mass(c.n);for(int i=0;i<c.n;++i){for(int j=0;j<3;++j){x[3*i+j]=a[8*i+j];v[3*i+j]=a[8*i+3+j];}q[i]=a[8*i+6];mass[i]=a[8*i+7];}Mem<double>dx(x.size()),dv(v.size()),dq(q.size()),dm(mass.size()),df(x.size()),de(c.n);Mem<Z>mesh(size_t(c.m)*c.m*c.m);CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dv.p,v.data(),v.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dq.p,q.data(),q.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dm.p,mass.data(),mass.size()*8,RT(MemcpyHostToDevice)));FFT(Handle)plan;FCHECK(FFT(Plan3d)(&plan,c.m,c.m,c.m,Z2Z));
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+pme_md.cpp:51:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   51 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+pme_md.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:326:1: note: expanded from here
+  326 | hipFree
+      | ^
+pme_md.cpp:55:623: note: in instantiation of member function 'Mem<HIP_vector_type<double, 2>>::~Mem' requested here
+   55 | int main(int argc,char**argv){try{if(argc<3)return 2;std::string in=argv[1],out=argv[2];std::filesystem::create_directories(out);Cfg c{};std::ifstream p(path(in,"params.txt"));p>>c.n>>c.m>>c.L>>c.alpha>>c.rc>>c.kbond>>c.kangle>>c.l0>>c.theta0;if(c.n%3||c.n<3)throw std::runtime_error("trimer topology required");auto a=load<double>(path(in,"atoms.bin"),c.n*8);std::vector<double>x(c.n*3),v(c.n*3),q(c.n),mass(c.n);for(int i=0;i<c.n;++i){for(int j=0;j<3;++j){x[3*i+j]=a[8*i+j];v[3*i+j]=a[8*i+3+j];}q[i]=a[8*i+6];mass[i]=a[8*i+7];}Mem<double>dx(x.size()),dv(v.size()),dq(q.size()),dm(mass.size()),df(x.size()),de(c.n);Mem<Z>mesh(size_t(c.m)*c.m*c.m);CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dv.p,v.data(),v.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dq.p,q.data(),q.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dm.p,mass.data(),mass.size()*8,RT(MemcpyHostToDevice)));FFT(Handle)plan;FCHECK(FFT(Plan3d)(&plan,c.m,c.m,c.m,Z2Z));
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^
+2 warnings generated when compiling for gfx1201.
+pme_md.cpp:51:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   51 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+pme_md.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:343:1: note: expanded from here
+  343 | hipFree
+      | ^
+pme_md.cpp:55:541: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   55 | int main(int argc,char**argv){try{if(argc<3)return 2;std::string in=argv[1],out=argv[2];std::filesystem::create_directories(out);Cfg c{};std::ifstream p(path(in,"params.txt"));p>>c.n>>c.m>>c.L>>c.alpha>>c.rc>>c.kbond>>c.kangle>>c.l0>>c.theta0;if(c.n%3||c.n<3)throw std::runtime_error("trimer topology required");auto a=load<double>(path(in,"atoms.bin"),c.n*8);std::vector<double>x(c.n*3),v(c.n*3),q(c.n),mass(c.n);for(int i=0;i<c.n;++i){for(int j=0;j<3;++j){x[3*i+j]=a[8*i+j];v[3*i+j]=a[8*i+3+j];}q[i]=a[8*i+6];mass[i]=a[8*i+7];}Mem<double>dx(x.size()),dv(v.size()),dq(q.size()),dm(mass.size()),df(x.size()),de(c.n);Mem<Z>mesh(size_t(c.m)*c.m*c.m);CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dv.p,v.data(),v.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dq.p,q.data(),q.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dm.p,mass.data(),mass.size()*8,RT(MemcpyHostToDevice)));FFT(Handle)plan;FCHECK(FFT(Plan3d)(&plan,c.m,c.m,c.m,Z2Z));
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             ^
+pme_md.cpp:51:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   51 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+pme_md.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:343:1: note: expanded from here
+  343 | hipFree
+      | ^
+pme_md.cpp:55:623: note: in instantiation of member function 'Mem<HIP_vector_type<double, 2>>::~Mem' requested here
+   55 | int main(int argc,char**argv){try{if(argc<3)return 2;std::string in=argv[1],out=argv[2];std::filesystem::create_directories(out);Cfg c{};std::ifstream p(path(in,"params.txt"));p>>c.n>>c.m>>c.L>>c.alpha>>c.rc>>c.kbond>>c.kangle>>c.l0>>c.theta0;if(c.n%3||c.n<3)throw std::runtime_error("trimer topology required");auto a=load<double>(path(in,"atoms.bin"),c.n*8);std::vector<double>x(c.n*3),v(c.n*3),q(c.n),mass(c.n);for(int i=0;i<c.n;++i){for(int j=0;j<3;++j){x[3*i+j]=a[8*i+j];v[3*i+j]=a[8*i+3+j];}q[i]=a[8*i+6];mass[i]=a[8*i+7];}Mem<double>dx(x.size()),dv(v.size()),dq(q.size()),dm(mass.size()),df(x.size()),de(c.n);Mem<Z>mesh(size_t(c.m)*c.m*c.m);CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dv.p,v.data(),v.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dq.p,q.data(),q.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dm.p,mass.data(),mass.size()*8,RT(MemcpyHostToDevice)));FFT(Handle)plan;FCHECK(FFT(Plan3d)(&plan,c.m,c.m,c.m,Z2Z));
+      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               ^
+2 warnings generated when compiling for host.

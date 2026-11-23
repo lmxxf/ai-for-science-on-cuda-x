@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:11:47.738287+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_build/pme_md_cuda",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_data",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_cuda"
+  ],
+  "elapsed_s": 5.010417954996228,
+  "min_available_gib": 110.75540542602539,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

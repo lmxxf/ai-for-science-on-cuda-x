@@ -1,0 +1,21 @@
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module9_cuda_memory.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_build/pme_md_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_data /home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_cuda
+NVIDIA GB10 nve 1.06289 seconds
+NVIDIA GB10 nve_halfdt 2.12477 seconds
+NVIDIA GB10 nvt 1.06672 seconds
+RUN scp -r /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cupotential_pme_md amd9070:C:/AI4S-HIP-Lab/
+RUN scp -r /home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_data amd9070:C:/AI4S-HIP-Lab/cupotential_pme_md/data
+RUN ssh amd9070 C:\AI4S-HIP-Lab\cupotential_pme_md\build_windows.cmd
+RUN ssh amd9070 C:\AI4S-HIP-Lab\cupotential_pme_md\run_windows.cmd
+RUN scp -r amd9070:C:/AI4S-HIP-Lab/cupotential_pme_md/out_hip/. /home/lmxxf/work/ai-for-science-on-cuda-x/results/module9_hip
+RUN scp amd9070:C:/AI4S-HIP-Lab/cupotential_pme_md/build.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cupotential_pme_md/build_windows.log
+RUN scp amd9070:C:/AI4S-HIP-Lab/cupotential_pme_md/run.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cupotential_pme_md/run_windows.log
+Traceback (most recent call last):
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp7_pme_and_fused_md_hip.py", line 115, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp7_pme_and_fused_md_hip.py", line 114, in main
+    summarize()
+  File "/home/lmxxf/work/ai-for-science-on-cuda-x/exp7_pme_and_fused_md_hip.py", line 106, in summarize
+    (RES/'module9_results.json').write_text(json.dumps(r,indent=2));from render_module9 import render;render();print(json.dumps(r,indent=2))
+                                                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ModuleNotFoundError: No module named 'render_module9'

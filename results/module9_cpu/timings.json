@@ -1,0 +1,25 @@
+{
+  "device": "CPU NumPy/SciPy FFT workers=1, Python dynamics",
+  "grid": 64,
+  "atoms": 81,
+  "trajectories": [
+    {
+      "name": "nve",
+      "steps": 1000,
+      "dt_ps": 0.0005,
+      "seconds": 2.872697427868843
+    },
+    {
+      "name": "nve_halfdt",
+      "steps": 2000,
+      "dt_ps": 0.00025,
+      "seconds": 5.74931246903725
+    },
+    {
+      "name": "nvt",
+      "steps": 1000,
+      "dt_ps": 0.001,
+      "seconds": 2.87204457889311
+    }
+  ]
+}

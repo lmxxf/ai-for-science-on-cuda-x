@@ -1,0 +1,2 @@
+DGX Spark single-thread C++ CPU sequences=6 median_ms=0.087169
+DGX Spark single-thread C++ CPU sequences=100000 median_ms=1136.21

@@ -1,0 +1,73 @@
+{
+  "ewald_reference_net_force_l2": 1.4607767620765455e-14,
+  "finite_difference_cutoff_margin_angstrom": 0.0007738086308606285,
+  "ewald_reference_energy_kj_mol": -409.3801148374025,
+  "ewald_kmax": 16,
+  "ewald_convergence_energy_abs_diff": 5.684341886080802e-14,
+  "ewald_convergence_force_l2": 2.248658992478334e-15,
+  "mesh_sizes": {
+    "32": {
+      "energy_kj_mol": -409.3790452749485,
+      "energy_abs_error": 0.0010695624540062454,
+      "energy_relative_error": 2.6126390003848962e-06,
+      "force_relative_l2": 0.0004639051431556628,
+      "force_max_abs_error": 0.0030786321708696773,
+      "net_force_l2": 0.007597427171658973
+    },
+    "64": {
+      "energy_kj_mol": -409.3799776321763,
+      "energy_abs_error": 0.0001372052262240686,
+      "energy_relative_error": 3.3515361702061114e-07,
+      "force_relative_l2": 4.938229069595098e-05,
+      "force_max_abs_error": 0.0003526450388133817,
+      "net_force_l2": 0.0003822560422577208
+    },
+    "128": {
+      "energy_kj_mol": -409.38011200280556,
+      "energy_abs_error": 2.83459695538113e-06,
+      "energy_relative_error": 6.9241197914729555e-09,
+      "force_relative_l2": 5.842115993216346e-06,
+      "force_max_abs_error": 4.0837878333421784e-05,
+      "net_force_l2": 0.00010894196396854916
+    }
+  },
+  "mesh_gradient_checks": [
+    {
+      "atom": 0,
+      "axis": 0,
+      "finite_difference": 2.5510221234981145,
+      "analytic": 2.5510221218078195,
+      "abs_error": 1.6902950150665674e-09
+    },
+    {
+      "atom": 1,
+      "axis": 1,
+      "finite_difference": -2.9020453098382855,
+      "analytic": -2.9020453050279187,
+      "abs_error": 4.810366771579311e-09
+    },
+    {
+      "atom": 7,
+      "axis": 2,
+      "finite_difference": -2.3118784952202986,
+      "analytic": -2.3118784965070613,
+      "abs_error": 1.2867626963952716e-09
+    },
+    {
+      "atom": 45,
+      "axis": 0,
+      "finite_difference": 0.26149191683089157,
+      "analytic": 0.2614919143479953,
+      "abs_error": 2.482896277467006e-09
+    },
+    {
+      "atom": 70,
+      "axis": 2,
+      "finite_difference": 3.1553869717981793,
+      "analytic": 3.1553869725410704,
+      "abs_error": 7.428910819839984e-10
+    }
+  ],
+  "mesh_gradient_max_abs_error": 4.810366771579311e-09,
+  "notes": "All comparisons include real erfc, reciprocal, self, LJ, bonds and angles. PME force is derivative of B-spline charge interpolation, hence gradient of same discrete energy; no ik-field inconsistency."
+}

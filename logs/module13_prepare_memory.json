@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T00:10:38.441969+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-u",
+    "exp11_unimol_full15layer_amd9070.py",
+    "--stage",
+    "prepare"
+  ],
+  "elapsed_s": 21.02982194791548,
+  "min_available_gib": 110.02814865112305,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 1
+}
