@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+weights/
+results/*.pt
+results/module3_builddeps/
+results/cuspa_build/
+cuspa/build*/
+cuspa/*.egg-info/
+cuspa/python/cuspa/_core*.so

@@ -1,0 +1,42 @@
+[
+  {
+    "molecules": 1000,
+    "requested_conformers_per_molecule": 1,
+    "workers": 1,
+    "wall_seconds": 7.960982489865273,
+    "generated_conformers": 1000,
+    "molecule_successes": 1000,
+    "mmff_converged_conformers": 883,
+    "sum_worker_seconds": 7.898599709384143
+  },
+  {
+    "molecules": 1000,
+    "requested_conformers_per_molecule": 1,
+    "workers": 8,
+    "wall_seconds": 1.1459943260997534,
+    "generated_conformers": 1000,
+    "molecule_successes": 1000,
+    "mmff_converged_conformers": 883,
+    "sum_worker_seconds": 8.429131517419592
+  },
+  {
+    "molecules": 1000,
+    "requested_conformers_per_molecule": 10,
+    "workers": 1,
+    "wall_seconds": 66.60788544919342,
+    "generated_conformers": 10000,
+    "molecule_successes": 1000,
+    "mmff_converged_conformers": 8870,
+    "sum_worker_seconds": 66.53083364921622
+  },
+  {
+    "molecules": 1000,
+    "requested_conformers_per_molecule": 10,
+    "workers": 8,
+    "wall_seconds": 9.986772069940343,
+    "generated_conformers": 10000,
+    "molecule_successes": 1000,
+    "mmff_converged_conformers": 8870,
+    "sum_worker_seconds": 75.67626381735317
+  }
+]

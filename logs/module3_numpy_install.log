@@ -1,0 +1,15 @@
+Collecting numpy<2.4
+  Using cached numpy-2.3.5-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl.metadata (62 kB)
+Using cached numpy-2.3.5-cp312-cp312-manylinux_2_27_aarch64.manylinux_2_28_aarch64.whl (14.3 MB)
+Installing collected packages: numpy
+ERROR: pip's dependency resolver does not currently take into account all the packages that are installed. This behaviour is the source of the following dependency conflicts.
+icalens 0.4.0 requires gb10-load-llm>=0.1.2, which is not installed.
+icalens 0.4.0 requires python-dotenv>=1.0, which is not installed.
+icalens 0.4.0 requires transformers==5.14.1, but you have transformers 5.22.1 which is incompatible.
+llamafactory 0.9.4.dev0 requires accelerate<=1.11.0,>=1.3.0, but you have accelerate 1.15.0 which is incompatible.
+llamafactory 0.9.4.dev0 requires numpy<2.0.0, but you have numpy 2.3.5 which is incompatible.
+llamafactory 0.9.4.dev0 requires safetensors<=0.5.3, but you have safetensors 0.8.0 which is incompatible.
+llamafactory 0.9.4.dev0 requires transformers!=4.52.0,!=4.57.0,<=4.57.1,>=4.49.0; python_version >= "3.10", but you have transformers 5.22.1 which is incompatible.
+trl 0.9.6 requires numpy<2.0.0,>=1.18.2, but you have numpy 2.3.5 which is incompatible.
+gradio 5.45.0 requires huggingface-hub<1.0,>=0.33.5, but you have huggingface-hub 2.4.0 which is incompatible.
+Successfully installed numpy-2.3.5

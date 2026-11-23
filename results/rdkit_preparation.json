@@ -1,0 +1,81 @@
+{
+  "esol": {
+    "raw_rows": 1128,
+    "valid_rows": 1128,
+    "invalid_rows": 0,
+    "clean_and_descriptors_seconds": 0.3345196091104299,
+    "source": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/delaney-processed.csv",
+    "sha256": "8c06a76f0c6487d29ab0f903e6a7a7139f189ab3c1178f159c8be8964602f189"
+  },
+  "bbbp": {
+    "raw_rows": 2050,
+    "valid_rows": 2039,
+    "invalid_rows": 11,
+    "clean_and_descriptors_seconds": 0.8745284280739725,
+    "source": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/BBBP.csv",
+    "sha256": "d07a38487aeac5cee5508413e468043ef3097451d2a112701c2d60be9ec6b662"
+  },
+  "drugs": {
+    "苯海拉明": {
+      "raw_smiles": "CN(C)CCOC(c1ccccc1)c2ccccc2",
+      "smiles": "CN(C)CCOC(c1ccccc1)c1ccccc1",
+      "MW": 255.36100000000002,
+      "LogP": 3.3542000000000023,
+      "TPSA": 12.47
+    },
+    "盐酸苯海拉明脏记录": {
+      "raw_smiles": "CN(C)CCOC(c1ccccc1)c2ccccc2.Cl",
+      "smiles": "CN(C)CCOC(c1ccccc1)c1ccccc1",
+      "MW": 255.36100000000002,
+      "LogP": 3.3542000000000023,
+      "TPSA": 12.47
+    },
+    "非索非那定": {
+      "raw_smiles": "CC(C)(C1=CC=C(C=C1)C(CCCN2CCC(CC2)C(C3=CC=CC=C3)(C4=CC=CC=C4)O)O)C(=O)O",
+      "smiles": "CC(C)(C(=O)O)c1ccc(C(O)CCCN2CCC(C(O)(c3ccccc3)c3ccccc3)CC2)cc1",
+      "MW": 501.6670000000001,
+      "LogP": 5.5105000000000075,
+      "TPSA": 81.0
+    },
+    "氯雷他定": {
+      "raw_smiles": "CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1",
+      "smiles": "CCOC(=O)N1CCC(=C2c3ccc(Cl)cc3CCc3cccnc32)CC1",
+      "MW": 382.89100000000025,
+      "LogP": 4.887800000000005,
+      "TPSA": 42.43
+    },
+    "西替利嗪": {
+      "raw_smiles": "O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1",
+      "smiles": "O=C(O)COCCN1CCN(C(c2ccccc2)c2ccc(Cl)cc2)CC1",
+      "MW": 388.8950000000002,
+      "LogP": 3.148200000000002,
+      "TPSA": 53.010000000000005
+    },
+    "阿司匹林": {
+      "raw_smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "smiles": "CC(=O)Oc1ccccc1C(=O)O",
+      "MW": 180.15899999999996,
+      "LogP": 1.3101,
+      "TPSA": 63.60000000000001
+    },
+    "咖啡因": {
+      "raw_smiles": "Cn1c(=O)c2c(ncn2C)n(C)c1=O",
+      "smiles": "Cn1c(=O)c2c(ncn2C)n(C)c1=O",
+      "MW": 194.194,
+      "LogP": -1.0293,
+      "TPSA": 61.82
+    },
+    "布洛芬": {
+      "raw_smiles": "CC(C)Cc1ccc(C(C)C(=O)O)cc1",
+      "smiles": "CC(C)Cc1ccc(C(C)C(=O)O)cc1",
+      "MW": 206.28499999999997,
+      "LogP": 3.073200000000001,
+      "TPSA": 37.3
+    }
+  },
+  "invalid_demo": {
+    "smiles": "C(C)(C)(C)(C)C",
+    "rejected": true
+  },
+  "rdkit_version": "2026.09.2"
+}

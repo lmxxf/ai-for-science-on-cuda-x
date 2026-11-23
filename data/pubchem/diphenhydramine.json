@@ -1,0 +1,12 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 3100,
+        "MolecularFormula": "C17H21NO",
+        "MolecularWeight": "255.35",
+        "ConnectivitySMILES": "CN(C)CCOC(C1=CC=CC=C1)C2=CC=CC=C2"
+      }
+    ]
+  }
+}

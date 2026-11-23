@@ -1,0 +1,4 @@
+{"molecules": 1000, "requested_conformers_per_molecule": 1, "workers": 1, "wall_seconds": 7.9271883820183575, "generated_conformers": 1000, "molecule_successes": 1000, "mmff_converged_conformers": 883, "sum_worker_seconds": 7.8657727886457}
+{"molecules": 1000, "requested_conformers_per_molecule": 1, "workers": 8, "wall_seconds": 1.3846841561608016, "generated_conformers": 1000, "molecule_successes": 1000, "mmff_converged_conformers": 883, "sum_worker_seconds": 9.942395784892142}
+{"molecules": 1000, "requested_conformers_per_molecule": 10, "workers": 1, "wall_seconds": 67.20937634608708, "generated_conformers": 10000, "molecule_successes": 1000, "mmff_converged_conformers": 8870, "sum_worker_seconds": 67.10678226966411}
+{"molecules": 1000, "requested_conformers_per_molecule": 10, "workers": 8, "wall_seconds": 9.614160503959283, "generated_conformers": 10000, "molecule_successes": 1000, "mmff_converged_conformers": 8870, "sum_worker_seconds": 71.10805219737813}

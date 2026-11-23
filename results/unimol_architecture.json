@@ -1,0 +1,28 @@
+{
+  "parameters": 47331139,
+  "trainable_parameters": 47331139,
+  "layers": 15,
+  "hidden_dim": 512,
+  "ffn_dim": 2048,
+  "attention_heads": 64,
+  "gaussian_kernels": 128,
+  "args": {
+    "encoder_layers": 15,
+    "encoder_embed_dim": 512,
+    "encoder_ffn_embed_dim": 2048,
+    "encoder_attention_heads": 64,
+    "dropout": 0.1,
+    "emb_dropout": 0.1,
+    "attention_dropout": 0.1,
+    "activation_dropout": 0.0,
+    "pooler_dropout": 0.2,
+    "max_seq_len": 512,
+    "activation_fn": "gelu",
+    "pooler_activation_fn": "tanh",
+    "post_ln": false,
+    "backbone": "transformer",
+    "kernel": "gaussian",
+    "delta_pair_repr_norm_loss": -1.0
+  },
+  "model_repr": "UniMolModel(\n  (embed_tokens): Embedding(31, 512, padding_idx=0)\n  (encoder): TransformerEncoderWithPair(\n    (emb_layer_norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True, bias=True)\n    (final_layer_norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True, bias=True)\n    (layers): ModuleList(\n      (0-14): 15 x TransformerEncoderLayer(\n        (self_attn): SelfMultiheadAttention(\n          (in_proj): Linear(in_features=512, out_features=1536, bias=True)\n          (out_proj): Linear(in_features=512, out_features=512, bias=True)\n        )\n        (self_attn_layer_norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True, bias=True)\n        (fc1): Linear(in_features=512, out_features=2048, bias=True)\n        (fc2): Linear(in_features=2048, out_features=512, bias=True)\n        (final_layer_norm): LayerNorm((512,), eps=1e-05, elementwise_affine=True, bias=True)\n      )\n    )\n  )\n  (gbf_proj): NonLinearHead(\n    (linear1): Linear(in_features=128, out_features=128, bias=True)\n    (linear2): Linear(in_features=128, out_features=64, bias=True)\n  )\n  (gbf): GaussianLayer(\n    (means): Embedding(1, 128)\n    (stds): Embedding(1, 128)\n    (mul): Embedding(961, 1)\n    (bias): Embedding(961, 1)\n  )\n  (classification_head): LinearHead(\n    (out_proj): Linear(in_features=512, out_features=1, bias=True)\n    (dropout): Dropout(p=0.2, inplace=False)\n  )\n)"
+}

@@ -1,0 +1,17 @@
+{
+  "timestamp": "2026-11-23T22:39:20.768569+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-u",
+    "exp2_unimol_finetune.py",
+    "--epochs",
+    "20",
+    "--batch-size",
+    "32"
+  ],
+  "elapsed_s": 44.0819666411262,
+  "min_available_gib": 107.19684219360352,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

@@ -1,0 +1,51 @@
+[
+  {
+    "name": "苯海拉明",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/diphenhydramine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C17H21NO",
+    "pubchem_formula": "C17H21NO",
+    "match": true
+  },
+  {
+    "name": "非索非那定",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/fexofenadine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C32H39NO4",
+    "pubchem_formula": "C32H39NO4",
+    "match": true
+  },
+  {
+    "name": "氯雷他定",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/loratadine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C22H23ClN2O2",
+    "pubchem_formula": "C22H23ClN2O2",
+    "match": true
+  },
+  {
+    "name": "西替利嗪",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/cetirizine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C21H25ClN2O3",
+    "pubchem_formula": "C21H25ClN2O3",
+    "match": true
+  },
+  {
+    "name": "阿司匹林",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/aspirin/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C9H8O4",
+    "pubchem_formula": "C9H8O4",
+    "match": true
+  },
+  {
+    "name": "咖啡因",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/caffeine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C8H10N4O2",
+    "pubchem_formula": "C8H10N4O2",
+    "match": true
+  },
+  {
+    "name": "布洛芬",
+    "source": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/ibuprofen/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON",
+    "our_formula": "C13H18O2",
+    "pubchem_formula": "C13H18O2",
+    "match": true
+  }
+]

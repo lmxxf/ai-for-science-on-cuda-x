@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-23T22:38:01.879993+08:00",
+  "command": [
+    "/home/lmxxf/work/interp-curvature-exp/venv/bin/python",
+    "exp3_cudax_cuspa_benchmark.py"
+  ],
+  "elapsed_s": 4.255654582986608,
+  "min_available_gib": 111.01580047607422,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

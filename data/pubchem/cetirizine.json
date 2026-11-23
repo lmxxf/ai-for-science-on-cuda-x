@@ -1,0 +1,12 @@
+{
+  "PropertyTable": {
+    "Properties": [
+      {
+        "CID": 2678,
+        "MolecularFormula": "C21H25ClN2O3",
+        "MolecularWeight": "388.9",
+        "ConnectivitySMILES": "C1CN(CCN1CCOCC(=O)O)C(C2=CC=CC=C2)C3=CC=C(C=C3)Cl"
+      }
+    ]
+  }
+}

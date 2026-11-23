@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-23T22:36:27.337348+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-c",
+    "print(\"memory guard smoke passed\")"
+  ],
+  "elapsed_s": 0.2505203459877521,
+  "min_available_gib": 111.58212661743164,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

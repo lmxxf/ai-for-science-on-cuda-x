@@ -1,0 +1,19 @@
+{
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "platform": "Linux-6.17.0-1014-nvidia-aarch64-with-glibc2.39",
+  "base_packages": "/home/lmxxf/work/interp-curvature-exp/venv/lib/python3.12/site-packages",
+  "repositories": {
+    "cuspa": {
+      "commit": "2df9fa78a7ac23993695807a27d97b025a2d359e",
+      "remote": "https://github.com/NVIDIA/cuspa.git"
+    },
+    "cuPotential": {
+      "commit": "fbfc4cb6282cd52d33f7adbbcbaeaa5c19b47d74",
+      "remote": "https://github.com/NVIDIA/cuPotential.git"
+    },
+    "vendor/Uni-Mol": {
+      "commit": "90f52c41299a1a582da0f9765e9f87aa21faa16a",
+      "remote": "https://github.com/deepmodeling/Uni-Mol.git"
+    }
+  }
+}

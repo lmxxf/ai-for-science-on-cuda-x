@@ -1,0 +1,69 @@
+{
+  "workload": "seeded synthetic spatial-omics-scale polygons; not experimental biological observations",
+  "seed": 20261123,
+  "cells": 50000,
+  "points": 2000000,
+  "genes": 500,
+  "vertices_per_polygon": 8,
+  "matched_points": 793204,
+  "matrix_nnz": 780563,
+  "assignment_mismatches": 0,
+  "count_matrix_mismatches": 0,
+  "cpu": "single-thread Numba compiled uniform-grid AABB + ray casting; NumPy sort/count CSR",
+  "gpu": {
+    "device": "NVIDIA GB10",
+    "torch": "2.14.1+cu130",
+    "peak_allocated_bytes": 116204032
+  },
+  "cpu_jit_s": 1.4601214709691703,
+  "host_to_device_s": 0.014501936035230756,
+  "cpu_index_s": [
+    0.0022806869819760323,
+    0.0021677108015865088,
+    0.0017575379461050034
+  ],
+  "cpu_query_s": [
+    0.23576852679252625,
+    0.23930010083131492,
+    0.2360637269448489
+  ],
+  "cpu_aggregate_s": [
+    0.03884617891162634,
+    0.03404264897108078,
+    0.0323699580039829
+  ],
+  "gpu_index_s": [
+    0.034823939902707934,
+    0.00320911081507802,
+    0.003276919014751911
+  ],
+  "gpu_query_s": [
+    0.0018583207856863737,
+    0.0015157328452914953,
+    0.0015122119802981615,
+    0.0015093160327523947,
+    0.0015058291610330343
+  ],
+  "gpu_aggregate_s": [
+    0.007928658043965697,
+    0.007288391934707761,
+    0.005964577896520495,
+    0.0059085150714963675,
+    0.005903057986870408
+  ],
+  "gpu_public_pipeline_s": [
+    0.009636294096708298,
+    0.01046611089259386,
+    0.009447142947465181
+  ],
+  "gpu_entrypoint": "cuspa.tl.assign_points + cuspa._core.aggregate_to_cells (high-level aggregation requires CuPy; native CUDA core supports PyTorch)",
+  "cpu_pipeline_median_s": 0.2722740867175162,
+  "gpu_pipeline_median_s": 0.009636294096708298,
+  "pipeline_speedup": 28.255061954836293,
+  "query_speedup": 156.10491784247367,
+  "host_to_device_plus_pipeline_estimate_s": 0.024138230131939054,
+  "speedup_including_h2d_estimate": 11.279786679854812,
+  "timing_scope": "device-resident steady state; H2D separate, D2H excluded; CPU sum of stage medians; JIT and CUDA compilation excluded",
+  "geometry_dtype": "float64",
+  "gpu_implementation": "original cuspa source compiled nvcc sm_121, native CUB sort/run-length CSR"
+}

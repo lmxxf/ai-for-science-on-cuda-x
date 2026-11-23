@@ -1,0 +1,11 @@
+{
+  "rdkit": "https://www.rdkit.org/docs/GettingStartedInPython.html",
+  "unimol": "https://github.com/deepmodeling/Uni-Mol",
+  "unimol_weights": "https://github.com/deepmodeling/Uni-Mol/releases/download/v0.1/mol_pre_no_h_220816.pt",
+  "cuspa": "https://github.com/NVIDIA/cuspa",
+  "cuspa_usage": "https://nvidia.github.io/cuspa/stable/usage.html",
+  "cupotential": "https://github.com/NVIDIA/cuPotential",
+  "esol": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/delaney-processed.csv",
+  "bbbp": "https://deepchemdata.s3-us-west-1.amazonaws.com/datasets/BBBP.csv",
+  "drug_identity": "https://pubchem.ncbi.nlm.nih.gov/rest/pug/compound/name/fexofenadine/property/CanonicalSMILES,MolecularFormula,MolecularWeight/JSON"
+}

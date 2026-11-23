@@ -1,0 +1,9 @@
+[submodule "cuPotential"]
+	path = cuPotential
+	url = https://github.com/NVIDIA/cuPotential.git
+[submodule "cuspa"]
+	path = cuspa
+	url = https://github.com/NVIDIA/cuspa.git
+[submodule "vendor/Uni-Mol"]
+	path = vendor/Uni-Mol
+	url = https://github.com/deepmodeling/Uni-Mol.git

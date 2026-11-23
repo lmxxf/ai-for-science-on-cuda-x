@@ -1,0 +1,25 @@
+PASS: split disjointness, metrics, validation checkpoint, complete 1128 cache, geometry, CPU/GPU agreement, drug identities, data hashes, 4 SVG/PNG, memory guards
+REPORT.md written from measured results
+[
+  {
+    "module": "rdkit",
+    "mode": "validated_cached_result",
+    "elapsed_s": 9.646289981901646e-05,
+    "result": "results/module1_results.json",
+    "sha256": "a5b3c7db8ecbf6583a2ee5afefe729efe16df8c8ca28c57463344b7cac689258"
+  },
+  {
+    "module": "unimol",
+    "mode": "validated_cached_result",
+    "elapsed_s": 9.219185449182987e-05,
+    "result": "results/module2_results.json",
+    "sha256": "7b21caa476d3337ff8edb33a43b7f7021e605d21c6e2281cf3ffefd6a9d1f53b"
+  },
+  {
+    "module": "cuspa",
+    "mode": "validated_cached_result",
+    "elapsed_s": 2.6016030460596085e-05,
+    "result": "results/module3_results.json",
+    "sha256": "dce162f9b63e4f9136e098aca9187706dcb7e9b68d2d05df2d91f3ff6268d4c9"
+  }
+]
