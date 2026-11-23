@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-24T01:03:22.496832+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp12_open_nvmolkit_batched_conformer_hip.py",
+    "--stage",
+    "gpu"
+  ],
+  "elapsed_s": 21.05429056705907,
+  "min_available_gib": 110.63467788696289,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

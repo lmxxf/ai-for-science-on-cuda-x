@@ -83,3 +83,17 @@
 ```
 
 新增可视化：[PME/MD](visuals/fig8_pme_kspace_and_1000step_md_trajectory.svg) · [Davidson](visuals/fig9_daviator_batched_davidson_vasp_band.svg) · [射电FX](visuals/fig10_cuphoton_eht_blackhole_correlator.svg) · [100k HMM](visuals/fig11_gpuhmmer_100k_protein_viterbi.svg) · [全15层Uni-Mol](visuals/fig12_unimol_full15layer_end2end_amd9070.svg)。
+
+## 第四阶段：构象松弛、全GPU驻留求解与381只读终审
+
+- **10,000构象×200步**：fresh ETKDG+明确扰动；同源简化FF优化CPU10.522s、GB103.229s、9070XT3.853s，全部坐标/历史跨三后端逐位一致。修正过弱排斥后碰撞47→0；旧47→1138失败与参数/起点哈希保留。不是MMFF94/nvMolKit等价实现，不能用旧66.608秒直接算加速倍数。
+- **全GPU驻留Block-Davidson**：共享32×32 Jacobi+两遍MGS+24Ritz/8残差厚重启，64/256组15–16轮零每轮主机往返；本征值误差<=7.22e-15。B256 batch总秒GB10/AMD0.791/0.698；seq→batch倍数49.57/29.35来自本单block串行/并行占用率对照，不是官方通用加速数。
+- **381终审**：只写公众号仓审稿意见，正文与6张资源SHA未变。发现2P0/11P1/11P2；正确的药物/模型成绩保留，微信验证码未装作读到正文。审稿完成不等于正文已修正可发。
+
+```bash
+.venv/bin/python run_pipeline.py --phase 4
+.venv/bin/python run_pipeline.py --phase 4 --reuse-results
+.venv/bin/python verify_phase4.py
+```
+
+`audit381_record`仅验证已有正式终审身份，不自动重做LLM/联网审稿。新[图13](visuals/fig13_open_nvmolkit_10000_conformers_amd_vs_nvidia.svg)、更新[图9](visuals/fig9_daviator_batched_davidson_vasp_band.svg)、参数失败复盘与完整验收见[REPORT.md](REPORT.md)。

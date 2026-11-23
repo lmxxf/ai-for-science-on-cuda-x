@@ -35,7 +35,10 @@ def hmm():
  return r
 
 def davidson():
- r=load('results/module10_results.json');ref=np.load(R/'results/module10_data/reference_eigenvalues.npy');H=np.fromfile(R/'results/module10_data/H.bin',dtype='<f8').reshape(64,384,384)
+ r=load('results/module10_results.json');
+ if 'resident_upgrade_module15' in r:
+  assert r['resident_upgrade_module15']['iteration_host_transfers']==0 and r['resident_upgrade_module15']['iteration_host_eigensolves']==0
+ ref=np.load(R/'results/module10_data/reference_eigenvalues.npy');H=np.fromfile(R/'results/module10_data/H.bin',dtype='<f8').reshape(64,384,384)
  assert hashlib.sha256((R/'results/module10_data/H.bin').read_bytes()).hexdigest()==r['metadata']['H_sha256']
  for bk,b in r['backends'].items():
   ev=np.fromfile(R/f'results/module10_{bk}_eigenvalues.bin',dtype='<f8').reshape(64,16)

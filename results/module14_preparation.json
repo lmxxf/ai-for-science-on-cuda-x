@@ -1,0 +1,30 @@
+{
+  "molecules": 1000,
+  "conformers": 10000,
+  "conformers_per_molecule": 10,
+  "max_heavy_atoms": 55,
+  "heavy_atoms_total_all_conformers": 133450,
+  "etkdg_workers": 8,
+  "preparation_wall_seconds": 3.533790404908359,
+  "etkdg_plus_jitter_sum_worker_seconds": 26.480679751373827,
+  "retry_molecules": 0,
+  "bad_charge_atoms": 0,
+  "input": "fresh ETKDGv3(seed20261124+row), ten conformers per molecule, never MMFF optimized; deterministic Gaussian sigma0.06A positional perturbation added",
+  "force_field": "original simplified united-heavy-atom model: bond k400/r0 MMFF where available; cosangle k40/theta0 MMFF where available; torsion k0.2 with period2/3; softcore full LJ eps0.5 sigma0.85*(rvdw_i+rvdw_j) and Coulomb >=3 graph bonds, Gasteiger charges folded from H; energy kJ/mol, length A",
+  "not_comparable_to_mmff94": "original66.607885s singlecore/9.986772s8core includes new ETKDG plus actual RDKit MMFF94, not this model",
+  "topology_terms": {
+    "bond": 13754,
+    "angle": 18808,
+    "torsion": 23549,
+    "nonbonded": 73697
+  },
+  "hashes": {
+    "ptr.bin": "5e50b4426fa06fb59ad3d2e69a41735ed3f581935b771478b33daed5f8b05048",
+    "adj.bin": "71c100f82b6111d8a25100a9b581a367158a65c7906bbbb8e68d050e356272fb",
+    "terms.bin": "0ed00b2a3f1e795eb3d5a89641ffab7501054c49a452809030f6fab86075a22e",
+    "initial.bin": "3716b9a08c14a52e55a6633f1c62533d67950af5c963be29c16ba22cf5dd09ee",
+    "mols.bin": "890fca3ad41eeaff8c3e12a1a85b0cb528b4a8b52ae41210c13de923656e377c"
+  },
+  "parameter_revision": "epsilon0.05 prototype had47->1138 close contacts; epsilon increased to0.5kJ/mol, all initial ETKDG coordinates unchanged. Raw failed outputs and JSON preserved.",
+  "preparation_timing_scope": "8-worker pool elapsed including fresh ETKDG+jitter and per-molecule parameter extraction; excludes subsequent flattening/binary serialization"
+}

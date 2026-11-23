@@ -32,7 +32,10 @@ def summary():
  for name in ['cpu','cuda_seq','cuda_batch','hip_seq','hip_batch']:
   pre=RES/f'module10_{name}';e=np.fromfile(str(pre)+'_eigenvalues.bin','<f8').reshape(64,16);x=np.fromfile(str(pre)+'_eigenvectors.bin','<f8').reshape(64,384,16);rr=H@x-x*e[:,None,:];err=float(abs(e-ref).max());res=float(np.linalg.norm(rr,axis=1).max());orth=float(abs(np.swapaxes(x,1,2)@x-np.eye(16)).max());tim=json.loads(Path(str(pre)+'_timings.json').read_text());tim.update({'eigenvalue_max_abs_error':err,'independent_full_H_max_residual':res,'orthogonality_max_abs_error':orth});assert err<1e-10,(name,err);assert res<1e-7,(name,res);r['backends'][name]=tim
  r['hip_vs_cuda_eigenvalue_max_abs_diff']={mode:float(np.max(np.abs(np.fromfile(RES/f'module10_hip_{mode}_eigenvalues.bin','<f8')-np.fromfile(RES/f'module10_cuda_{mode}_eigenvalues.bin','<f8')))) for mode in ['seq','batch']}
- r['batch_speedups']={b:{'end_to_end':r['backends'][b+'_seq']['total_seconds']/r['backends'][b+'_batch']['total_seconds'],'GPU_core_only':r['backends'][b+'_seq']['H_apply_seconds']/r['backends'][b+'_batch']['H_apply_seconds']} for b in ['cuda','hip']};(RES/'module10_results.json').write_text(json.dumps(r,indent=2));render(r)
+ r['batch_speedups']={b:{'end_to_end':r['backends'][b+'_seq']['total_seconds']/r['backends'][b+'_batch']['total_seconds'],'GPU_core_only':r['backends'][b+'_seq']['H_apply_seconds']/r['backends'][b+'_batch']['H_apply_seconds']} for b in ['cuda','hip']}
+ previous=json.loads((RES/'module10_results.json').read_text()) if (RES/'module10_results.json').exists() else {}
+ if 'resident_upgrade_module15' in previous:r['resident_upgrade_module15']=previous['resident_upgrade_module15']
+ (RES/'module10_results.json').write_text(json.dumps(r,indent=2));render(r)
 def render(r):
  import matplotlib;matplotlib.use('Agg')
  import matplotlib.pyplot as plt

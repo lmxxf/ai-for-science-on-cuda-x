@@ -1,0 +1,274 @@
+{
+  "preparation": {
+    "molecules": 1000,
+    "conformers": 10000,
+    "conformers_per_molecule": 10,
+    "max_heavy_atoms": 55,
+    "heavy_atoms_total_all_conformers": 133450,
+    "etkdg_workers": 8,
+    "preparation_wall_seconds": 3.533790404908359,
+    "etkdg_plus_jitter_sum_worker_seconds": 26.480679751373827,
+    "retry_molecules": 0,
+    "bad_charge_atoms": 0,
+    "input": "fresh ETKDGv3(seed20261124+row), ten conformers per molecule, never MMFF optimized; deterministic Gaussian sigma0.06A positional perturbation added",
+    "force_field": "original simplified united-heavy-atom model: bond k400/r0 MMFF where available; cosangle k40/theta0 MMFF where available; torsion k0.2 with period2/3; softcore full LJ eps0.05 sigma0.85*(rvdw_i+rvdw_j) and Coulomb >=3 graph bonds, Gasteiger charges folded from H; energy kJ/mol, length A",
+    "not_comparable_to_mmff94": "original66.607885s singlecore/9.986772s8core includes new ETKDG plus actual RDKit MMFF94, not this model",
+    "topology_terms": {
+      "bond": 13754,
+      "angle": 18808,
+      "torsion": 23549,
+      "nonbonded": 73697
+    },
+    "hashes": {
+      "ptr.bin": "5e50b4426fa06fb59ad3d2e69a41735ed3f581935b771478b33daed5f8b05048",
+      "adj.bin": "71c100f82b6111d8a25100a9b581a367158a65c7906bbbb8e68d050e356272fb",
+      "terms.bin": "910a74cab95fbc3ccb9125c8bd07a60e4d0a3571ee0f8fb2084d50efbb481990",
+      "initial.bin": "3716b9a08c14a52e55a6633f1c62533d67950af5c963be29c16ba22cf5dd09ee",
+      "mols.bin": "890fca3ad41eeaff8c3e12a1a85b0cb528b4a8b52ae41210c13de923656e377c"
+    }
+  },
+  "gradient_validation": {
+    "method": "independent NumPy energy, five-point finite difference h=2e-4 A vs common C++ analytic gradients",
+    "directions": 18,
+    "max_abs_error": 2.622471129143378e-10,
+    "checks": [
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -0.37946443627608534,
+        "analytic": -0.3794644363875347,
+        "abs_error": 1.1144934974893772e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -1.4381917422312538,
+        "analytic": -1.4381917424627948,
+        "abs_error": 2.3154100858846505e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 7.565245451968868,
+        "analytic": 7.565245452059656,
+        "abs_error": 9.07887098833271e-11
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": 11.942042202299772,
+        "analytic": 11.942042202434553,
+        "abs_error": 1.34781075189494e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": 88.72204699605626,
+        "analytic": 88.72204699598235,
+        "abs_error": 7.391065537376562e-11
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": -58.71442895882002,
+        "analytic": -58.714428958941944,
+        "abs_error": 1.219220280290756e-10
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -10.134653568956152,
+        "analytic": -10.134653569025206,
+        "abs_error": 6.905409577484534e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -4.242343794542691,
+        "analytic": -4.242343794574486,
+        "abs_error": 3.179501106842508e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 22.64420572984408,
+        "analytic": 22.644205729832695,
+        "abs_error": 1.1386447340555605e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": -6.162756180835652,
+        "analytic": -6.162756180861554,
+        "abs_error": 2.5901947253714752e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": -68.52770009092346,
+        "analytic": -68.52770009066121,
+        "abs_error": 2.622471129143378e-10
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": 14.47243497798271,
+        "analytic": 14.472434978046094,
+        "abs_error": 6.338396474347974e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -0.8695712070642495,
+        "analytic": -0.8695712069062473,
+        "abs_error": 1.580021669056464e-10
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -22.779228170518213,
+        "analytic": -22.77922817045385,
+        "abs_error": 6.436096100514987e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 13.864615475434048,
+        "analytic": 13.864615475483932,
+        "abs_error": 4.9883652764037834e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": -31.99241496788592,
+        "analytic": -31.992414967810703,
+        "abs_error": 7.52180540075642e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": 17.090679371574897,
+        "analytic": 17.090679371738954,
+        "abs_error": 1.6405721225964953e-10
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": 50.130111054530836,
+        "analytic": 50.13011105467344,
+        "abs_error": 1.426059270670521e-10
+      }
+    ]
+  },
+  "backends": {
+    "cpu": {
+      "device": "CPU single-thread C++",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 10.554169992,
+      "h2d_seconds": 0,
+      "d2h_seconds": 0,
+      "scope": "single complete optimization; shared coordinate/candidate/gradient state on GPU; global topology reads and diagnostic writes retained; no fastmath",
+      "energy_initial_mean": 10.604191080977566,
+      "energy_final_mean": -23.449690244135745,
+      "energy_sum_drop": 340538.8132511331,
+      "strict_decrease_count": 9990,
+      "nonincrease_count": 10000,
+      "max_step_energy_increase": 0.0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.005887403194457925,
+      "nonbonded_collision_pairs_initial": 47,
+      "nonbonded_collision_pairs_final": 1138,
+      "collision_definition": "topological graph distance>=3 bonds and Euclidean r<0.8*sigma_ij",
+      "all_finite": true,
+      "max_gradient_final_mean": 1.2245519360909585
+    },
+    "cuda": {
+      "device": "NVIDIA GB10",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 3.23313542,
+      "h2d_seconds": 0.000530258,
+      "d2h_seconds": 0.000534146,
+      "scope": "single complete optimization; shared coordinate/candidate/gradient state on GPU; global topology reads and diagnostic writes retained; no fastmath",
+      "energy_initial_mean": 10.604191080977566,
+      "energy_final_mean": -23.449690244135745,
+      "energy_sum_drop": 340538.8132511331,
+      "strict_decrease_count": 9990,
+      "nonincrease_count": 10000,
+      "max_step_energy_increase": 0.0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.005887403194457925,
+      "nonbonded_collision_pairs_initial": 47,
+      "nonbonded_collision_pairs_final": 1138,
+      "collision_definition": "topological graph distance>=3 bonds and Euclidean r<0.8*sigma_ij",
+      "all_finite": true,
+      "max_gradient_final_mean": 1.2245519360909585
+    },
+    "hip": {
+      "device": "AMD Radeon RX 9070 XT",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 3.889803,
+      "h2d_seconds": 0.0118416,
+      "d2h_seconds": 0.002561,
+      "scope": "single complete optimization; shared coordinate/candidate/gradient state on GPU; global topology reads and diagnostic writes retained; no fastmath",
+      "energy_initial_mean": 10.604191080977566,
+      "energy_final_mean": -23.449690244135745,
+      "energy_sum_drop": 340538.8132511331,
+      "strict_decrease_count": 9990,
+      "nonincrease_count": 10000,
+      "max_step_energy_increase": 0.0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.005887403194457925,
+      "nonbonded_collision_pairs_initial": 47,
+      "nonbonded_collision_pairs_final": 1138,
+      "collision_definition": "topological graph distance>=3 bonds and Euclidean r<0.8*sigma_ij",
+      "all_finite": true,
+      "max_gradient_final_mean": 1.2245519360909585
+    }
+  },
+  "comparison": {
+    "cuda_vs_cpu": {
+      "energy_relative_l2": 0.0,
+      "coordinate_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "energy_max_abs": 0.0
+    },
+    "hip_vs_cpu": {
+      "energy_relative_l2": 0.0,
+      "coordinate_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "energy_max_abs": 0.0
+    },
+    "hip_vs_cuda": {
+      "energy_relative_l2": 0.0,
+      "coordinate_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "energy_max_abs": 0.0,
+      "exact_energy_count": 10000,
+      "exact_coordinate_count": 400350
+    }
+  }
+}

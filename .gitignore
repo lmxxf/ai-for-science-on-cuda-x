@@ -44,3 +44,10 @@ amd_hip_port/unimol_full15_hip/input/
 amd_hip_port/unimol_full15_hip/*.bin
 amd_hip_port/unimol_full15_hip/out_hip/*.bin
 amd_hip_port/unimol_full15_hip/out_hip_mixed/*.bin
+# Phase 4 regenerated coordinates, histories and dense Hamiltonians
+results/module14_build/
+results/module14_data/
+results/module14_*/*.bin
+results/module15_build/
+results/module15_data/
+results/module15_*.bin

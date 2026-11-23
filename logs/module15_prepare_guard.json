@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T00:56:23.768917+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp13_daviator_resident_hip.py",
+    "--prepare-only"
+  ],
+  "elapsed_s": 18.04312664316967,
+  "min_available_gib": 110.72370147705078,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

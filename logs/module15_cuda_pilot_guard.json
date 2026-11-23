@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T01:00:34.647673+08:00",
+  "command": [
+    "results/module10_build/resident_cuda",
+    "results/module15_data/64",
+    "results/module15_cuda_64_pilot",
+    "batch",
+    "100"
+  ],
+  "elapsed_s": 0.7521528631914407,
+  "min_available_gib": 110.92584609985352,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

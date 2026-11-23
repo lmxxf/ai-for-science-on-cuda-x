@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T01:01:45.155233+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cuda_256_batch",
+    "batch",
+    "100"
+  ],
+  "elapsed_s": 1.2530757701024413,
+  "min_available_gib": 110.68912887573242,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

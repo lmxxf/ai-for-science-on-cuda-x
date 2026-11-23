@@ -1,0 +1,1 @@
+{"device":"CPU single-thread C++","conformers":10000,"molecules":1000,"steps":200,"seconds":10.554169992,"h2d_seconds":0,"d2h_seconds":0,"scope":"single complete optimization; shared coordinate/candidate/gradient state on GPU; global topology reads and diagnostic writes retained; no fastmath"}

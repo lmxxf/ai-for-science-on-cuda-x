@@ -1,0 +1,61 @@
+{
+  "module": 16,
+  "status": "AUDIT_COMPLETED_WITH_FINDINGS",
+  "article_path": "/home/lmxxf/work/ai-theorys-study/wechat/381.md",
+  "review_path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/审稿意见.md",
+  "article_sha256_before": "aefc8df5714af174c6b14193834f0c6b63d52212e67a34df54e52f4aff62d2ee",
+  "article_sha256_after": "aefc8df5714af174c6b14193834f0c6b63d52212e67a34df54e52f4aff62d2ee",
+  "article_modified": false,
+  "review_sha256": "89ea6c26194f1a6a256fa082e11b244981a58911a8387d44aaecd1eb65c2206a",
+  "review_characters": 24765,
+  "article_unique_urls": [
+    "https://github.com/deepmodeling/Uni-Mol",
+    "https://github.com/lmxxf/ai-for-science-on-amd-9070xt",
+    "https://github.com/lmxxf/ai-for-science-on-cuda-x",
+    "https://github.com/rdkit/rdkit",
+    "https://mp.weixin.qq.com/s/L3nacKQwhlHxOWcGhPvaYg",
+    "https://mp.weixin.qq.com/s/WkwcQoc5KUJMYr5dQbGhkw",
+    "https://mp.weixin.qq.com/s/b8ggblxrq757Ee3W13gg4A"
+  ],
+  "scope": "Existing full editorial audit, including numerical/factual evidence and URL limitations; this CLI verifies artifact identity only, not a new LLM or web review",
+  "body_remains_with_findings": true,
+  "timestamp": "2026-11-24T01:11:39.252837+08:00",
+  "findings_by_severity": {
+    "P0": 2,
+    "P1": 11,
+    "P2": 11
+  },
+  "protected_assets": [
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/fig1_rdkit_cleaning_and_bbb_drugs.svg",
+      "sha256": "621cd54cf3af953441960de6095cc89591c0eeb53eb0e441c74938f19e346702",
+      "hash_recorded_in_review": true
+    },
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/fig2_1d_smiles_to_3d_conformer_distance.svg",
+      "sha256": "8713211d9cb700159ab508eec693d6484c00bbf0a831d18dd702ec94944825c7",
+      "hash_recorded_in_review": true
+    },
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/fig3_unimol_3d_finetune_vs_baselines.svg",
+      "sha256": "05c452a4fdccf2c3097bd57ce40a2619c33461df7bbfe737620cbf92df7ee960",
+      "hash_recorded_in_review": true
+    },
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/fig5_bbbp_unimol_roc_and_atom_attribution.svg",
+      "sha256": "30a6b732f84431cb8ac833c578847c3372feba4e6ea6ea767e7f8a094f3b2011",
+      "hash_recorded_in_review": true
+    },
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/assets/381/fig7_protein_esm2_finetune_and_mutation_scan.svg",
+      "sha256": "5fa517fe0ea964806645e1aa0f93b36be75c6f2cd65d622a586a1dc365091f41",
+      "hash_recorded_in_review": true
+    },
+    {
+      "path": "/home/lmxxf/work/ai-theorys-study/wechat/cover381.svg",
+      "sha256": "c4d35e6ab79b810aa476053d393b434fa62e2c06e0e3a07f375bbd25e12be56a",
+      "hash_recorded_in_review": true
+    }
+  ],
+  "remote_URL_limitations": "4 GitHub pages content-verified; 3 WeChat URLs return CAPTCHA despite HTTP200, remote article content not confirmed"
+}

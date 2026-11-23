@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-24T01:02:48.817093+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp13_daviator_resident_hip.py",
+    "--gpu-only"
+  ],
+  "elapsed_s": 116.94338121195324,
+  "min_available_gib": 110.34931945800781,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

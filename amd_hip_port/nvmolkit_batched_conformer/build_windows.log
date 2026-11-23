@@ -1,0 +1,98 @@
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:66:79: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                               ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:66:139: note: in instantiation of member function 'Mem<Mol>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                           ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:66:163: note: in instantiation of member function 'Mem<Term>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                                                   ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:66:187: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                                                                           ^
+4 warnings generated when compiling for gfx1201.
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:66:79: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                               ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:66:139: note: in instantiation of member function 'Mem<Mol>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                           ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:66:163: note: in instantiation of member function 'Mem<Term>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                                                   ^
+conformer.cpp:59:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   59 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:66:187: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   66 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());CHECK(RT(DeviceSynchronize)());before=std::chrono::steady_clock::now();CHECK(RT(Memcpy)(dx.p,x.data(),x.size()*8,RT(MemcpyHostToDevice)));CHECK(RT(Memset)(dy.p,0,y.size()*8));CHECK(RT(Memcpy)(dm.p,mol.data(),mol.size()*sizeof(Mol),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dt.p,term.data(),term.size()*sizeof(Term),RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(dp.p,ptr.data(),ptr.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(Memcpy)(da.p,adj.data(),adj.size()*4,RT(MemcpyHostToDevice)));CHECK(RT(DeviceSynchronize)());h2d=std::chrono::duration<double>(std::chrono::steady_clock::now()-before).count();before=std::chrono::steady_clock::now();optimize<<<nc,64>>>(nc,stride,dx.p,dy.p,dh.p,dg.p,dm.p,dt.p,dp.p,da.p);CHECK(RT(GetLastError)());CHECK(RT(DeviceSynchronize)());
+      |                                                                                                                                                                                           ^
+4 warnings generated when compiling for host.

@@ -1,0 +1,151 @@
+{
+  "method": "independent NumPy energy, five-point finite difference h=2e-4 A vs common C++ analytic gradients",
+  "directions": 18,
+  "max_abs_error": 1.9590129518576305e-10,
+  "checks": [
+    {
+      "molecule": 0,
+      "atom": 0,
+      "axis": 0,
+      "finite_difference": -0.7752746286963467,
+      "analytic": -0.775274628892248,
+      "abs_error": 1.9590129518576305e-10
+    },
+    {
+      "molecule": 0,
+      "atom": 0,
+      "axis": 1,
+      "finite_difference": -2.3575805809746457,
+      "analytic": -2.357580580822721,
+      "abs_error": 1.5192469504654582e-10
+    },
+    {
+      "molecule": 0,
+      "atom": 0,
+      "axis": 2,
+      "finite_difference": 8.61012529297748,
+      "analytic": 8.610125292992075,
+      "abs_error": 1.4594547792512458e-11
+    },
+    {
+      "molecule": 0,
+      "atom": 2,
+      "axis": 0,
+      "finite_difference": 11.821515617249643,
+      "analytic": 11.821515617081964,
+      "abs_error": 1.6767920385518664e-10
+    },
+    {
+      "molecule": 0,
+      "atom": 2,
+      "axis": 1,
+      "finite_difference": 87.78144973039302,
+      "analytic": 87.78144973039669,
+      "abs_error": 3.666400516522117e-12
+    },
+    {
+      "molecule": 0,
+      "atom": 2,
+      "axis": 2,
+      "finite_difference": -58.41285216207599,
+      "analytic": -58.412852162171866,
+      "abs_error": 9.587353133611032e-11
+    },
+    {
+      "molecule": 1,
+      "atom": 0,
+      "axis": 0,
+      "finite_difference": -10.204929790342819,
+      "analytic": -10.204929790409556,
+      "abs_error": 6.673772645626741e-11
+    },
+    {
+      "molecule": 1,
+      "atom": 0,
+      "axis": 1,
+      "finite_difference": -5.867335540132116,
+      "analytic": -5.86733554011187,
+      "abs_error": 2.0246027077064355e-11
+    },
+    {
+      "molecule": 1,
+      "atom": 0,
+      "axis": 2,
+      "finite_difference": 22.892118222275954,
+      "analytic": 22.892118222286175,
+      "abs_error": 1.0221157253909041e-11
+    },
+    {
+      "molecule": 1,
+      "atom": 2,
+      "axis": 0,
+      "finite_difference": -6.106239624241726,
+      "analytic": -6.106239624186387,
+      "abs_error": 5.5338844617836e-11
+    },
+    {
+      "molecule": 1,
+      "atom": 2,
+      "axis": 1,
+      "finite_difference": -67.93208286009155,
+      "analytic": -67.9320828599147,
+      "abs_error": 1.7685408693068894e-10
+    },
+    {
+      "molecule": 1,
+      "atom": 2,
+      "axis": 2,
+      "finite_difference": 14.327661489248465,
+      "analytic": 14.327661489354659,
+      "abs_error": 1.0619416457302577e-10
+    },
+    {
+      "molecule": 48,
+      "atom": 0,
+      "axis": 0,
+      "finite_difference": 2.6581181582822446,
+      "analytic": 2.658118158234375,
+      "abs_error": 4.78697081973678e-11
+    },
+    {
+      "molecule": 48,
+      "atom": 0,
+      "axis": 1,
+      "finite_difference": -19.91528647796059,
+      "analytic": -19.915286478010113,
+      "abs_error": 4.952482868247898e-11
+    },
+    {
+      "molecule": 48,
+      "atom": 0,
+      "axis": 2,
+      "finite_difference": 8.644057397653171,
+      "analytic": 8.64405739759277,
+      "abs_error": 6.040146161012672e-11
+    },
+    {
+      "molecule": 48,
+      "atom": 2,
+      "axis": 0,
+      "finite_difference": -28.978974423795968,
+      "analytic": -28.978974423846218,
+      "abs_error": 5.0249582272954285e-11
+    },
+    {
+      "molecule": 48,
+      "atom": 2,
+      "axis": 1,
+      "finite_difference": 20.232455778466846,
+      "analytic": 20.23245577834009,
+      "abs_error": 1.2675727134592307e-10
+    },
+    {
+      "molecule": 48,
+      "atom": 2,
+      "axis": 2,
+      "finite_difference": 47.08086763110704,
+      "analytic": 47.08086763104946,
+      "abs_error": 5.758238330599852e-11
+    }
+  ]
+}

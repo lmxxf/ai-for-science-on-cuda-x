@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-24T00:57:56.986940+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp12_open_nvmolkit_batched_conformer_hip.py",
+    "--stage",
+    "run"
+  ],
+  "elapsed_s": 32.045884978957474,
+  "min_available_gib": 111.00970077514648,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

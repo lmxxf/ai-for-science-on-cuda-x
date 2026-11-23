@@ -1,0 +1,1 @@
+{"device":"NVIDIA GB10","conformers":10000,"molecules":1000,"steps":200,"seconds":3.229018878,"h2d_seconds":0.000535565,"d2h_seconds":0.000531837,"scope":"single complete optimization; shared coordinate/candidate/gradient state on GPU; global topology reads and diagnostic writes retained; no fastmath"}

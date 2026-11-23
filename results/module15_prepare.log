@@ -1,0 +1,20 @@
+RUN g++ -std=c++17 -O3 -ffp-contract=off /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/daviator_batched_dft/davidson.cpp -o /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/davidson_cpu
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cpu_64_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/davidson_cpu /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/64 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cpu_64 cpu 100
+iter 1 maxres 0.068594134
+iter 2 maxres 0.013747026
+iter 3 maxres 0.0021873183
+iter 4 maxres 0.00095249708
+iter 5 maxres 2.9901536e-05
+iter 6 maxres 7.1362901e-07
+iter 7 maxres 2.7660172e-07
+iter 8 maxres 1.1578082e-07
+iter 9 maxres 3.5238553e-08
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cpu_256_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/davidson_cpu /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cpu_256 cpu 100
+iter 1 maxres 0.06868541
+iter 2 maxres 0.017152851
+iter 3 maxres 0.01711003
+iter 4 maxres 0.00062518218
+iter 5 maxres 1.5139274e-05
+iter 6 maxres 3.8106915e-07
+iter 7 maxres 1.2183978e-07
+iter 8 maxres 3.866335e-08

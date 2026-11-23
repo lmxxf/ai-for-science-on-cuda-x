@@ -1,0 +1,9 @@
+{
+  "article_path": "/home/lmxxf/work/ai-theorys-study/wechat/381.md",
+  "sha256_before": "aefc8df5714af174c6b14193834f0c6b63d52212e67a34df54e52f4aff62d2ee",
+  "instruction": "Read-only body and SVGs; audit conclusions only to wechat/assets/381/审稿意见.md",
+  "unrelated_preexisting_untracked": [
+    "wechat/assets/297-fast-vit/",
+    "wechat/assets/297-preupscale-auto/"
+  ]
+}

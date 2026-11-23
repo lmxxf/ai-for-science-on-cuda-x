@@ -1,0 +1,34 @@
+RUN nvcc -x cu -std=c++17 -O3 --fmad=false -arch=sm_121 /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/daviator_batched_dft/resident.cpp -o /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cuda_64_seq_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/64 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cuda_64_seq seq 100
+systems 64 mode seq iterations 15..16 maxres 9.50133023663e-11 GPU 9.7142788s total 10.004393s
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cuda_64_batch_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/64 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cuda_64_batch batch 100
+systems 64 mode batch iterations 15..16 maxres 9.50133023663e-11 GPU 0.21141542s total 0.45662266s
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cuda_256_seq_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cuda_256_seq seq 100
+systems 256 mode seq iterations 15..16 maxres 9.89012972694e-11 GPU 38.932545s total 39.193012s
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module15_cuda_256_batch_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_build/resident_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256 /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_cuda_256_batch batch 100
+systems 256 mode batch iterations 15..16 maxres 9.89012972694e-11 GPU 0.52309593s total 0.79068335s
+RUN scp -r /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/daviator_batched_dft amd9070:C:/AI4S-HIP-Lab/
+RUN ssh amd9070 cmd /c "mkdir C:\AI4S-HIP-Lab\daviator_batched_dft\data64 2>nul & exit /b 0"
+RUN scp /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/64/H.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/64/params.txt amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/data64/
+RUN ssh amd9070 cmd /c "mkdir C:\AI4S-HIP-Lab\daviator_batched_dft\data256 2>nul & exit /b 0"
+RUN scp /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256/H.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_data/256/params.txt amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/data256/
+RUN ssh amd9070 C:\AI4S-HIP-Lab\daviator_batched_dft\resident_build_windows.cmd
+RUN ssh amd9070 C:\AI4S-HIP-Lab\daviator_batched_dft\resident_run_windows.cmd
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_seq_eigenvalues.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_seq_eigenvalues.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_seq_eigenvectors.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_seq_eigenvectors.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_seq_timings.json /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_seq_timings.json
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_seq_history.csv /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_seq_history.csv
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_batch_eigenvalues.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_batch_eigenvalues.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_batch_eigenvectors.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_batch_eigenvectors.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_batch_timings.json /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_batch_timings.json
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_64_batch_history.csv /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_64_batch_history.csv
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_seq_eigenvalues.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_seq_eigenvalues.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_seq_eigenvectors.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_seq_eigenvectors.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_seq_timings.json /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_seq_timings.json
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_seq_history.csv /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_seq_history.csv
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_batch_eigenvalues.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_batch_eigenvalues.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_batch_eigenvectors.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_batch_eigenvectors.bin
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_batch_timings.json /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_batch_timings.json
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_256_batch_history.csv /home/lmxxf/work/ai-for-science-on-cuda-x/results/module15_hip_256_batch_history.csv
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_build.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/daviator_batched_dft/resident_build.log
+RUN scp amd9070:C:/AI4S-HIP-Lab/daviator_batched_dft/resident_run.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/daviator_batched_dft/resident_run.log

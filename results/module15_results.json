@@ -1,0 +1,227 @@
+{
+  "status": "PASS",
+  "method": "GPU persistent kernel: each block owns one k-point, all iterations and convergence control on device, shared-memory 32x32 cyclic Jacobi, two-pass modified Gram-Schmidt, thick-restarted 32-vector block Davidson retaining 24 Ritz vectors (8 guard roots) plus 8 largest target residual directions; 16 requested roots; no host interaction during iteration. Sequential launches one block per k-point in same stream, batch one grid covering all k-points.",
+  "iteration_host_transfers": 0,
+  "iteration_host_eigensolves": 0,
+  "systems": [
+    {
+      "B": 64,
+      "metadata": {
+        "systems": 64,
+        "plane_waves": 384,
+        "bands": 16,
+        "CPU_numpy_full_eigvalsh_seconds": 0.22935967496596277,
+        "H_sha256": "7adfcf02754e04457c8257d06e8d1619a449eee93f52cefd12f6ca6abf5cb406",
+        "Hamiltonian": "0.5|G+k|² + periodic cosine potential V=-0.07(cos x+cos y+cos z), same model as module10; not self-consistent DFT or silicon"
+      },
+      "backends": {
+        "cpu": {
+          "iterations": 9,
+          "total_seconds": 3.211548568,
+          "H_apply_seconds": 2.072559285,
+          "host_RR_orthogonalization_seconds": 1.081550536,
+          "transfer_seconds": 0,
+          "max_residual": 3.523855316264e-08,
+          "mode": "cpu",
+          "eigenvalue_max_abs_error": 4.6629367034256575e-14,
+          "independent_full_H_max_residual": 3.523855317701663e-08,
+          "orthogonality_max_abs_error": 4.3520742565306136e-14
+        },
+        "cuda_seq": {
+          "systems": 64,
+          "mode": "seq",
+          "resident_kernel_seconds": 9.714278821,
+          "setup_upload_seconds": 0.289117769,
+          "final_download_seconds": 0.000996739,
+          "total_seconds": 10.004393489,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.501330236626217e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 64,
+          "eigenvalue_max_abs_error": 6.8833827526759706e-15,
+          "independent_full_H_max_residual": 9.501330015881664e-11,
+          "orthogonality_max_abs_error": 1.3322676295501878e-15
+        },
+        "cuda_batch": {
+          "systems": 64,
+          "mode": "batch",
+          "resident_kernel_seconds": 0.211415417,
+          "setup_upload_seconds": 0.244219653,
+          "final_download_seconds": 0.000987492,
+          "total_seconds": 0.456622658,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.501330236626217e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 1,
+          "eigenvalue_max_abs_error": 6.8833827526759706e-15,
+          "independent_full_H_max_residual": 9.501330015881664e-11,
+          "orthogonality_max_abs_error": 1.3322676295501878e-15
+        },
+        "hip_seq": {
+          "systems": 64,
+          "mode": "seq",
+          "resident_kernel_seconds": 5.2800045,
+          "setup_upload_seconds": 0.140974,
+          "final_download_seconds": 0.0020663,
+          "total_seconds": 5.4230449,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.501330236626217e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 64,
+          "eigenvalue_max_abs_error": 6.8833827526759706e-15,
+          "independent_full_H_max_residual": 9.501330015881664e-11,
+          "orthogonality_max_abs_error": 1.3322676295501878e-15
+        },
+        "hip_batch": {
+          "systems": 64,
+          "mode": "batch",
+          "resident_kernel_seconds": 0.2310036,
+          "setup_upload_seconds": 0.1452079,
+          "final_download_seconds": 0.0020138,
+          "total_seconds": 0.3782423,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.501330236626217e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 1,
+          "eigenvalue_max_abs_error": 6.8833827526759706e-15,
+          "independent_full_H_max_residual": 9.501330015881664e-11,
+          "orthogonality_max_abs_error": 1.3322676295501878e-15
+        }
+      },
+      "batch_speedups": {
+        "cuda": {
+          "resident_kernel": 45.9487721323559,
+          "end_to_end": 21.909542406018755
+        },
+        "hip": {
+          "resident_kernel": 22.856806127696714,
+          "end_to_end": 14.337489223177842
+        }
+      },
+      "hip_vs_cuda_eigenvalue_max_abs_diff": {
+        "seq": 0.0,
+        "batch": 0.0
+      }
+    },
+    {
+      "B": 256,
+      "metadata": {
+        "systems": 256,
+        "plane_waves": 384,
+        "bands": 16,
+        "CPU_numpy_full_eigvalsh_seconds": 0.9056476240511984,
+        "H_sha256": "6278b4f6d95c682f97b02374bd9d9fa3e5bc40b56f6640e46799e92af0b43902",
+        "Hamiltonian": "0.5|G+k|² + periodic cosine potential V=-0.07(cos x+cos y+cos z), same model as module10; not self-consistent DFT or silicon"
+      },
+      "backends": {
+        "cpu": {
+          "iterations": 8,
+          "total_seconds": 11.654879012,
+          "H_apply_seconds": 7.270055426000001,
+          "host_RR_orthogonalization_seconds": 4.120976517000001,
+          "transfer_seconds": 0,
+          "max_residual": 3.8663349782657274e-08,
+          "mode": "cpu",
+          "eigenvalue_max_abs_error": 4.085620730620576e-14,
+          "independent_full_H_max_residual": 3.866334977620356e-08,
+          "orthogonality_max_abs_error": 4.773959005888173e-14
+        },
+        "cuda_seq": {
+          "systems": 256,
+          "mode": "seq",
+          "resident_kernel_seconds": 38.93254537,
+          "setup_upload_seconds": 0.256793055,
+          "final_download_seconds": 0.003673069,
+          "total_seconds": 39.193011654,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.890129726939575e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 256,
+          "eigenvalue_max_abs_error": 7.216449660063518e-15,
+          "independent_full_H_max_residual": 9.890130272879943e-11,
+          "orthogonality_max_abs_error": 1.5543122344752192e-15
+        },
+        "cuda_batch": {
+          "systems": 256,
+          "mode": "batch",
+          "resident_kernel_seconds": 0.523095935,
+          "setup_upload_seconds": 0.263515479,
+          "final_download_seconds": 0.004071805,
+          "total_seconds": 0.790683347,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.890129726939575e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 1,
+          "eigenvalue_max_abs_error": 7.216449660063518e-15,
+          "independent_full_H_max_residual": 9.890130272879943e-11,
+          "orthogonality_max_abs_error": 1.5543122344752192e-15
+        },
+        "hip_seq": {
+          "systems": 256,
+          "mode": "seq",
+          "resident_kernel_seconds": 20.324157,
+          "setup_upload_seconds": 0.1655266,
+          "final_download_seconds": 0.0049608,
+          "total_seconds": 20.4946445,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.890129726939575e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 256,
+          "eigenvalue_max_abs_error": 7.216449660063518e-15,
+          "independent_full_H_max_residual": 9.890130272879943e-11,
+          "orthogonality_max_abs_error": 1.5543122344752192e-15
+        },
+        "hip_batch": {
+          "systems": 256,
+          "mode": "batch",
+          "resident_kernel_seconds": 0.5249399,
+          "setup_upload_seconds": 0.1681922,
+          "final_download_seconds": 0.0050879,
+          "total_seconds": 0.6982265,
+          "min_iterations": 15,
+          "max_iterations": 16,
+          "max_residual": 9.890129726939575e-11,
+          "iteration_host_transfers": 0,
+          "iteration_host_eigensolves": 0,
+          "launch_count": 1,
+          "eigenvalue_max_abs_error": 7.216449660063518e-15,
+          "independent_full_H_max_residual": 9.890130272879943e-11,
+          "orthogonality_max_abs_error": 1.5543122344752192e-15
+        }
+      },
+      "batch_speedups": {
+        "cuda": {
+          "resident_kernel": 74.42716099485652,
+          "end_to_end": 49.568530566257145
+        },
+        "hip": {
+          "resident_kernel": 38.717112187509464,
+          "end_to_end": 29.35243004956128
+        }
+      },
+      "hip_vs_cuda_eigenvalue_max_abs_diff": {
+        "seq": 0.0,
+        "batch": 0.0
+      }
+    }
+  ],
+  "caveats": [
+    "Original educational implementation, not NVIDIA Daviator or VASP. Simple periodic potential, no self-consistency.",
+    "CPU educational Davidson uses max96 subspace, resident uses thick-restarted32 (24 retained Ritz + 8 corrections); CPU full eigvalsh also provided as optimized reference.",
+    "GPU resident kernel time excludes upload/allocation and final result download; total_seconds includes them. Neither includes file I/O or compilation."
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-24T01:14:55.077067+08:00",
+  "command": [
+    ".venv/bin/python",
+    "run_pipeline.py",
+    "--phase",
+    "all",
+    "--reuse-results"
+  ],
+  "elapsed_s": 3.005467959912494,
+  "min_available_gib": 110.78607177734375,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

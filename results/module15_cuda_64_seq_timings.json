@@ -1,0 +1,1 @@
+{"systems":64,"mode":"seq","resident_kernel_seconds":9.7142788210000006,"setup_upload_seconds":0.28911776900000002,"final_download_seconds":0.00099673899999999996,"total_seconds":10.004393489,"min_iterations":15,"max_iterations":16,"max_residual":9.5013302366262169e-11,"iteration_host_transfers":0,"iteration_host_eigensolves":0,"launch_count":64}

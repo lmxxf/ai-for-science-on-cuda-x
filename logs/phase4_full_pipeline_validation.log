@@ -1,0 +1,105 @@
+PASS: split disjointness, metrics, validation checkpoint, complete 1128 cache, geometry, CPU/GPU agreement, drug identities, data hashes, 4 SVG/PNG, memory guards
+PASS Phase2: BBBP split/held-out metrics/checkpoint/attribution, raw force/energy arrays and physics checks, protein holdout metrics/splits/mutation deltas, three SVG/PNG formatting checks
+PASS Phase3: PME mesh/gradient/trajectory/dt/thermostat, complete 100k HMM scores/ROC/hash/timing, all eigenpairs/full residuals, complete complex FX visibility and CLEAN images, all112 full15-layer traces/metrics, 5 white SVG/PNG
+PASS Phase4: full10k energies/coordinates/monotonicity/contact/bond metrics and archived failure; all64/256 eigenpairs/residuals/orthogonality/resident metadata; unchanged381+audit hashes; figure9/13
+REPORT.md written from measured results
+[
+  {
+    "module": "rdkit",
+    "mode": "validated_cached_result",
+    "elapsed_s": 9.681703522801399e-05,
+    "result": "results/module1_results.json",
+    "sha256": "a5b3c7db8ecbf6583a2ee5afefe729efe16df8c8ca28c57463344b7cac689258"
+  },
+  {
+    "module": "unimol",
+    "mode": "validated_cached_result",
+    "elapsed_s": 9.307288564741611e-05,
+    "result": "results/module2_results.json",
+    "sha256": "7b21caa476d3337ff8edb33a43b7f7021e605d21c6e2281cf3ffefd6a9d1f53b"
+  },
+  {
+    "module": "cuspa",
+    "mode": "validated_cached_result",
+    "elapsed_s": 2.6687979698181152e-05,
+    "result": "results/module3_results.json",
+    "sha256": "dce162f9b63e4f9136e098aca9187706dcb7e9b68d2d05df2d91f3ff6268d4c9"
+  },
+  {
+    "module": "bbbp",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.0006696879863739014,
+    "result": "results/module6_results.json",
+    "sha256": "09d8ed73907c2eb11ef5110efd7ca19617490f626b6cb4214ce2e23ae5b743b3"
+  },
+  {
+    "module": "forcefield",
+    "mode": "validated_cached_result",
+    "elapsed_s": 6.958399899303913e-05,
+    "result": "results/module7_results.json",
+    "sha256": "d5708b461df91d66519be2d4a378b9e1772b231a95b7f4bd59a782caad5253c4"
+  },
+  {
+    "module": "protein",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.00016804994083940983,
+    "result": "results/module8_results.json",
+    "sha256": "6ab80aa321279ea7fcb013fd78a73b87f8da3b66550d3fe5d55c7274fa95113a"
+  },
+  {
+    "module": "pme_md",
+    "mode": "validated_cached_result",
+    "elapsed_s": 5.148816853761673e-05,
+    "result": "results/module9_results.json",
+    "sha256": "b9315dae5d1f59b2a6c7d28bc9cd49d2bb831c12c2d6bddf00b9269f43375bc7"
+  },
+  {
+    "module": "davidson",
+    "mode": "validated_cached_result",
+    "elapsed_s": 6.37611374258995e-05,
+    "result": "results/module10_results.json",
+    "sha256": "c5766f99cab861fd359d976d34c2d0fa0c4275e92abe734338d8d57bd4f01cd3"
+  },
+  {
+    "module": "blackhole_fx",
+    "mode": "validated_cached_result",
+    "elapsed_s": 3.193714655935764e-05,
+    "result": "results/module11_results.json",
+    "sha256": "0eef77c8b7f59f34d36c161c566bd33fdeb0bcd76f30793f48c96d52ff16ef58"
+  },
+  {
+    "module": "profile_hmm",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.0015475370455533266,
+    "result": "results/module12_results.json",
+    "sha256": "1100f37065266a2f138b77dcb77e79db7ee2f2736103290736c54f3cd2c28bee"
+  },
+  {
+    "module": "unimol_full15",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.00021294597536325455,
+    "result": "results/module13_results.json",
+    "sha256": "81f0388210c839326e3be46e0157bf54905e5123b4f350a51d7ea19e4ebc42b9"
+  },
+  {
+    "module": "conformer_relax",
+    "mode": "validated_cached_result",
+    "elapsed_s": 5.587213672697544e-05,
+    "result": "results/module14_results.json",
+    "sha256": "9c2e2733ed5724daff9163ba698c524b5db403b6899ba82c9353ba78366ae8bc"
+  },
+  {
+    "module": "resident_davidson",
+    "mode": "validated_cached_result",
+    "elapsed_s": 4.652910865843296e-05,
+    "result": "results/module15_results.json",
+    "sha256": "898e2f332af291484ae99d7f82e3dc1dfd660dc2fef8499a895864be7bc84381"
+  },
+  {
+    "module": "audit381_record",
+    "mode": "validated_cached_result",
+    "elapsed_s": 2.2848136723041534e-05,
+    "result": "results/module16_results.json",
+    "sha256": "a85b84ee9e6942a5623c363fb9036d30fa67893752aea13aba807bbb83c6672b"
+  }
+]

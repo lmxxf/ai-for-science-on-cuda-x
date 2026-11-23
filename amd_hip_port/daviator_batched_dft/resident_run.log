@@ -1,0 +1,4 @@
+systems 64 mode seq iterations 15..16 maxres 9.50133023663e-11 GPU 5.2800045s total 5.4230449s
+systems 64 mode batch iterations 15..16 maxres 9.50133023663e-11 GPU 0.2310036s total 0.3782423s
+systems 256 mode seq iterations 15..16 maxres 9.89012972694e-11 GPU 20.324157s total 20.494644s
+systems 256 mode batch iterations 15..16 maxres 9.89012972694e-11 GPU 0.5249399s total 0.6982265s

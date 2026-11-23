@@ -15,15 +15,18 @@ MODULES={
     'blackhole_fx':('exp9_cuphoton_blackhole_fx_hip.py','results/module11_results.json'),
     'profile_hmm':('exp10_gpuhmmer_viterbi_hip.py','results/module12_results.json'),
     'unimol_full15':('exp11_unimol_full15layer_amd9070.py','results/module13_results.json'),
+    'conformer_relax':('exp12_open_nvmolkit_batched_conformer_hip.py','results/module14_results.json'),
+    'resident_davidson':('exp13_daviator_resident_hip.py','results/module15_results.json'),
+    'audit381_record':('exp14_audit381_record.py','results/module16_results.json'),
 }
 
 def main():
     ap=argparse.ArgumentParser(description=__doc__)
     ap.add_argument('--modules',nargs='+',choices=list(MODULES),default=None)
-    ap.add_argument('--phase',choices=['1','2','3','all'],default='1',help='1: RDKit/ESOL/cuSpa; 2: BBBP/forcefield/ESM-2; 3: PME/Davidson/FX/HMM/full Uni-Mol')
+    ap.add_argument('--phase',choices=['1','2','3','4','all'],default='1',help='1: RDKit/ESOL/cuSpa; 2: BBBP/forcefield/ESM-2; 3: PME/Davidson/FX/HMM/full Uni-Mol; 4: conformers/resident Davidson/existing audit')
     ap.add_argument('--reuse-results',action='store_true',help='Validate existing outputs without rerunning expensive stages')
     a=ap.parse_args(); os.chdir(ROOT)
-    phase_groups={'1':list(MODULES)[:3],'2':list(MODULES)[3:6],'3':list(MODULES)[6:]}
+    phase_groups={'1':list(MODULES)[:3],'2':list(MODULES)[3:6],'3':list(MODULES)[6:11],'4':list(MODULES)[11:]}
     if a.modules is None:
         a.modules=list(MODULES) if a.phase=='all' else phase_groups[a.phase]
     records=[]
@@ -46,6 +49,8 @@ def main():
         subprocess.run([sys.executable,'verify_phase2.py'],check=True)
     if set(phase_groups['3']).issubset(a.modules):
         subprocess.run([sys.executable,'verify_phase3.py'],check=True)
+    if set(phase_groups['4']).issubset(a.modules):
+        subprocess.run([sys.executable,'verify_phase4.py'],check=True)
     subprocess.run([sys.executable,'build_report.py'],check=True)
     Path('results/pipeline_manifest.json').write_text(json.dumps(dict(timestamp=datetime.datetime.now().astimezone().isoformat(),python=sys.executable,modules=records),indent=2)+'\n')
     print(json.dumps(records,indent=2))
