@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-23T23:45:12.454940+08:00",
+  "command": [
+    ".venv/bin/python",
+    "exp6_protein_esm2_finetune.py",
+    "--stage",
+    "prepare"
+  ],
+  "elapsed_s": 1.7544388310052454,
+  "min_available_gib": 100.05583572387695,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

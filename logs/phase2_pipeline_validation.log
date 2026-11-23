@@ -1,0 +1,25 @@
+PASS Phase2: BBBP split/held-out metrics/checkpoint/attribution, raw force/energy arrays and physics checks, protein holdout metrics/splits/mutation deltas, three SVG/PNG formatting checks
+REPORT.md written from measured results
+[
+  {
+    "module": "bbbp",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.0007652409840375185,
+    "result": "results/module6_results.json",
+    "sha256": "09d8ed73907c2eb11ef5110efd7ca19617490f626b6cb4214ce2e23ae5b743b3"
+  },
+  {
+    "module": "forcefield",
+    "mode": "validated_cached_result",
+    "elapsed_s": 7.585692219436169e-05,
+    "result": "results/module7_results.json",
+    "sha256": "d5708b461df91d66519be2d4a378b9e1772b231a95b7f4bd59a782caad5253c4"
+  },
+  {
+    "module": "protein",
+    "mode": "validated_cached_result",
+    "elapsed_s": 0.00016992189921438694,
+    "result": "results/module8_results.json",
+    "sha256": "6ab80aa321279ea7fcb013fd78a73b87f8da3b66550d3fe5d55c7274fa95113a"
+  }
+]

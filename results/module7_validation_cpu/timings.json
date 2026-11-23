@@ -1,0 +1,23 @@
+{
+"device":"single-thread compiled C++ CPU",
+"atoms":216,
+"box_angstrom":33,
+"cutoff_angstrom":10,
+"rf_dielectric":78.299999999999997,
+"grid_side":3,
+"energy_kj_per_mol":-22.435214731397092,
+"h2d_ms":0,
+"d2h_ms":0,
+"cold_pipeline_ms":0.13597000000000001,
+"index_ms":[0.00059199999999999997,0.00059199999999999997,0.00055999999999999995],
+"force_ms":[0.12560199999999999,0.12389,0.123762],
+"pipeline_ms":[0.12945899999999999,0.124403,0.12435400000000001],
+"index_median_ms":0.00059199999999999997,
+"force_median_ms":0.12389,
+"pipeline_median_ms":0.124403,
+"evaluations_per_s":8038.3913571216126,
+"warmups":2,
+"repeats":3,
+"precision":"float64; contraction disabled; no fastmath",
+"scope":"nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+}

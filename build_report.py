@@ -184,6 +184,8 @@ AMD H2D {aa['h2d_ms']:.4f}ms，驻留{aa['pipeline_median_wall_ms']:.4f}ms，D2H
 
 本次已证明这些cuSpa通用算术/分支/排序核能够在gfx1201原生执行，未使用Tensor Core。图纸的分子非键势能加分项未做，不把这次成功扩大成已移植cuPotential或全部CUDA-X科学库。图4已加入三方条形图、同源入口对照与完整正确性口径。
 """
+ from phase2_report import report_text
+ text+=report_text()
  (R/'REPORT.md').write_text(text)
  print('REPORT.md written from measured results')
 if __name__=='__main__':main()

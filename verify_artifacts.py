@@ -31,7 +31,7 @@ assert all(v['match'] for v in load('results/drug_structure_audit.json'))
 for key in ['esol','bbbp']:
     name='delaney-processed.csv' if key=='esol' else 'BBBP.csv'
     assert hashlib.sha256((R/'data'/name).read_bytes()).hexdigest()==a[key]['sha256']
-figs=list((R/'visuals').glob('fig*.svg'));assert len(figs)==4
+figs=list((R/'visuals').glob('fig[1234]_*.svg'));assert len(figs)==4
 for path in figs:
     root=ET.parse(path).getroot();assert root.attrib['width']=='640'
     assert 'WenQuanYi Micro Hei' in root.attrib['font-family']

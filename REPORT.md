@@ -1,6 +1,6 @@
 # AI for Science：从科学库到专有模型与 CUDA 科学计算
 
-生成时间：2026-11-23T23:32:52+08:00。全部数值来自本目录 JSON 与训练日志；未把预设结论当结果。设备为 DGX Spark / NVIDIA GB10，Python 3.12 / CUDA 13.0 / PyTorch 2.14.1+cu130。
+生成时间：2026-11-23T23:52:18+08:00。全部数值来自本目录 JSON 与训练日志；未把预设结论当结果。设备为 DGX Spark / NVIDIA GB10，Python 3.12 / CUDA 13.0 / PyTorch 2.14.1+cu130。
 
 ## 实测结论
 
@@ -179,3 +179,116 @@ AMD H2D 11.6143ms，驻留6.0502ms，D2H 1.5167ms。三段相加约19.1812ms为�
 验证脚本：`.venv/bin/python compare_module5_outputs.py`。汇总为`results/module5_amd9070_results.json`，全量对账为`results/module5_comparison.json`，AMD原始输出与计时为`results/module5_amd9070/`，GB10同源计时为`results/module5_gb10_cpp/`。
 
 本次已证明这些cuSpa通用算术/分支/排序核能够在gfx1201原生执行，未使用Tensor Core。图纸的分子非键势能加分项未做，不把这次成功扩大成已移植cuPotential或全部CUDA-X科学库。图4已加入三方条形图、同源入口对照与完整正确性口径。
+
+
+# 第二阶段：血脑屏障、开源非键力场与蛋白质模型
+
+## 模块六：BBBP 分类、真实原子遮挡归因、AMD 注意力核
+
+清洗表2039行，canonical母核有11组标签冲突，整组剔除而不任意挑标签；同标签母核去重后构象尝试1955个，成功1952个。具体构象成功/收敛统计在`results/bbbp_conformer_timing.json`；未收敛候选不能称为实验测量几何。固定seed42分层80/10/10为[1561, 195, 196]，canonical母核不跨集。
+
+| 模型 | 留出ROC-AUC | PR-AUC（average precision） | Accuracy |
+|---|---:|---:|---:|
+| Dummy | 0.500000 | 0.765306 | 0.765306 |
+| Morgan_RF | 0.932609 | 0.975935 | 0.903061 |
+| Uni-Mol全参数微调 | 0.933333 | 0.975010 | 0.892857 |
+
+官方Uni-Mol v1全47,331,139参数训练20轮，BCEWithLogitsLoss、batch32、BF16 autocast/FP32权重、AdamW与cosine调度。仅validation ROC-AUC选第4轮，最终test一次。训练112.259s，CPU8进程构象12.447s。**本次Uni-Mol与RF基本打平，RF在PR-AP与准确率上略高，不能延续ESOL的“3D明显胜出”叙事。**随机划分不是scaffold外推。
+
+逐重原子遮挡：删除对应原子token与距离行/列，保留其余原坐标、不重优化几何，贡献定义`delta_logit = full_logit - occluded_logit`；正负按真实模型结果染色，未强制亲脂为正或含氧为负。
+
+- 苯海拉明：原模型概率0.957338；逐原子贡献范围[-1.4065, 1.7780]。
+- 非索非那定：原模型概率0.038494；逐原子贡献范围[-2.1513, 0.2548]。
+
+两种展示药物均出现在本次训练集合（membership记录于模块六JSON/NOTES），因此它们是模型敏感性解释示例，不是两个独立外推测试。遮挡后的token集合可能不是有效化学分子，概率也未作临床校准，不能当嗜睡诊断或化学因果。
+
+### 官方权重核心前向算子：CUDA / HIP / PyTorch 三方验证
+
+从本次训练checkpoint导出真实高斯参数、原子对仿射、128→128/GELU→64投影和首层QKV参数。官方embedding LayerNorm、首层pre-attention LayerNorm及padding零化在PyTorch执行后导出输入，C++运行Gaussian、投影、QKV（含bias）、缩放点积、padding key mask、softmax、attention×V。8个真实药物输入，包含BOS/EOS及padding；不是假设全原子都是普通词元。
+
+输入batch8、pad长度39、hidden512、64头、每头8维。FP32，关闭FMA contraction，无fastmath。驻留核中位数GB10 **5.2384ms**，RX9070XT **12.1015ms**。这是朴素教育实现，不调用BLAS/TensorCore，不用于评价厂商成熟库或整模型性能。
+
+| 张量 | CUDA/HIP max_abs | 对官方PyTorch最坏max_abs |
+|---|---:|---:|
+| gaussian | 1.52588e-05 | 1.52588e-05 |
+| bias | 7.62939e-06 | 7.62939e-06 |
+| qkv | 0 | 4.76837e-07 |
+| attention | 1.51992e-06 | 1.60933e-06 |
+| context | 2.5034e-06 | 3.93391e-06 |
+
+没有移植后续14层、FFN、attention输出投影或整模型训练；只证明这个真实权重核心前向路径可在AMD原生执行。源码/可复现驱动在`amd_hip_port/unimol_pairbias/`，结果`results/module6_pairbias_results.json`。
+
+![BBBP与原子归因](visuals/fig5_bbbp_unimol_roc_and_atom_attribution.svg)
+
+## 模块七：原创 MIT 开源非键力场（无需 libcupo）
+
+代码`amd_hip_port/cupotential_open/`，驱动`exp5_open_cupotential_hip.py`。支持CPU C++、CUDA sm_121、HIP gfx1201，**是独立实现的非键算子，不宣称二进制/API兼容NVIDIA cuPotential，也不是完整分子动力学引擎**。
+
+输入为固定种子合成中性电荷扰动晶格，不冒称真实溶剂化分子拓扑。坐标Å、能量kJ/mol、受力kJ/(mol·Å)、电荷e；每原子参数q/sigma/epsilon，Lorentz-Berthelot混合。立方周期盒子/最小镜像，cutoff10Å，每格边长>=cutoff且每轴>=3格，GPU分桶、基数排序、扫描，再查27邻格。
+
+`E_LJ=4epsilon[(sigma/r)^12-(sigma/r)^6]`
+
+`E_RF=ke*q_i*q_j[1/r+k_rf*r^2-c_rf]`
+
+`k_rf=(epsilon_RF-1)/(2epsilon_RF+1)/rc^3`，`c_rf=3epsilon_RF/(2epsilon_RF+1)/rc`，epsilon_RF=78.3，ke=1389.354576 kJ·Å/(mol·e²)。
+
+对d=r_i-r_j，力系数为`24epsilon[2(sigma/r)^12-(sigma/r)^6]/r^2 + ke*q_i*q_j[1/r^3-2k_rf]`，乘以d。每原子独立遍历所有邻居，能量除2消除双计数，受力不除2。不含键、角、排除规则或1-4缩放；LJ未shift硬截断，RF能量在cutoff处为零，非PME/Ewald。单次求力没有验证长期能量守恒，不输出伪造ns/day。
+
+| 原子数 | CPU C++ / ms | GB10 CUDA / ms | RX9070XT HIP / ms | HIP/CUDA全受力相对L2 |
+|---:|---:|---:|---:|---:|
+| 32,000 | 61.1682 | 7.9929 | 7.9010 | 0 |
+| 128,000 | 242.5669 | 27.1877 | 22.4264 | 0 |
+
+阶段拆账（独立计时，不与完整流程简单相加）：
+
+| 原子数 | 设备 | Cell-List / ms | 能量+全部受力 / ms | 非键求值次数/s |
+|---:|---|---:|---:|---:|
+| 32,000 | cpu | 0.0812 | 61.0847 | 16.35 |
+| 32,000 | cuda | 0.0733 | 7.9211 | 125.11 |
+| 32,000 | hip | 0.1773 | 7.9016 | 126.57 |
+| 128,000 | cpu | 0.5032 | 241.3103 | 4.12 |
+| 128,000 | cuda | 0.0877 | 27.1041 | 36.78 |
+| 128,000 | hip | 0.2705 | 23.1128 | 44.59 |
+
+所有N个能量分量与3N个受力分量，在CPU/CUDA/HIP之间逐值完全一致（L2=0），不是空数组：32k体系力范围约[-8.17,8.06]、全力范数458.39；128k全力范数912.24。相同求和顺序、FP64与禁止FMA使本负载达成逐值相同，不扩展成所有体系必然零误差。单独由C++ long double累加的总E日志在Linux/Windows末位可有约1.1e-14相对差（long double宽度不同）；用同一NumPy归约全部能量分量后再对账，总E一致，原始与canonical总E均保留。
+
+独立216原子NumPy暴力全配对参考：能量相对差1.58e-16、受力相对L2 3.13e-16；六个方向有限差分（h=0.0001Å，避开cutoff）最大绝对差1.05e-10；总力L2 2.82e-15；周期平移受力相对差1.23e-15。验证代码与全部原始数组留本机，汇总`results/module7_cpu_validation.json`与`results/module7_results.json`。
+
+GPU先预热再重复，驻留同步墙钟；分桶与力核均真实在对应GPU执行。H2D/D2H和冷启动另存JSON；CPU为Spark单线程编译基线，非CPU并行上限，结果不是通用GPU排名。
+
+![开源非键力场](visuals/fig6_open_cupotential_md_forcefield_amd_vs_nvidia.svg)
+
+## 模块八：真实 GB1 实验与官方 ESM-2 全参数微调
+
+原始来源：[FLIP GB1 split archive](https://raw.githubusercontent.com/J-SNACKKB/FLIP/main/splits/gb1/splits.zip)，实验论文[Wu等，eLife 2016](https://elifesciences.org/articles/16965)。archive SHA256 `00a3c3d5be56ce35adfbec838db8ff549be369525e151a6978133da34b9fd86f`，原CSV `19bcb946fb9f8fe5ac1d5ed0aa85d4a85848b44744560d9684cc278935f3bd16`。真实实验结合适应度，未生成伪标签。
+
+原采样表8733条，全部通过20标准AA验证，去重0条。原序列265AA，只有39/40/41/54四位点变异；保留完整N端56AA GB1域，裁掉209AA在全部记录恒定的融合尾段，不是按标签挑选片段。固定seed20261124，在查看标签前均匀无放回抽3000条，随机2400/300/300。同序列不跨集，但不是FLIP官方leaderboard split，也不是未见蛋白泛化。
+
+Biopython `ProteinAnalysis`计算MW、pI、芳香性、不稳定指数、GRAVY；加20维AAC、400维二肽频次形成425维传统特征，CPU特征时间0.206s。原序列、数据划分、source_index和描述符均保留。
+
+官方`facebook/esm2_t6_8M_UR50D`实际7,512,122可训练参数、6层、hidden320、20头、FFN1280、词表33、RoPE。33词表不全是“20AA+特殊符号”：还包括X/B/U/Z/O等非标准/模糊残基；token全表与权重SHA在`results/module8_esm2_architecture.json`。编码器全部解冻，新建回归头。
+
+| 同一测试集模型 | RMSE | Spearman | R² |
+|---|---:|---:|---:|
+| Constant train mean | 1.24369 | 未定义（常数） | -0.00035 |
+| AAC+DP+Bio RF | 0.87047 | 0.79881 | 0.50995 |
+| AAC+DP+Bio Ridge | 0.93136 | 0.74278 | 0.43900 |
+| ESM2 full finetune | 0.53814 | 0.89829 | 0.81271 |
+
+ESM-2全参数训练12轮、batch64，GPU训练与逐轮验证15.016s；validation RMSE选第11轮。目标标准化只拟合train，Ridge的alpha只用val挑选，各最终模型test各评一次；逐轮日志`results/module8_epochs.jsonl`，独立test预测`results/module8_test_predictions.csv`。
+
+固定WT背景、39/40/41/54四位点×20AA共80个单点替换，报告`pred(mutant)-pred(WT)`。原AA自替换的变化为零；模型热图不是80次新湿实验验证，不能宣称已证明某突变提高真实蛋白功能。
+
+![ESM-2与单点突变扫描](visuals/fig7_protein_esm2_finetune_and_mutation_scan.svg)
+
+## 第二阶段一键入口、验证与 AMD 同步
+
+```bash
+.venv/bin/python run_pipeline.py --phase 2
+.venv/bin/python run_pipeline.py --phase 2 --reuse-results
+.venv/bin/python verify_phase2.py
+```
+
+第一条真实顺序重跑BBBP（含远端注意力核）→开源力场→ESM-2；第二条只核对已保存产物并汇编报告。原权重、张量缓存和编译产物留本机，不随Git发布；真实小型CSV、日志、指标、split、哈希和源码随仓保存。AMD源码与轻量结果同步至`/home/lmxxf/work/ai-for-science-on-amd-9070xt`，远端仍只使用独立实验目录。
+
+新增图5/6/7均640px白底中文SVG，禁Unicode上标ᵀ，CairoSVG转PNG逐图目检。`verify_phase2.py`从test预测重算指标，检查split无交叉、最佳轮次、真实归因差值、原始能量/受力数组、序列/突变、数据哈希与图表格式；不能把“JSON存在”当作实验验证。

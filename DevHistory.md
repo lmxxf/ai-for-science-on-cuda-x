@@ -63,3 +63,50 @@
 - 主线程独立运行`compare_module5_outputs.py`：所有2000000归属、50001行指针、780563列索引、780563计数逐值与逐字节相同；四个SHA256全一致。GB10同源C++也与原版库输出逐字节一致。仅声称最终整数输出一致，不声称所有浮点中间态一致。
 - 更新`results/module5_amd9070_results.json`与`results/module5_comparison.json`，更新图4（三方条形、同源入口、AMD阶段/传输、全量哈希对账），CairoSVG重渲染PNG并目检。`build_report.py`已纳入模块五，重生成REPORT不会丢AMD结果。
 - 主目标已完成，不追加图纸可选分子势能微核；未声称移植cuPotential专有运行时或完整Python包。AMD实验进程已结束。
+
+## 2026-11-23 23:41 +08:00 — 第二阶段启动
+
+- 完整读取`PHASE2_FULL_AI4S_PLAN.md`；用户授权书房RX9070XT独占使用，现有Strata文件仍保持只读、AMD实验写入`C:\AI4S-HIP-Lab`独立子目录。
+- 按模块六→七→八执行GPU实验；代码、数据下载与CPU校验可预先并行，避免共享GPU争用污染计时。
+- 模块六：真实BBBP分类、validation挑checkpoint/test一次、模型实算原子遮挡归因、真实权重Gaussian/pair-bias/attention CUDA-HIP核。
+- 模块七：原创开源PBC/27邻格/LB混合LJ+reaction-field Coulomb与解析力；小体系暴力对照与有限差分先验，再测32k/128k，不声称复刻专有libcupo全部功能。
+- 模块八：真实蛋白实验序列、Biopython、ESM-2真微调、按模型输出做突变扫描，不能将模型预测热图当成新的实验测量。
+- 仓库初始状态：主仓仅新图纸未跟踪，HEAD00fb2d4；AMD独立仓干净，HEADc90e8f3。用户要求最终两个工作区干净，完成后将本次源码/文档/轻量结果同步并本地提交，重权重/缓存/编译产物留本机不入版本库。
+
+## 2026-11-23 23:43–23:49 +08:00 — 第二阶段真机结果与独立核验
+
+### 模块六
+
+- `.venv/bin/python guard_process.py --audit logs/module6_memory.json -- .venv/bin/python -u exp4_bbbp_unimol_and_amd.py --stage train`：20轮全参数BBBP训练112.259s，CPU8进程构象12.447s。11冲突母核22行整组剔除、同标签重复62行移除；1955候选构象成功1952，1058在200步MMFF收敛，894保留最后坐标。
+- 固定分层划分1561/195/196，validation ROC选第4轮。Uni-Mol test ROC0.933333/AP0.975010/Accuracy0.892857；RF ROC0.932609/AP0.975935/Accuracy0.903061，基本打平，不预设3D胜出。
+- 苯海拉明/非索非那定逐重原子遮挡已实算（概率0.9573/0.03849）；两种药都在训练集，不能当独立泛化证据。删除token和距离行列、保留其他坐标，不重优化，归因仅是敏感性。
+- guard运行`amd_hip_port/unimol_pairbias/run_pairbias.py`导出真实checkpoint参数与LayerNorm后输入，顺序编译运行CUDA与HIP，完整默认all入口已串联。Gaussian128→128/GELU→64、首层QKV、masked softmax、AV；8药/39pad/FP32。GB105.238ms、AMD12.101ms；跨GPU及对官方PyTorch max_abs1.526e-5。朴素核不是成熟BLAS或全模型AMD。
+
+### 模块七
+
+- 原创MIT C++：CPU g++、CUDA nvcc sm121、HIP clang gfx1201，独立目录cupotential_open。CPU准备与NumPy全配对/有限差分先执行，待模块六GPU释放后顺序GPU。
+- PBC/MIC/27邻格，rc10Å/介电78.3、LB LJ+reaction-field Coulomb、解析F=-gradE；合成中性电荷晶格、无键拓扑/排除规则，LJ未shift，非PME、非完整MD。
+- 216原子暴力参考受力相对L2=3.127e-16，有限差分六方向max_abs1.052e-10，净力2.82e-15，周期平移相对L2=1.23e-15。
+- 32k CPU61.168/CUDA7.993/HIP7.901ms；128k CPU242.567/CUDA27.188/HIP22.426ms。全部原子能量/受力数组逐值完全相同，主线程额外检查非零力范围与SHA一致。总E C++ long double跨OS末位可异，保留reported与统一NumPy归约canonical E，不将归约末位差误称核误差。
+
+### 模块八
+
+- 模块七GPU全部结束后启动guard包裹的`exp6_protein_esm2_finetune.py --stage all`，实际12轮/456优化步，15.016s，val选第11轮。
+- 真实FLIP GB1 sampled8733唯一标准AA序列；固定seed20261124抽3000，2400/300/300；变异39/40/41/54，保留完整前56AA GB1域、裁掉全库恒定融合尾巴。Biopython五描述符+AAC/二肽共425维，特征0.222s。
+- 官方ESM-2实际7512122可训练参数/6层320维20头/FFN1280/33词表/RoPE；33词表区分X/B/U/Z/O等残基与特殊token。第一层query权重相对预训练L2变化1.657597，确认并非只训练回归头。
+- 同测试集RMSE常数1.243687/RF0.870472/Ridge0.931356/ESM0.538136，ESM Spearman0.898290/R²0.812710；仅val选alpha和checkpoint，标准化train-only，test最终各模型一次。
+- 80格单点突变预测扫描完成；四个WT自替换delta=0，不称新实验验证。
+
+### 总校验
+
+- `verify_phase2.py`独立重算BBBP ROC/AP、GB1 RMSE/R²/Spearman，核对split互斥、最佳轮次、归因原始差值、真实force/energy数组、突变差值/序列/哈希、三SVG白底字体/禁ᵀ及PNG，全部PASS。
+- 图5/6/7均640px白底中文，主线程逐图view_image目检无重叠缺字。所有GPU已释放。
+- `run_pipeline.py --phase 2 --reuse-results`通过，明确只串联已执行产物而不冒称重复训练；真实单模块执行日志全部保留。`build_report.py`会自动汇编第二阶段，Skill及README同步更新。
+
+## 2026-11-23 23:50 +08:00 — 双仓同步与交付
+
+- `sync_phase2_to_amd.py`只同步源码、许可、脚本、图5/6/7及紧凑JSON/日志；大输入张量、训练权重与原始力数组留原实验工作目录。AMD仓`verify_results.py`核对同步文件SHA与轻量数值证据；主仓`verify_phase2.py`已独立核对完整原始数组，两者不混称。
+- AMD新增源码统一放`amd_hip_port/unimol_pairbias/`与`amd_hip_port/cupotential_open/`。移除本次子任务造成且内容完全相同的未跟踪重复顶层cupotential_open副本，保留唯一规范路径。
+- 所有实验已结束，GPU释放；完成最后报告与同步哈希检查后本地提交两仓。本轮未执行git push或对外发布。
+- 最后回归发现第一阶段旧校验器把目录SVG总数写死为4；新增图后误报。已改为明确核对fig1–fig4，第二阶段继续独立核对fig5–fig7；全阶段入口`--phase all --reuse-results`随后PASS。
+- 原始Windows编译/计时日志保留CRLF和工具输出尾空格，不为Git空白检查改写实验原始日志；源码差异单独检查。

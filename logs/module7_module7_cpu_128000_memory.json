@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-23T23:45:02.207981+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_build/open_nonbonded_cpu",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_data/128000",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_cpu_128000",
+    "3"
+  ],
+  "elapsed_s": 2.2554793441668153,
+  "min_available_gib": 100.04227828979492,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

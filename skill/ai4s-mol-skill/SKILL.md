@@ -20,3 +20,13 @@ description: 在本实验仓复现真实分子清洗、三维构象、Uni-Mol �
 - 图表：只使用本次 results 指标；SVG 白底 `#ffffff`、WenQuanYi Micro Hei、单栏 560–680px。转 PNG 检查中文、裁切与重叠。药物结构性质只解释分子机制，不作临床用药结论。
 
 输出保存在 `results/`、`logs/`、`visuals/`。将新命令、版本、计时口径、失败与修复按时间追加到 `DevHistory.md`，更新 `REPORT.md` 时保留实测与推断的区别。
+
+## 第二阶段：血脑屏障、非键力场、蛋白质
+
+读取 `PHASE2_FULL_AI4S_PLAN.md`。入口 `.venv/bin/python run_pipeline.py --phase 2` 按 `bbbp → forcefield → protein` 顺序执行；`--reuse-results`只验证既有产物，不制造新的训练与计时。`--phase all`串联两阶段。依赖现有AMD SSH别名`amd9070`及远端只读借用的HIP工具链，输出写入`C:\AI4S-HIP-Lab`，不修改Strata工程。
+
+- BBBP：按canonical母核去重并明确冲突标签处理；stratified固定train/val/test。用validation ROC-AUC选轮次，test一次；PR-AUC必须说明使用average precision还是梯形积分。遮挡归因定义为原logit减扰动logit，按实际正负染色，不能先规定亲脂为正、氧原子为负。它是模型敏感性，不是临床因果证明。
+- Pair-bias：使用真实checkpoint参数，包括128→128/GELU→64投影和真实首层QKV。明确输入是否已执行layer norm、padding/BOS/EOS掩码，以及核输出是bias、概率还是attention输出。跨GPU结果还要对独立PyTorch参考，不能只证明同一份错误在两块GPU一致。
+- 非键力场：说明PBC最小镜像、单位、截断、反应场介电参数、LJ是否平移。27邻格要求每轴至少3格，避免周期重复。每原子遍历邻居时总能量除2、受力不除2；先做小体系bruteforce、解析力有限差分和总力检查，再跑32k/128k。报告是force evaluation/s，不把未跑的完整MD轨迹换算成ns/day。
+- 蛋白质：真实实验CSV保留来源、哈希、去重和抽样协议；Biopython校验20种标准氨基酸。ESM-2按真实config打印词表与RoPE，训练和标签标准化均只用train。单点突变热图是模型预测变化，不假称已做湿实验。
+- GPU计时依次运行，CPU准备可并行。本地重进程仍用统一内存看护。SVG禁止Unicode上标ᵀ，使用`^T`。

@@ -1,0 +1,1 @@
+{"device":"NVIDIA GB10","median_ms":5.238368034,"repeats":7,"batch":8,"padded_atoms":39,"dtype":"float32","kernel_scope":"Gaussian128 + Linear128/GELU/Linear64 + QKV1536 + masked_softmax + attention_V; pre-normalized input exported from official layernorm"}

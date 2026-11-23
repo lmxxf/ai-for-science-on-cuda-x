@@ -13,3 +13,17 @@ results/module5_gb10_cpp/*.bin
 cuspa/build*/
 cuspa/*.egg-info/
 cuspa/python/cuspa/_core*.so
+# Phase 2 regenerable checkpoints, input tensors, native build artifacts
+results/module7_build/
+results/module7_data/
+results/module7_*/*.bin
+results/module8_prepared.npz
+amd_hip_port/unimol_pairbias/input/
+amd_hip_port/unimol_pairbias/out_cuda/*.bin
+amd_hip_port/unimol_pairbias/out_hip/*.bin
+amd_hip_port/unimol_pairbias/pairbias_cuda
+amd_hip_port/**/*.exe
+amd_hip_port/**/*.obj
+amd_hip_port/**/*.pdb
+# Raw FLIP archive is retained; extracted alternative splits regenerate from it.
+data/gb1/splits/

@@ -34,3 +34,21 @@
 # 2. 从头完整重跑 RDKit 清洗 + Uni-Mol 20 轮 GPU 微调 + cuSpa 原核基准测试（带 250ms 统一内存看护）：
 .venv/bin/python run_pipeline.py
 ```
+
+## 第二阶段：BBBP、开放非键力场、蛋白质 ESM-2
+
+第二阶段已完成真实实验，设计见[PHASE2_FULL_AI4S_PLAN.md](PHASE2_FULL_AI4S_PLAN.md)，完整数据口径见[REPORT.md](REPORT.md)。
+
+- BBBP同测试集：Uni-Mol ROC-AUC0.93333，Morgan RF0.93261，基本打平；真实逐重原子遮挡归因与官方权重Gaussian/首层注意力CUDA-HIP核通过参考验证。
+- 原创MIT非键力场：PBC最小镜像、27邻格、LB混合LJ12-6、反应场库仑与解析力。128k原子CPU242.57ms / GB1027.19ms / RX9070XT22.43ms；完整能量/受力数组跨后端一致，暴力参考与有限差分通过。非完整MD引擎，不兼容或复刻专有libcupo。
+- 官方ESM-2 7.51M全参数微调真实GB1：固定3000条实验序列、2400/300/300；ESM测试RMSE0.538，425维生化特征RF0.870，Spearman0.898。突变热图是模型预测，不冒称新湿实验。
+
+```bash
+.venv/bin/python run_pipeline.py --phase 2
+.venv/bin/python run_pipeline.py --phase 2 --reuse-results
+.venv/bin/python verify_phase2.py
+```
+
+| BBBP / 原子归因 / AMD注意力核 | 开源非键势能与受力 | ESM-2与单点突变扫描 |
+|---|---|---|
+| ![fig5](visuals/fig5_bbbp_unimol_roc_and_atom_attribution.svg) | ![fig6](visuals/fig6_open_cupotential_md_forcefield_amd_vs_nvidia.svg) | ![fig7](visuals/fig7_protein_esm2_finetune_and_mutation_scan.svg) |

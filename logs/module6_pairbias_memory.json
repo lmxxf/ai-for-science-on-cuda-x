@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-23T23:45:57.328408+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-u",
+    "exp4_bbbp_unimol_and_amd.py",
+    "--stage",
+    "pairbias"
+  ],
+  "elapsed_s": 15.775428283028305,
+  "min_available_gib": 109.25124740600586,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

@@ -1,0 +1,78 @@
+2026-11-23 23:45:44 | unimol_tools/models/unimol.py | 136 | INFO | Uni-Mol Tools | Loading pretrained weights from /home/lmxxf/work/ai-for-science-on-cuda-x/weights/mol_pre_no_h_220816.pt
+RUN ['/usr/local/cuda/bin/nvcc', '-O3', '--fmad=false', '-std=c++17', '-arch=sm_121', '-x', 'cu', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/pairbias.cpp', '-o', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/pairbias_cuda']
+RUN ['/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/pairbias_cuda', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/input', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/out_cuda', '7']
+PASS forward 5.23837 ms
+RUN ['ssh', 'amd9070', 'mkdir C:\\AI4S-HIP-Lab\\unimol_pairbias 2>NUL & exit /b 0']
+RUN ['scp', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/pairbias.cpp', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/build_windows.cmd', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/run_windows.cmd', 'amd9070:C:/AI4S-HIP-Lab/unimol_pairbias/']
+RUN ['scp', '-r', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/input', 'amd9070:C:/AI4S-HIP-Lab/unimol_pairbias/']
+RUN ['ssh', 'amd9070', 'C:\\AI4S-HIP-Lab\\unimol_pairbias\\build_windows.cmd']
+RUN ['ssh', 'amd9070', 'C:\\AI4S-HIP-Lab\\unimol_pairbias\\run_windows.cmd']
+RUN ['scp', '-r', 'amd9070:C:/AI4S-HIP-Lab/unimol_pairbias/out_hip', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias']
+RUN ['scp', 'amd9070:C:/AI4S-HIP-Lab/unimol_pairbias/build.log', '/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/unimol_pairbias/build_windows.log']
+{
+  "cuda": {
+    "device": "NVIDIA GB10",
+    "median_ms": 5.238368034,
+    "repeats": 7,
+    "batch": 8,
+    "padded_atoms": 39,
+    "dtype": "float32",
+    "kernel_scope": "Gaussian128 + Linear128/GELU/Linear64 + QKV1536 + masked_softmax + attention_V; pre-normalized input exported from official layernorm"
+  },
+  "hip": {
+    "device": "AMD Radeon RX 9070 XT",
+    "median_ms": 12.10147953,
+    "repeats": 7,
+    "batch": 8,
+    "padded_atoms": 39,
+    "dtype": "float32",
+    "kernel_scope": "Gaussian128 + Linear128/GELU/Linear64 + QKV1536 + masked_softmax + attention_V; pre-normalized input exported from official layernorm"
+  },
+  "comparisons": {
+    "gaussian": {
+      "CUDA_vs_HIP_max_abs": 1.52587890625e-05,
+      "CUDA_vs_official_PyTorch_max_abs": 1.52587890625e-05,
+      "HIP_vs_official_PyTorch_max_abs": 7.62939453125e-06,
+      "CUDA_vs_HIP_relative_L2": 4.426752298059e-08
+    },
+    "bias": {
+      "CUDA_vs_HIP_max_abs": 7.62939453125e-06,
+      "CUDA_vs_official_PyTorch_max_abs": 7.62939453125e-06,
+      "HIP_vs_official_PyTorch_max_abs": 7.62939453125e-06,
+      "CUDA_vs_HIP_relative_L2": 6.253256401578255e-08
+    },
+    "qkv": {
+      "CUDA_vs_HIP_max_abs": 0.0,
+      "CUDA_vs_official_PyTorch_max_abs": 4.76837158203125e-07,
+      "HIP_vs_official_PyTorch_max_abs": 4.76837158203125e-07,
+      "CUDA_vs_HIP_relative_L2": 0.0
+    },
+    "attention": {
+      "CUDA_vs_HIP_max_abs": 1.519918441772461e-06,
+      "CUDA_vs_official_PyTorch_max_abs": 1.6093254089355469e-06,
+      "HIP_vs_official_PyTorch_max_abs": 1.4603137969970703e-06,
+      "CUDA_vs_HIP_relative_L2": 3.32976640038396e-07
+    },
+    "context": {
+      "CUDA_vs_HIP_max_abs": 2.5033950805664062e-06,
+      "CUDA_vs_official_PyTorch_max_abs": 2.8014183044433594e-06,
+      "HIP_vs_official_PyTorch_max_abs": 3.933906555175781e-06,
+      "CUDA_vs_HIP_relative_L2": 2.8494667958511855e-07
+    }
+  },
+  "cuda_ms": 5.238368034,
+  "hip_ms": 12.10147953,
+  "cross_device_max_abs": 1.52587890625e-05,
+  "torch_reference_max_abs": 1.52587890625e-05,
+  "input_shape": {
+    "batch": 8,
+    "padded_atoms": 39,
+    "hidden": 512,
+    "head_dim": 8,
+    "heads": 64
+  },
+  "scope": "naive educational Gaussian128->Linear128/GELU/Linear64 + first-layer QKV with biases + masked softmax + AV. LayerNorm output is exported from official PyTorch; excludes all subsequent Transformer layers, output projection, FFN, and AMD full-model training.",
+  "precision": "float32; FMA disabled; CUDA and HIP same C++ source",
+  "timing_scope": "resident device tensors; five forward kernels after one warmup, median7; excludes H2D,D2H,load,normalization and compile",
+  "pass": true
+}
