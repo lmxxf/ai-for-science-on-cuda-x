@@ -1,0 +1,527 @@
+--- upstream/common/cuda_utils.cuh
++++ hip/common/cuda_utils.cuh
+@@ -5,7 +5,7 @@
+ 
+ #pragma once
+ 
+-#include <cuda_runtime.h>
++#include <hip/hip_runtime.h>
+ 
+ #include <cstddef>
+ #include <stdexcept>
+@@ -18,20 +18,20 @@
+ #define CS_CHECK(expr)                                                                  \
+   do {                                                                                  \
+     auto _err = (expr);                                                                 \
+-    if (_err != cudaSuccess) {                                                          \
+-      throw std::runtime_error(std::string{"CUDA error: "} + cudaGetErrorString(_err)); \
++    if (_err != hipSuccess) {                                                          \
++      throw std::runtime_error(std::string{"HIP error: "} + hipGetErrorString(_err)); \
+     }                                                                                   \
+   } while (0)
+ 
+ struct DeviceScratch {
+   void* ptr     = nullptr;
+   std::size_t n = 0;
+-  cudaStream_t stream;
++  hipStream_t stream;
+ 
+-  explicit DeviceScratch(cudaStream_t s) : stream{s} {}
++  explicit DeviceScratch(hipStream_t s) : stream{s} {}
+   ~DeviceScratch() {
+     if (ptr)
+-      cudaFreeAsync(ptr, stream);
++      hipFreeAsync(ptr, stream);
+   }
+   DeviceScratch(DeviceScratch const&)            = delete;
+   DeviceScratch& operator=(DeviceScratch const&) = delete;
+@@ -40,8 +40,8 @@
+     if (bytes <= n)
+       return;
+     if (ptr)
+-      CS_CHECK(cudaFreeAsync(ptr, stream));
+-    CS_CHECK(cudaMallocAsync(&ptr, bytes, stream));
++      CS_CHECK(hipFreeAsync(ptr, stream));
++    CS_CHECK(hipMallocAsync(&ptr, bytes, stream));
+     n = bytes;
+   }
+ };
+@@ -49,15 +49,15 @@
+ template <typename T>
+ struct DeviceBuffer {
+   T* ptr = nullptr;
+-  cudaStream_t stream;
++  hipStream_t stream;
+ 
+-  DeviceBuffer(std::size_t count, cudaStream_t s) : stream{s} {
++  DeviceBuffer(std::size_t count, hipStream_t s) : stream{s} {
+     if (count)
+-      CS_CHECK(cudaMallocAsync(&ptr, sizeof(T) * count, stream));
++      CS_CHECK(hipMallocAsync(&ptr, sizeof(T) * count, stream));
+   }
+   ~DeviceBuffer() {
+     if (ptr)
+-      cudaFreeAsync(ptr, stream);
++      hipFreeAsync(ptr, stream);
+   }
+   DeviceBuffer(DeviceBuffer const&)            = delete;
+   DeviceBuffer& operator=(DeviceBuffer const&) = delete;
+--- upstream/common/geometry.cuh
++++ hip/common/geometry.cuh
+@@ -5,7 +5,7 @@
+ 
+ #pragma once
+ 
+-#include <cuda_runtime.h>
++#include <hip/hip_runtime.h>
+ 
+ #include <cmath>
+ #include <cstdint>
+--- upstream/index/kernels_index.cuh
++++ hip/index/kernels_index.cuh
+@@ -6,9 +6,9 @@
+ #pragma once
+ 
+ #include <cstdint>
+-#include <cub/device/device_radix_sort.cuh>
+-#include <cub/device/device_reduce.cuh>
+-#include <cub/device/device_scan.cuh>
++#include <hipcub/hipcub.hpp>
++#include <hipcub/hipcub.hpp>
++#include <hipcub/hipcub.hpp>
+ #include <limits>
+ #include <type_traits>
+ 
+@@ -204,12 +204,12 @@
+                        T const* xy,
+                        std::int32_t num_polygons,
+                        T* out_aabbs,
+-                       cudaStream_t stream) {
++                       hipStream_t stream) {
+   if (num_polygons == 0)
+     return;
+   poly_aabb_kernel<T>
+       <<<num_polygons, REDUCE_BLOCK, 0, stream>>>(part_offsets, ring_offsets, xy, out_aabbs);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ }
+ 
+ template <typename T>
+@@ -221,7 +221,7 @@
+                                     T inv_cell_y,
+                                     std::int32_t nx,
+                                     std::int32_t ny,
+-                                    cudaStream_t stream) {
++                                    hipStream_t stream) {
+   DeviceScratch scratch{stream};
+ 
+   DeviceBuffer<std::int32_t> d_counts{static_cast<std::size_t>(num_polygons), stream};
+@@ -229,22 +229,22 @@
+   auto const grid = static_cast<unsigned>((num_polygons + FILL_BLOCK - 1) / FILL_BLOCK);
+   poly_cell_count_kernel<T><<<grid, FILL_BLOCK, 0, stream>>>(
+       aabbs, num_polygons, origin_x, origin_y, inv_cell_x, inv_cell_y, nx, ny, d_counts.ptr);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ 
+   // Sum into int64 so an oversized index is detected before int32 offsets are
+   // allocated by the Python layer.
+   DeviceBuffer<std::int64_t> d_total{1, stream};
+   std::size_t temp_bytes = 0;
+   CS_CHECK(
+-      cub::DeviceReduce::Sum(nullptr, temp_bytes, d_counts.ptr, d_total.ptr, num_polygons, stream));
++      hipcub::DeviceReduce::Sum(nullptr, temp_bytes, d_counts.ptr, d_total.ptr, num_polygons, stream));
+   scratch.resize(temp_bytes);
+-  CS_CHECK(cub::DeviceReduce::Sum(
++  CS_CHECK(hipcub::DeviceReduce::Sum(
+       scratch.ptr, temp_bytes, d_counts.ptr, d_total.ptr, num_polygons, stream));
+ 
+   std::int64_t total = 0;
+   CS_CHECK(
+-      cudaMemcpyAsync(&total, d_total.ptr, sizeof(std::int64_t), cudaMemcpyDeviceToHost, stream));
+-  CS_CHECK(cudaStreamSynchronize(stream));
++      hipMemcpyAsync(&total, d_total.ptr, sizeof(std::int64_t), hipMemcpyDeviceToHost, stream));
++  CS_CHECK(hipStreamSynchronize(stream));
+   return total;
+ }
+ 
+@@ -260,7 +260,7 @@
+                      std::int32_t K,
+                      std::int32_t* out_poly_ids,
+                      std::int32_t* out_grid_offsets, /* length ncells+1 */
+-                     cudaStream_t stream) {
++                     hipStream_t stream) {
+   DeviceScratch scratch{stream};
+   std::int32_t const ncells = nx * ny;
+ 
+@@ -271,17 +271,17 @@
+   auto const pg = static_cast<unsigned>((num_polygons + FILL_BLOCK - 1) / FILL_BLOCK);
+   poly_cell_count_kernel<T><<<pg, FILL_BLOCK, 0, stream>>>(
+       aabbs, num_polygons, origin_x, origin_y, inv_cell_x, inv_cell_y, nx, ny, d_counts.ptr);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ 
+   std::size_t scan_bytes = 0;
+-  CS_CHECK(cub::DeviceScan::ExclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::ExclusiveSum(
+       nullptr, scan_bytes, d_counts.ptr, d_pair_offs.ptr, num_polygons, stream));
+   scratch.resize(scan_bytes);
+   // Scan the P counts, then write the final pair_offs[P] = K explicitly.
+-  CS_CHECK(cub::DeviceScan::ExclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::ExclusiveSum(
+       scratch.ptr, scan_bytes, d_counts.ptr, d_pair_offs.ptr, num_polygons, stream));
+-  CS_CHECK(cudaMemcpyAsync(
+-      d_pair_offs.ptr + num_polygons, &K, sizeof(std::int32_t), cudaMemcpyHostToDevice, stream));
++  CS_CHECK(hipMemcpyAsync(
++      d_pair_offs.ptr + num_polygons, &K, sizeof(std::int32_t), hipMemcpyHostToDevice, stream));
+ 
+   // 2. Emit (cell, poly) pairs into unsorted buffers.
+   DeviceBuffer<std::int32_t> d_pair_cell{static_cast<std::size_t>(K), stream};
+@@ -298,7 +298,7 @@
+                                                            d_pair_offs.ptr,
+                                                            d_pair_cell.ptr,
+                                                            d_pair_poly.ptr);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ 
+   // 3. Radix-sort pairs by cell. Sorted poly values land directly in the
+   //    caller's output buffer.
+@@ -313,7 +313,7 @@
+     num_bits = 1;
+ 
+   std::size_t sort_bytes = 0;
+-  CS_CHECK(cub::DeviceRadixSort::SortPairs(nullptr,
++  CS_CHECK(hipcub::DeviceRadixSort::SortPairs(nullptr,
+                                            sort_bytes,
+                                            d_pair_cell.ptr,
+                                            d_pair_cell_sorted.ptr,
+@@ -324,7 +324,7 @@
+                                            num_bits,
+                                            stream));
+   scratch.resize(sort_bytes);
+-  CS_CHECK(cub::DeviceRadixSort::SortPairs(scratch.ptr,
++  CS_CHECK(hipcub::DeviceRadixSort::SortPairs(scratch.ptr,
+                                            sort_bytes,
+                                            d_pair_cell.ptr,
+                                            d_pair_cell_sorted.ptr,
+@@ -336,18 +336,18 @@
+                                            stream));
+ 
+   // 4. Histogram sorted cells → out_grid_offsets via exclusive scan.
+-  CS_CHECK(cudaMemsetAsync(out_grid_offsets, 0, sizeof(std::int32_t) * (ncells + 1), stream));
++  CS_CHECK(hipMemsetAsync(out_grid_offsets, 0, sizeof(std::int32_t) * (ncells + 1), stream));
+   auto const hg = static_cast<unsigned>((K + FILL_BLOCK - 1) / FILL_BLOCK);
+   if (K > 0) {
+     grid_hist_kernel<<<hg, FILL_BLOCK, 0, stream>>>(
+         d_pair_cell_sorted.ptr, K, ncells, out_grid_offsets);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+   }
+   std::size_t scan2_bytes = 0;
+-  CS_CHECK(cub::DeviceScan::ExclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::ExclusiveSum(
+       nullptr, scan2_bytes, out_grid_offsets, out_grid_offsets, ncells + 1, stream));
+   scratch.resize(scan2_bytes);
+-  CS_CHECK(cub::DeviceScan::ExclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::ExclusiveSum(
+       scratch.ptr, scan2_bytes, out_grid_offsets, out_grid_offsets, ncells + 1, stream));
+ }
+ 
+--- upstream/query/kernels_query.cuh
++++ hip/query/kernels_query.cuh
+@@ -6,7 +6,7 @@
+ #pragma once
+ 
+ #include <cstdint>
+-#include <cub/device/device_scan.cuh>
++#include <hipcub/hipcub.hpp>
+ 
+ #include "../common/cuda_utils.cuh"
+ #include "../common/geometry.cuh"
+@@ -214,7 +214,7 @@
+                        T const* poly_xy,
+                        int edge_inclusive,
+                        std::int32_t* out_cell_id,
+-                       cudaStream_t stream) {
++                       hipStream_t stream) {
+   if (num_points == 0)
+     return;
+   auto const grid = static_cast<unsigned>((num_points + QUERY_BLOCK - 1) / QUERY_BLOCK);
+@@ -234,7 +234,7 @@
+                                                             poly_xy,
+                                                             edge_inclusive,
+                                                             out_cell_id);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ }
+ 
+ // Counts-and-scans: writes N counts, then scans into offsets[1:] (offsets[N] = K).
+@@ -256,8 +256,8 @@
+                                         T const* poly_xy,
+                                         int edge_inclusive,
+                                         std::int64_t* out_offsets /* [N+1] */,
+-                                        cudaStream_t stream) {
+-  CS_CHECK(cudaMemsetAsync(out_offsets, 0, sizeof(std::int64_t), stream));
++                                        hipStream_t stream) {
++  CS_CHECK(hipMemsetAsync(out_offsets, 0, sizeof(std::int64_t), stream));
+   if (num_points == 0) {
+     return 0;
+   }
+@@ -282,20 +282,20 @@
+                                                             poly_xy,
+                                                             edge_inclusive,
+                                                             d_counts.ptr);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ 
+   std::size_t scan_bytes = 0;
+   // Scan N items so the item count fits int32 even at CUDA 12.2's input limit.
+-  CS_CHECK(cub::DeviceScan::InclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::InclusiveSum(
+       nullptr, scan_bytes, d_counts.ptr, out_offsets + 1, num_points, stream));
+   scratch.resize(scan_bytes);
+-  CS_CHECK(cub::DeviceScan::InclusiveSum(
++  CS_CHECK(hipcub::DeviceScan::InclusiveSum(
+       scratch.ptr, scan_bytes, d_counts.ptr, out_offsets + 1, num_points, stream));
+ 
+   std::int64_t K_host = 0;
+-  CS_CHECK(cudaMemcpyAsync(
+-      &K_host, out_offsets + num_points, sizeof(std::int64_t), cudaMemcpyDeviceToHost, stream));
+-  CS_CHECK(cudaStreamSynchronize(stream));
++  CS_CHECK(hipMemcpyAsync(
++      &K_host, out_offsets + num_points, sizeof(std::int64_t), hipMemcpyDeviceToHost, stream));
++  CS_CHECK(hipStreamSynchronize(stream));
+   return K_host;
+ }
+ 
+@@ -317,7 +317,7 @@
+                       int edge_inclusive,
+                       std::int64_t const* offsets,
+                       std::int32_t* pairs_out,
+-                      cudaStream_t stream) {
++                      hipStream_t stream) {
+   if (num_points == 0)
+     return;
+   auto const grid = static_cast<unsigned>((num_points + QUERY_BLOCK - 1) / QUERY_BLOCK);
+@@ -338,7 +338,7 @@
+                                                            edge_inclusive,
+                                                            offsets,
+                                                            pairs_out);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ }
+ 
+ }  // namespace cuspa
+--- upstream/aggregate/kernels_aggregate.cuh
++++ hip/aggregate/kernels_aggregate.cuh
+@@ -6,9 +6,9 @@
+ #pragma once
+ 
+ #include <cstdint>
+-#include <cub/device/device_radix_sort.cuh>
+-#include <cub/device/device_run_length_encode.cuh>
+-#include <cub/device/device_scan.cuh>
++#include <hipcub/hipcub.hpp>
++#include <hipcub/hipcub.hpp>
++#include <hipcub/hipcub.hpp>
+ #include <limits>
+ #include <stdexcept>
+ 
+@@ -93,18 +93,18 @@
+                                     std::int32_t* out_indptr,  /* (num_cells+1,) */
+                                     std::int32_t* out_indices, /* scratch sized N */
+                                     std::int32_t* out_data,    /* scratch sized N */
+-                                    cudaStream_t stream) {
++                                    hipStream_t stream) {
+   DeviceScratch scratch{stream};
+ 
+   if (N == 0) {
+-    CS_CHECK(cudaMemsetAsync(out_indptr, 0, sizeof(std::int32_t) * (num_cells + 1), stream));
++    CS_CHECK(hipMemsetAsync(out_indptr, 0, sizeof(std::int32_t) * (num_cells + 1), stream));
+     return 0;
+   }
+ 
+   constexpr int block = 256;
+ 
+   // 1--3. Pack, radix-sort, then RLE the keys. Scope the sort input/output
+-  // buffers to their last use: cudaFreeAsync preserves stream ordering, so
++  // buffers to their last use: hipFreeAsync preserves stream ordering, so
+   // each large N-sized key buffer becomes reusable before the decode phase.
+   DeviceBuffer<std::uint64_t> d_unique_keys{static_cast<std::size_t>(N), stream};
+   DeviceBuffer<std::int32_t> d_run_counts{static_cast<std::size_t>(N), stream};
+@@ -115,20 +115,20 @@
+       DeviceBuffer<std::uint64_t> d_keys_in{static_cast<std::size_t>(N), stream};
+       auto const grid = static_cast<unsigned>((N + block - 1) / block);
+       build_pair_keys_kernel<<<grid, block, 0, stream>>>(cell_ids, gene_ids, N, d_keys_in.ptr);
+-      CS_CHECK(cudaGetLastError());
++      CS_CHECK(hipGetLastError());
+ 
+       // (cell_id, gene_id) packed in cell:high, gene:low, so the sort groups
+       // genes within cells. Invalid entries (sentinel) land at the end.
+       std::size_t temp_bytes = 0;
+-      CS_CHECK(cub::DeviceRadixSort::SortKeys(
++      CS_CHECK(hipcub::DeviceRadixSort::SortKeys(
+           nullptr, temp_bytes, d_keys_in.ptr, d_keys_out.ptr, N, 0, 64, stream));
+       scratch.resize(temp_bytes);
+-      CS_CHECK(cub::DeviceRadixSort::SortKeys(
++      CS_CHECK(hipcub::DeviceRadixSort::SortKeys(
+           scratch.ptr, temp_bytes, d_keys_in.ptr, d_keys_out.ptr, N, 0, 64, stream));
+     }
+ 
+     std::size_t temp_bytes = 0;
+-    CS_CHECK(cub::DeviceRunLengthEncode::Encode(nullptr,
++    CS_CHECK(hipcub::DeviceRunLengthEncode::Encode(nullptr,
+                                                 temp_bytes,
+                                                 d_keys_out.ptr,
+                                                 d_unique_keys.ptr,
+@@ -137,7 +137,7 @@
+                                                 N,
+                                                 stream));
+     scratch.resize(temp_bytes);
+-    CS_CHECK(cub::DeviceRunLengthEncode::Encode(scratch.ptr,
++    CS_CHECK(hipcub::DeviceRunLengthEncode::Encode(scratch.ptr,
+                                                 temp_bytes,
+                                                 d_keys_out.ptr,
+                                                 d_unique_keys.ptr,
+@@ -149,45 +149,45 @@
+ 
+   // Copy num_runs to size the decoded output; this synchronizes the stream.
+   std::int64_t num_runs_host = 0;
+-  CS_CHECK(cudaMemcpyAsync(
+-      &num_runs_host, d_num_runs_dev.ptr, sizeof(std::int64_t), cudaMemcpyDeviceToHost, stream));
+-  CS_CHECK(cudaStreamSynchronize(stream));
++  CS_CHECK(hipMemcpyAsync(
++      &num_runs_host, d_num_runs_dev.ptr, sizeof(std::int64_t), hipMemcpyDeviceToHost, stream));
++  CS_CHECK(hipStreamSynchronize(stream));
+ 
+   // Strip the trailing sentinel run, if any.  It's definitely at index
+   // num_runs-1 because the sentinel is the largest uint64.
+   std::int64_t K = num_runs_host;
+   if (K > 0) {
+     std::uint64_t last_key_host = 0;
+-    CS_CHECK(cudaMemcpyAsync(&last_key_host,
++    CS_CHECK(hipMemcpyAsync(&last_key_host,
+                              d_unique_keys.ptr + (K - 1),
+                              sizeof(std::uint64_t),
+-                             cudaMemcpyDeviceToHost,
++                             hipMemcpyDeviceToHost,
+                              stream));
+-    CS_CHECK(cudaStreamSynchronize(stream));
++    CS_CHECK(hipStreamSynchronize(stream));
+     if (last_key_host == CS_SENTINEL_KEY)
+       K -= 1;
+   }
+ 
+   if (K == 0) {
+-    CS_CHECK(cudaMemsetAsync(out_indptr, 0, sizeof(std::int32_t) * (num_cells + 1), stream));
++    CS_CHECK(hipMemsetAsync(out_indptr, 0, sizeof(std::int32_t) * (num_cells + 1), stream));
+   } else {
+     // 4. Decode unique keys into sorted_cells (temp) + out_indices (gene).
+     DeviceBuffer<std::int32_t> d_sorted_cells{static_cast<std::size_t>(K), stream};
+     auto const dg = static_cast<unsigned>((K + block - 1) / block);
+     decode_unique_keys_kernel<<<dg, block, 0, stream>>>(
+         d_unique_keys.ptr, K, d_sorted_cells.ptr, out_indices);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+ 
+     // Counts → out_data (D-to-D copy; CUB RLE already sized these correctly
+     // before the trim, and the trimmed tail we're dropping is past K).
+-    CS_CHECK(cudaMemcpyAsync(
+-        out_data, d_run_counts.ptr, sizeof(std::int32_t) * K, cudaMemcpyDeviceToDevice, stream));
++    CS_CHECK(hipMemcpyAsync(
++        out_data, d_run_counts.ptr, sizeof(std::int32_t) * K, hipMemcpyDeviceToDevice, stream));
+ 
+     // 5. Build indptr via lower_bound, one thread per row.
+     auto const ig = static_cast<unsigned>((num_cells + 1 + block - 1) / block);
+     lower_bound_indptr_kernel<<<ig, block, 0, stream>>>(
+         d_sorted_cells.ptr, K, num_cells, out_indptr);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+   }
+ 
+   return K;
+@@ -392,30 +392,30 @@
+                                  std::int64_t nB,
+                                  std::int32_t num_rows,
+                                  std::int32_t* rank_scratch, /* csr_merge_scratch_size(nB) */
+-                                 cudaStream_t stream) {
++                                 hipStream_t stream) {
+   auto const num_words = csr_merge_num_words(nB);
+   auto* words          = reinterpret_cast<std::uint32_t*>(rank_scratch);
+   auto* counts         = rank_scratch + num_words;
+   // Zero the trailing count, which becomes the total after the scan.
+-  CS_CHECK(cudaMemsetAsync(counts, 0, sizeof(std::int32_t) * (num_words + 1), stream));
++  CS_CHECK(hipMemsetAsync(counts, 0, sizeof(std::int32_t) * (num_words + 1), stream));
+   if (nB > 0) {
+     csr_merge_flag_new_kernel<<<csr_merge_grid(nB), CSR_MERGE_BLOCK, 0, stream>>>(
+         a_indptr, a_indices, b_indptr, b_indices, num_rows, nB, words, counts);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+ 
+     DeviceScratch scratch{stream};
+     std::size_t temp_bytes = 0;
+     CS_CHECK(
+-        cub::DeviceScan::ExclusiveSum(nullptr, temp_bytes, counts, counts, num_words + 1, stream));
++        hipcub::DeviceScan::ExclusiveSum(nullptr, temp_bytes, counts, counts, num_words + 1, stream));
+     scratch.resize(temp_bytes);
+-    CS_CHECK(cub::DeviceScan::ExclusiveSum(
++    CS_CHECK(hipcub::DeviceScan::ExclusiveSum(
+         scratch.ptr, temp_bytes, counts, counts, num_words + 1, stream));
+   }
+ 
+   std::int32_t num_new = 0;
+-  CS_CHECK(cudaMemcpyAsync(
+-      &num_new, counts + num_words, sizeof(std::int32_t), cudaMemcpyDeviceToHost, stream));
+-  CS_CHECK(cudaStreamSynchronize(stream));
++  CS_CHECK(hipMemcpyAsync(
++      &num_new, counts + num_words, sizeof(std::int32_t), hipMemcpyDeviceToHost, stream));
++  CS_CHECK(hipStreamSynchronize(stream));
+   return nA + num_new;
+ }
+ 
+@@ -434,17 +434,17 @@
+                         IO* out_indptr,
+                         IO* out_indices,
+                         std::int32_t* out_data,
+-                        cudaStream_t stream) {
++                        hipStream_t stream) {
+   constexpr int block = CSR_MERGE_BLOCK;
+   auto const rank     = csr_merge_rank(rank_scratch, nB);
+   csr_merge_indptr_kernel<<<csr_merge_grid(static_cast<std::int64_t>(num_rows) + 1),
+                             block,
+                             0,
+                             stream>>>(a_indptr, b_indptr, rank, num_rows, out_indptr);
+-  CS_CHECK(cudaGetLastError());
++  CS_CHECK(hipGetLastError());
+ 
+   DeviceBuffer<int> d_overflow{1, stream};
+-  CS_CHECK(cudaMemsetAsync(d_overflow.ptr, 0, sizeof(int), stream));
++  CS_CHECK(hipMemsetAsync(d_overflow.ptr, 0, sizeof(int), stream));
+   if (nA > 0) {
+     csr_merge_scatter_a_kernel<<<csr_merge_grid(nA), block, 0, stream>>>(a_indptr,
+                                                                          a_indices,
+@@ -459,7 +459,7 @@
+                                                                          out_indices,
+                                                                          out_data,
+                                                                          d_overflow.ptr);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+   }
+   if (nB > 0) {
+     csr_merge_scatter_b_kernel<<<csr_merge_grid(nB), block, 0, stream>>>(a_indptr,
+@@ -473,13 +473,13 @@
+                                                                          nB,
+                                                                          out_indices,
+                                                                          out_data);
+-    CS_CHECK(cudaGetLastError());
++    CS_CHECK(hipGetLastError());
+   }
+ 
+   int overflow_host = 0;
+   CS_CHECK(
+-      cudaMemcpyAsync(&overflow_host, d_overflow.ptr, sizeof(int), cudaMemcpyDeviceToHost, stream));
+-  CS_CHECK(cudaStreamSynchronize(stream));
++      hipMemcpyAsync(&overflow_host, d_overflow.ptr, sizeof(int), hipMemcpyDeviceToHost, stream));
++  CS_CHECK(hipStreamSynchronize(stream));
+   if (overflow_host) {
+     throw std::overflow_error(
+         "aggregate_to_cells: a (cell, gene) count exceeds the int32 limit of 2^31-1");

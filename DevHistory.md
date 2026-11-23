@@ -50,3 +50,16 @@
 - `verify_artifacts.py`独立重算测试RMSE/R²，检查train/val/test不交叉、去重结构数、validation最优轮次、1128完整构象缓存、坐标距离、CPU/GPU零差异、药物公式、原CSV哈希、四SVG白底/字体/PNG、内存看护，全部PASS。
 - 一键入口在完整三模块后会自动进行上述校验并汇编REPORT；本轮各实验模块已独立真机执行，最终串联通过`--reuse-results`验证现有产物，未冒称重新训练。manifest记录准确复用模式与哈希。
 - `REPORT.md`依据最终JSON生成。cuPotential仅源码审计、BBBP未训练分类、AMD未移植、float32差异未根因定位均已明确；ESOL训练与cuSpa float64正确性验证完成。
+
+## 2026-11-23 23:28–23:33 +08:00 — cuSpa 移植 AMD RX 9070 XT
+
+- 完整读取 `AMD_9070XT_PORT_PLAN.md`，`ssh amd9070 hostname`连接成功。通过Windows Win32_Process检查全进程：有Steam、修改器、MuMu等后台，无游戏本体；没有关闭任何用户进程。
+- 工作目录固定 `C:\AI4S-HIP-Lab`，复用Strata现成`.rocm-win`的ROCm10.2 HIP工具链及VS vcvars64，不写Strata原工程。长PowerShell命令通过UTF-16LE EncodedCommand传输，避免Windows cmd对管道与正则引号的二次解析；初次裸引号命令失败后已改。
+- `amd_hip_port/hipify_headers.py`机械翻译上游5个算法头（CUDA runtime→HIP、CUB→hipCUB）。原几何、索引、64位键排序/RLE/CSR逻辑保留；独立C++ harness绕过nanobind。原Apache2许可、逐行diff、源/目标SHA256均保留。
+- `export_module5_reference.py`在Spark上按原种子20261123生成完全相同的50k八边形/2m点/500基因float64输入，导出46MiB裸二进制与header哈希、精确网格参数。原版GB10库重新生成完整assignment/CSR参考，匹配793204点、NNZ780563；输入scp到远端，不依赖两机自行生成随机数。
+- AMD编译：`amd_hip_port/build_windows.cmd`，clang++ `-x hip --offload-arch=gfx1201 -O3 -ffp-contract=off`，hipCUB/rocPRIM，编译一次成功。远端执行 `cuspa_hip.exe ..\data ..\out_amd 7`；日志在`amd_hip_port/build_windows.log`、`run_windows.log`。3次预热，7次计时；无fast math。
+- AMD同步墙钟中位数：index2.3869ms、query0.9207ms、aggregate3.7683ms、完整驻留6.0502ms；H2D单次11.6143ms，D2H单次1.5167ms；冷启动34.1987ms。分开阶段中位数不要求相加等于完整流程。
+- 为对齐入口，本地同源harness也用`nvcc -x cu -std=c++17 -O3 --fmad=false -arch=sm_121`编译原CUDA头，在统一内存看护下运行：GB10 index1.658594ms、query1.519842ms、aggregate5.563753ms、驻留5.759897ms，H2D0.878337ms、D2H0.297073ms。原Python9.636ms是另一入口，不能拿它与AMD6.050ms宣称硬件胜负。
+- 主线程独立运行`compare_module5_outputs.py`：所有2000000归属、50001行指针、780563列索引、780563计数逐值与逐字节相同；四个SHA256全一致。GB10同源C++也与原版库输出逐字节一致。仅声称最终整数输出一致，不声称所有浮点中间态一致。
+- 更新`results/module5_amd9070_results.json`与`results/module5_comparison.json`，更新图4（三方条形、同源入口、AMD阶段/传输、全量哈希对账），CairoSVG重渲染PNG并目检。`build_report.py`已纳入模块五，重生成REPORT不会丢AMD结果。
+- 主目标已完成，不追加图纸可选分子势能微核；未声称移植cuPotential专有运行时或完整Python包。AMD实验进程已结束。

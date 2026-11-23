@@ -1,0 +1,32 @@
+[
+  {
+    "path": "common/cuda_utils.cuh",
+    "upstream_sha256": "cf965139bbcd95b44eca5ed19825fec1cd0c898bd1038715514cbaf5a7aceabd",
+    "hip_sha256": "8dbd2d3aaecff649b4229f342088c113893e7545d7c549ab41d841e5b2f362e2",
+    "source_lines": 66
+  },
+  {
+    "path": "common/geometry.cuh",
+    "upstream_sha256": "e085adab49de4425bdcab15beb8aa7de891640028561624bb382d552dcf6d446",
+    "hip_sha256": "5dd37aeea1b58536e82c6aa3a3a39f66b27d30c4547368ffc76e649742dfa771",
+    "source_lines": 128
+  },
+  {
+    "path": "index/kernels_index.cuh",
+    "upstream_sha256": "298f004d88f0b2b194190f712e80f2e6e3fe0c748be3309eba4f1f2566be730d",
+    "hip_sha256": "cec18e4b3f7e4753e58d5189cd9d31983c186d76f710ebbcd443fa58170a953b",
+    "source_lines": 354
+  },
+  {
+    "path": "query/kernels_query.cuh",
+    "upstream_sha256": "28b9dcf990c880e8222c74c35d68dd46f6e74d17077f52712a0b93b377f4769c",
+    "hip_sha256": "5b1372a28e2a48aa9ee19c927078500d9cfc39e3397c0897993fd684956f7ff2",
+    "source_lines": 344
+  },
+  {
+    "path": "aggregate/kernels_aggregate.cuh",
+    "upstream_sha256": "930a33c3ea5648a94e0765669ea6b1311120942ef856ca886888d3e61a369bbf",
+    "hip_sha256": "c6a82092ae70e7dd7d71b7979099e720b20788de7ce5adda195da8c000701bd7",
+    "source_lines": 489
+  }
+]

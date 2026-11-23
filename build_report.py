@@ -139,6 +139,51 @@ CPU为单线程Numba编译后的同类网格+射线算法，聚合NumPy sort/uni
 - `results/`：split、逐轮日志、测试预测、原始时间数组、结构审计、来源版本、最优checkpoint。
 - `logs/`：内存看护；`DevHistory.md`：实际命令、错误与修复；`visuals/`：四张SVG和PNG。
 '''
+ if (R/'results/module5_amd9070_results.json').exists():
+  z=read('results/module5_amd9070_results.json');aa=z['amd'];nn=z['gb10_same_harness']
+  text=text.replace('移植AMD需HIP/hipCUB适配与边界重测，尚未在9070XT验证。','已用HIP/hipCUB移植并在RX9070XT完成本负载的完整逐字节验证，详情见模块五。')
+  text += f"""
+
+## 5. AMD RX 9070 XT：HIP 真机移植与逐字节对账
+
+2026-11-23通过`ssh amd9070`连接Windows机器，在`C:\\AI4S-HIP-Lab`独立目录编译执行，复用既有ROCm10.2工具链与vcvars64，没有修改Strata工程。GPU启动前检查进程，无游戏本体进程；未终止Steam/修改器/模拟器后台。
+
+移植源码在`amd_hip_port/`：保留原版Apache2.0几何/网格/聚合核，机械转换CUDA runtime→HIP与CUB→hipCUB，保留64位键排序、游程编码、CSR算法。独立C++入口绕过nanobind而不重写算法；translation_manifest记录源/目标哈希。并非把整个Python包原样移植，也没有复刻cuPotential专有运行时。
+
+同种子20261123的输入由Spark一次生成后原字节传输：float64，50000八边形、2000000点、500基因。二进制输入与哈希在`results/module5_data/`。避免Windows与Linux各自随机生成的差异。
+
+| 阶段（同步墙钟中位数） | NVIDIA GB10 同源C++ / ms | AMD RX9070XT 同源C++ / ms |
+|---|---:|---:|
+| 网格包围盒索引 | {nn['index_median_wall_ms']:.4f} | {aa['index_median_wall_ms']:.4f} |
+| 水平射线查询 | {nn['query_median_wall_ms']:.4f} | {aa['query_median_wall_ms']:.4f} |
+| 排序/游程/CSR聚合 | {nn['aggregate_median_wall_ms']:.4f} | {aa['aggregate_median_wall_ms']:.4f} |
+| 完整设备驻留流程 | {nn['pipeline_median_wall_ms']:.4f} | {aa['pipeline_median_wall_ms']:.4f} |
+| 输入H2D（单次） | {nn['h2d_ms']:.4f} | {aa['h2d_ms']:.4f} |
+| 输出D2H（单次） | {nn['d2h_ms']:.4f} | {aa['d2h_ms']:.4f} |
+
+同源C++均3次预热、7次稳态重复，同时记录GPU event和host wall，以同步墙钟为主。禁用FMA contraction（CUDA --fmad=false / HIP -ffp-contract=off），不启用fast math。原始数组和冷启动保留在JSON。各阶段是分开运行的中位数，不应相加冒充完整流程。
+
+原图CPU272.274ms与GB10 Python9.636ms保留；新增AMD HIP6.050ms。因为Python和C++入口及分配/验证路径不同，**不能拿9.636对6.050就说AMD比GB10快**；同源入口GB10为5.760ms、AMD6.050ms，当前硬件、OS和驱动下相近。两台机器平台与FP64吞吐不同，这不是通用GPU排名。
+
+AMD H2D {aa['h2d_ms']:.4f}ms，驻留{aa['pipeline_median_wall_ms']:.4f}ms，D2H {aa['d2h_ms']:.4f}ms。三段相加约{z['amd_h2d_pipeline_d2h_estimate_ms']:.4f}ms为组合估算，不是额外独立端到端实测。CPU对AMD驻留约{z['cpu_to_amd_device_resident_speedup']:.2f}倍，也只适用于本合成负载与单线程编译CPU基线。
+
+### 正确性：全量逐值且逐字节一致
+
+- 所有2000000个point cell_id：0 mismatch。
+- CSR行指针50001项、列索引780563项、计数780563项：全部0 mismatch。
+- 四个输出裸int32数组与原版GB10 Python库、同源GB10 C++结果均逐字节一致；匹配点793204，CSR非零780563。
+- 不声称GPU内部每一步浮点中间值逐位一致；严格相同的是最终整数归属和完整canonical CSR。
+
+| 输出 | GB10与AMD一致的SHA256 |
+|---|---|
+"""
+  for name,v in z['comparison']['arrays'].items():text+=f"| {name} | `{v['amd_sha256']}` |\n"
+  text += """
+
+验证脚本：`.venv/bin/python compare_module5_outputs.py`。汇总为`results/module5_amd9070_results.json`，全量对账为`results/module5_comparison.json`，AMD原始输出与计时为`results/module5_amd9070/`，GB10同源计时为`results/module5_gb10_cpp/`。
+
+本次已证明这些cuSpa通用算术/分支/排序核能够在gfx1201原生执行，未使用Tensor Core。图纸的分子非键势能加分项未做，不把这次成功扩大成已移植cuPotential或全部CUDA-X科学库。图4已加入三方条形图、同源入口对照与完整正确性口径。
+"""
  (R/'REPORT.md').write_text(text)
  print('REPORT.md written from measured results')
 if __name__=='__main__':main()

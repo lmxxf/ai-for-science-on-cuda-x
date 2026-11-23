@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1160" viewBox="0 0 640 1160" font-family="'WenQuanYi Micro Hei','Noto Sans CJK SC',sans-serif"><rect width="640" height="1160" fill="#ffffff"/>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1390" viewBox="0 0 640 1390" font-family="'WenQuanYi Micro Hei','Noto Sans CJK SC',sans-serif"><rect width="640" height="1390" fill="#ffffff"/>
 <text x="30" y="43" font-size="27" fill="#263546" font-weight="bold">cuSpa：把基因点分配到细胞</text>
-<text x="30" y="75" font-size="18" fill="#263546" font-weight="normal">原版 CUDA 真机编译 · DGX Spark / GB10</text>
+<text x="30" y="75" font-size="18" fill="#263546" font-weight="normal">CUDA → HIP：GB10 与 RX 9070 XT 真机对账</text>
 <text x="30" y="113" font-size="22" fill="#263546" font-weight="bold">① 网格索引：先找少量候选细胞</text>
 <text x="30" y="143" font-size="16" fill="#263546" font-weight="normal">合成八边形与转录点：演示计算，不冒充组织样本</text>
 <line x1="40" y1="170" x2="40" y2="560" stroke="#c9d2dc" stroke-width="1.4" stroke-dasharray=""/>
@@ -154,15 +154,23 @@
 <text x="30" y="773" font-size="18" fill="#263546" font-weight="normal">CPU 单线程编译代码</text>
 <rect x="30" y="782" width="420.00" height="18" rx="3" fill="#788897"/>
 <text x="465" y="798" font-size="18" fill="#263546" font-weight="normal">272.27 ms</text>
-<text x="30" y="838" font-size="18" fill="#263546" font-weight="normal">GPU cuSpa 原核</text>
+<text x="30" y="838" font-size="18" fill="#263546" font-weight="normal">NVIDIA GB10 · Python 原入口</text>
 <rect x="30" y="847" width="14.86" height="18" rx="3" fill="#227eaf"/>
 <text x="465" y="863" font-size="18" fill="#263546" font-weight="normal">9.64 ms</text>
-<text x="30" y="905" font-size="23" fill="#136d58" font-weight="bold">设备驻留 28.3 倍 · 单查询 156.1 倍</text>
-<text x="30" y="941" font-size="17" fill="#263546" font-weight="normal">完整校验：2,000,000 个归属、CSR 计数均零差异</text>
-<text x="30" y="975" font-size="16" fill="#263546" font-weight="normal">双方 float64，同类网格 + 射线法；非纯 Python 对比</text>
-<text x="30" y="1005" font-size="16" fill="#263546" font-weight="normal">传入 14.50 ms；加驻留流程约 24.14 ms（推算）</text>
-<text x="30" y="1035" font-size="16" fill="#263546" font-weight="normal">含传入约 11.3 倍；未计 D2H。冷启动另列原始 JSON</text>
-<text x="30" y="1075" font-size="18" fill="#263546" font-weight="bold">移植 AMD：无 Tensor Core / 内联 PTX 检出</text>
-<text x="30" y="1105" font-size="16" fill="#263546" font-weight="normal">仍需 CUDA runtime → HIP、CUB → hipCUB，并重测边界</text>
-<text x="30" y="1134" font-size="15" fill="#667789" font-weight="normal">种子 20261123 · 原版 cuspa commit 2df9fa78</text>
+<text x="30" y="903" font-size="18" fill="#263546" font-weight="normal">AMD RX 9070 XT · HIP C++</text>
+<rect x="30" y="912" width="9.33" height="18" rx="3" fill="#b84040"/>
+<text x="465" y="928" font-size="18" fill="#263546" font-weight="normal">6.05 ms</text>
+<text x="30" y="970" font-size="21" fill="#263546" font-weight="bold">同源 C++ 入口：计时口径再对齐</text>
+<text x="30" y="1002" font-size="18" fill="#263546" font-weight="normal">GB10 5.76 ms；RX 9070 XT 6.05 ms</text>
+<text x="30" y="1035" font-size="17" fill="#263546" font-weight="normal">AMD 各阶段：索引 / 查询 / CSR 聚合</text>
+<text x="30" y="1066" font-size="20" fill="#a42e34" font-weight="bold">2.39 / 0.92 / 3.77 ms</text>
+<text x="30" y="1100" font-size="17" fill="#263546" font-weight="normal">AMD 传入 11.61 ms；回传 1.52 ms（另计）</text>
+<text x="30" y="1137" font-size="20" fill="#136d58" font-weight="bold">200 万点归属 + 全部 CSR：逐字节零差异</text>
+<text x="30" y="1168" font-size="17" fill="#263546" font-weight="normal">四个输出数组的 SHA256 与 GB10 全部相同</text>
+<text x="30" y="1207" font-size="16" fill="#263546" font-weight="normal">float64；输入为同一份二进制；种子 20261123</text>
+<text x="30" y="1237" font-size="16" fill="#263546" font-weight="normal">驻留稳态墙钟中位数；传输、冷启动分别记录</text>
+<text x="30" y="1267" font-size="16" fill="#263546" font-weight="normal">Python / C++ 入口有开销差异；同源入口单列</text>
+<text x="30" y="1307" font-size="19" fill="#263546" font-weight="bold">已真机移植：通用算术 + HIP / hipCUB</text>
+<text x="30" y="1337" font-size="16" fill="#263546" font-weight="normal">未用 Tensor Core；不将此结果外推为所有科学库</text>
+<text x="30" y="1367" font-size="15" fill="#667789" font-weight="normal">原版 cuspa commit 2df9fa78 · 详细原始数组见 results/</text>
 </svg>

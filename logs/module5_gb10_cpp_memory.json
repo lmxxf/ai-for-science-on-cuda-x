@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-23T23:30:49.573761+08:00",
+  "command": [
+    "results/module5_build/cuspa_gb10",
+    "results/module5_data",
+    "results/module5_gb10_cpp",
+    "7"
+  ],
+  "elapsed_s": 0.7514367818366736,
+  "min_available_gib": 110.4099006652832,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

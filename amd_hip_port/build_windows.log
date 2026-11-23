@@ -1,0 +1,164 @@
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:34:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   34 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:109:31: note: in instantiation of member function 'cuspa::DeviceBuffer<unsigned long long>::~DeviceBuffer' requested here
+  109 |   DeviceBuffer<std::uint64_t> d_unique_keys{static_cast<std::size_t>(N), stream};
+      |                               ^
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:110:30: note: in instantiation of member function 'cuspa::DeviceBuffer<int>::~DeviceBuffer' requested here
+  110 |   DeviceBuffer<std::int32_t> d_run_counts{static_cast<std::size_t>(N), stream};
+      |                              ^
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:111:30: note: in instantiation of member function 'cuspa::DeviceBuffer<long long>::~DeviceBuffer' requested here
+  111 |   DeviceBuffer<std::int64_t> d_num_runs_dev{1, stream};
+      |                              ^
+cuspa_harness.cpp:40:108: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   40 | template<class T>struct Mem{T*p=nullptr;explicit Mem(size_t n){CS_CHECK(hipMalloc(&p,n*sizeof(T)));}~Mem(){hipFree(p);}Mem(Mem const&)=delete;};
+      |                                                                                                            ^~~~~~~~~~
+cuspa_harness.cpp:53:13: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   53 |  Mem<double>dp(polys.size()),dt(points.size()),aabb(size_t(P)*4);Mem<I>dg(N),part(P+1),ring(P+1),assigned(N),grid(size_t(nx)*ny+1),poly_ids(size_t(P)*16),ip(P+1),ix(N),counts(N);
+      |             ^
+cuspa_harness.cpp:40:108: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   40 | template<class T>struct Mem{T*p=nullptr;explicit Mem(size_t n){CS_CHECK(hipMalloc(&p,n*sizeof(T)));}~Mem(){hipFree(p);}Mem(Mem const&)=delete;};
+      |                                                                                                            ^~~~~~~~~~
+cuspa_harness.cpp:53:72: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   53 |  Mem<double>dp(polys.size()),dt(points.size()),aabb(size_t(P)*4);Mem<I>dg(N),part(P+1),ring(P+1),assigned(N),grid(size_t(nx)*ny+1),poly_ids(size_t(P)*16),ip(P+1),ix(N),counts(N);
+      |                                                                        ^
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:59:12: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:58:16)>' requested here
+   59 |  auto cold=measure(pipeline);for(int i=0;i<3;++i)pipeline();CS_CHECK(hipDeviceSynchronize());
+      |            ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:79: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:55:36)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                               ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:150: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:56:13)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                                                                                                      ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:221: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:57:17)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                                                                                                                                                                             ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+16 warnings generated when compiling for gfx1201.
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:34:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   34 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:109:31: note: in instantiation of member function 'cuspa::DeviceBuffer<unsigned long long>::~DeviceBuffer' requested here
+  109 |   DeviceBuffer<std::uint64_t> d_unique_keys{static_cast<std::size_t>(N), stream};
+      |                               ^
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:110:30: note: in instantiation of member function 'cuspa::DeviceBuffer<int>::~DeviceBuffer' requested here
+  110 |   DeviceBuffer<std::int32_t> d_run_counts{static_cast<std::size_t>(N), stream};
+      |                              ^
+In file included from cuspa_harness.cpp:13:
+In file included from .\index/kernels_index.cuh:15:
+.\index\../common/cuda_utils.cuh:60:7: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   60 |       hipFreeAsync(ptr, stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~
+.\aggregate/kernels_aggregate.cuh:111:30: note: in instantiation of member function 'cuspa::DeviceBuffer<long long>::~DeviceBuffer' requested here
+  111 |   DeviceBuffer<std::int64_t> d_num_runs_dev{1, stream};
+      |                              ^
+cuspa_harness.cpp:40:108: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   40 | template<class T>struct Mem{T*p=nullptr;explicit Mem(size_t n){CS_CHECK(hipMalloc(&p,n*sizeof(T)));}~Mem(){hipFree(p);}Mem(Mem const&)=delete;};
+      |                                                                                                            ^~~~~~~~~~
+cuspa_harness.cpp:53:13: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   53 |  Mem<double>dp(polys.size()),dt(points.size()),aabb(size_t(P)*4);Mem<I>dg(N),part(P+1),ring(P+1),assigned(N),grid(size_t(nx)*ny+1),poly_ids(size_t(P)*16),ip(P+1),ix(N),counts(N);
+      |             ^
+cuspa_harness.cpp:40:108: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   40 | template<class T>struct Mem{T*p=nullptr;explicit Mem(size_t n){CS_CHECK(hipMalloc(&p,n*sizeof(T)));}~Mem(){hipFree(p);}Mem(Mem const&)=delete;};
+      |                                                                                                            ^~~~~~~~~~
+cuspa_harness.cpp:53:72: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   53 |  Mem<double>dp(polys.size()),dt(points.size()),aabb(size_t(P)*4);Mem<I>dg(N),part(P+1),ring(P+1),assigned(N),grid(size_t(nx)*ny+1),poly_ids(size_t(P)*16),ip(P+1),ix(N),counts(N);
+      |                                                                        ^
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:59:12: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:58:16)>' requested here
+   59 |  auto cold=measure(pipeline);for(int i=0;i<3;++i)pipeline();CS_CHECK(hipDeviceSynchronize());
+      |            ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:79: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:55:36)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                               ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:150: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:56:13)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                                                                                                      ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:43:381: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                             ^~~~~~~~~~~~~~~~~~
+cuspa_harness.cpp:60:221: note: in instantiation of function template specialization 'measure<(lambda at cuspa_harness.cpp:57:17)>' requested here
+   60 |  std::vector<double>wi,wq,wa,wp,ei,eq,ea,ep;for(int i=0;i<repeats;++i){auto a=measure(index);wi.push_back(a.wall_ms);ei.push_back(a.event_ms);auto b=measure(query);wq.push_back(b.wall_ms);eq.push_back(b.event_ms);auto c=measure(aggregate);wa.push_back(c.wall_ms);ea.push_back(c.event_ms);auto d=measure(pipeline);wp.push_back(d.wall_ms);ep.push_back(d.event_ms);}
+      |                                                                                                                                                                                                                             ^
+cuspa_harness.cpp:43:400: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   43 | template<class F>Measure measure(F f){hipEvent_t a,b;CS_CHECK(hipEventCreate(&a));CS_CHECK(hipEventCreate(&b));CS_CHECK(hipDeviceSynchronize());auto t=Clock::now();CS_CHECK(hipEventRecord(a,0));f();CS_CHECK(hipEventRecord(b,0));CS_CHECK(hipEventSynchronize(b));auto ms=std::chrono::duration<double,std::milli>(Clock::now()-t).count();float e;CS_CHECK(hipEventElapsedTime(&e,a,b));hipEventDestroy(a);hipEventDestroy(b);return {ms,e};}
+      |                                                                                                                                                                                                                                                                                                                                                                                                                ^~~~~~~~~~~~~~~~~~
+16 warnings generated when compiling for host.

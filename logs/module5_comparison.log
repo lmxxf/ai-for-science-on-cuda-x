@@ -1,0 +1,35 @@
+{
+  "validation_scope": "all 2000000 point IDs and canonical CSR int32 arrays; exact bytes and values",
+  "arrays": {
+    "assignment": {
+      "elements": 2000000,
+      "mismatches": 0,
+      "gb10_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+      "amd_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+      "byte_identical": true
+    },
+    "indptr": {
+      "elements": 50001,
+      "mismatches": 0,
+      "gb10_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+      "amd_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+      "byte_identical": true
+    },
+    "indices": {
+      "elements": 780563,
+      "mismatches": 0,
+      "gb10_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+      "amd_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+      "byte_identical": true
+    },
+    "data": {
+      "elements": 780563,
+      "mismatches": 0,
+      "gb10_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+      "amd_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+      "byte_identical": true
+    }
+  },
+  "total_mismatches": 0,
+  "all_byte_identical": true
+}

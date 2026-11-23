@@ -5,6 +5,11 @@ weights/
 results/*.pt
 results/module3_builddeps/
 results/cuspa_build/
+results/module5_build/
+results/module5_data/
+results/module5_gb10_reference/
+results/module5_amd9070/*.bin
+results/module5_gb10_cpp/*.bin
 cuspa/build*/
 cuspa/*.egg-info/
 cuspa/python/cuspa/_core*.so

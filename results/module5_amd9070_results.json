@@ -1,0 +1,301 @@
+{
+  "timestamp": "2026-11-23T23:32:16.046246+08:00",
+  "seed": 20261123,
+  "cells": 50000,
+  "points": 2000000,
+  "genes": 500,
+  "dtype": "float64",
+  "workload": "identical exported synthetic spatial-omics-scale inputs; not experimental tissue",
+  "amd": {
+    "device": "AMD Radeon RX 9070 XT",
+    "backend": "HIP hipCUB",
+    "cells": 50000,
+    "points": 2000000,
+    "genes": 500,
+    "nnz": 780563,
+    "index_pairs": 50006,
+    "dtype": "float64",
+    "warmups": 3,
+    "repeats": 7,
+    "h2d_ms": 11.6143,
+    "d2h_ms": 1.5167,
+    "cold_pipeline_wall_ms": 34.1987,
+    "index_wall_ms": [
+      3.9074,
+      2.412,
+      2.2793,
+      2.3869,
+      2.3164,
+      2.4097,
+      2.3553
+    ],
+    "query_wall_ms": [
+      0.9713,
+      0.9148,
+      0.9161,
+      0.9207,
+      0.9164,
+      0.9413,
+      0.9236
+    ],
+    "aggregate_wall_ms": [
+      4.219,
+      3.6567,
+      3.7618,
+      4.3845,
+      3.7683,
+      3.7065,
+      3.8067
+    ],
+    "pipeline_wall_ms": [
+      6.2959,
+      5.9582,
+      6.2007,
+      6.0992,
+      6.0502,
+      5.9547,
+      5.8553
+    ],
+    "index_event_ms": [
+      3.42280006409,
+      1.88409996033,
+      1.8409999609,
+      1.91970002651,
+      1.86169993877,
+      1.92009997368,
+      1.83630001545
+    ],
+    "query_event_ms": [
+      0.911539971828,
+      0.857599973679,
+      0.857599973679,
+      0.853299975395,
+      0.856299996376,
+      0.858900010586,
+      0.859700024128
+    ],
+    "aggregate_event_ms": [
+      2.82459998131,
+      2.48530006409,
+      2.55209994316,
+      2.99090003967,
+      2.61100006104,
+      2.56489992142,
+      2.61030006409
+    ],
+    "pipeline_event_ms": [
+      5.02409982681,
+      4.78319978714,
+      4.96379995346,
+      4.79180002213,
+      4.86000013351,
+      4.76669979095,
+      4.72119998932
+    ],
+    "pipeline_median_wall_ms": 6.0502,
+    "index_median_wall_ms": 2.3869,
+    "query_median_wall_ms": 0.9207,
+    "aggregate_median_wall_ms": 3.7683,
+    "timing_scope": "input device resident; synchronized host wall plus GPU events; H2D/D2H separately measured; original allocation and host scalar sync retained"
+  },
+  "gb10_same_harness": {
+    "device": "NVIDIA GB10",
+    "backend": "CUDA CUB",
+    "cells": 50000,
+    "points": 2000000,
+    "genes": 500,
+    "nnz": 780563,
+    "index_pairs": 50006,
+    "dtype": "float64",
+    "warmups": 3,
+    "repeats": 7,
+    "h2d_ms": 0.878337,
+    "d2h_ms": 0.297073,
+    "cold_pipeline_wall_ms": 12.626645,
+    "index_wall_ms": [
+      1.67605,
+      1.65517,
+      1.662387,
+      1.654291,
+      1.672899,
+      1.656419,
+      1.658594
+    ],
+    "query_wall_ms": [
+      1.519554,
+      1.519987,
+      1.521827,
+      1.519762,
+      1.520786,
+      1.519842,
+      1.519619
+    ],
+    "aggregate_wall_ms": [
+      6.001946,
+      5.515961,
+      5.591545,
+      5.58761,
+      5.563753,
+      5.562889,
+      5.542745
+    ],
+    "pipeline_wall_ms": [
+      6.097594,
+      5.723769,
+      5.729113,
+      5.759897,
+      5.756954,
+      5.765386,
+      5.760489
+    ],
+    "index_event_ms": [
+      1.23945605755,
+      1.23872005939,
+      1.23088002205,
+      1.22448003292,
+      1.23942399025,
+      1.23360002041,
+      1.23644804955
+    ],
+    "query_event_ms": [
+      1.50998401642,
+      1.51043200493,
+      1.5120960474,
+      1.51027202606,
+      1.51119995117,
+      1.51014399529,
+      1.51017594337
+    ],
+    "aggregate_event_ms": [
+      4.32390403748,
+      4.29392004013,
+      4.38719987869,
+      4.37088012695,
+      4.35644817352,
+      4.3604798317,
+      4.33689594269
+    ],
+    "pipeline_event_ms": [
+      4.87353610992,
+      4.51955223083,
+      4.52144002914,
+      4.49260807037,
+      4.55961608887,
+      4.5640001297,
+      4.57612800598
+    ],
+    "pipeline_median_wall_ms": 5.759897,
+    "index_median_wall_ms": 1.658594,
+    "query_median_wall_ms": 1.519842,
+    "aggregate_median_wall_ms": 5.563753,
+    "timing_scope": "input device resident; synchronized host wall plus GPU events; H2D/D2H separately measured; original allocation and host scalar sync retained"
+  },
+  "gb10_original_python_pipeline_ms": 9.636294096708298,
+  "cpu_original_pipeline_ms": 272.2740867175162,
+  "comparison": {
+    "validation_scope": "all 2000000 point IDs and canonical CSR int32 arrays; exact bytes and values",
+    "arrays": {
+      "assignment": {
+        "elements": 2000000,
+        "mismatches": 0,
+        "gb10_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+        "amd_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+        "byte_identical": true
+      },
+      "indptr": {
+        "elements": 50001,
+        "mismatches": 0,
+        "gb10_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+        "amd_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+        "byte_identical": true
+      },
+      "indices": {
+        "elements": 780563,
+        "mismatches": 0,
+        "gb10_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+        "amd_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+        "byte_identical": true
+      },
+      "data": {
+        "elements": 780563,
+        "mismatches": 0,
+        "gb10_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+        "amd_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+        "byte_identical": true
+      }
+    },
+    "total_mismatches": 0,
+    "all_byte_identical": true
+  },
+  "input_manifest": {
+    "seed": 20261123,
+    "cells": 50000,
+    "points": 2000000,
+    "genes": 500,
+    "endianness": "little",
+    "arrays": {
+      "polys": {
+        "shape": [
+          50000,
+          9,
+          2
+        ],
+        "dtype": "float64",
+        "sha256": "97ee8c8cce34f96d6653afc53e552b2af2b389f2770ae041a7b66f9b51208324"
+      },
+      "points": {
+        "shape": [
+          2000000,
+          2
+        ],
+        "dtype": "float64",
+        "sha256": "4d36e0249a15e56ab862e0ffbb337cc5ee2eacd601655b0c98f8cc5483968f18"
+      },
+      "genes": {
+        "shape": [
+          2000000
+        ],
+        "dtype": "int32",
+        "sha256": "996469d88eea06f12184a28c15ea7d5cc475506c2e8a5b1e291014a31a5dee55"
+      },
+      "part": {
+        "shape": [
+          50001
+        ],
+        "dtype": "int32",
+        "sha256": "106f9360ac222b6b03c5260db4817bbe2aae14594f826e68d7a8a32f45effdfb"
+      },
+      "ring": {
+        "shape": [
+          50001
+        ],
+        "dtype": "int32",
+        "sha256": "1b6aa0b9d3e2b0dc2baffdc4ea33cbb9b5b643522bc8384bff0b6545339f15fa"
+      }
+    },
+    "grid_params": [
+      50000,
+      2000000,
+      500,
+      224,
+      224,
+      0.7001965626769646,
+      0.7029525243956316,
+      9.993746407560394,
+      9.99364177154266
+    ]
+  },
+  "cpu_to_amd_device_resident_speedup": 45.002493589884,
+  "amd_over_gb10_same_harness_time_ratio": 1.0504007276519007,
+  "amd_h2d_plus_resident_estimate_ms": 17.6645,
+  "amd_h2d_pipeline_d2h_estimate_ms": 19.1812,
+  "notes": [
+    "Exact same binary inputs, all integer output arrays byte-identical; intermediate floating-point states need not be bit-identical",
+    "No game executable detected before GPU benchmark; Steam/trainer/emulator background processes not terminated",
+    "Native harness retains original allocation and host scalar synchronization; medians of separately timed stages do not add to full pipeline median",
+    "CUDA nvcc --fmad=false; HIP clang -ffp-contract=off; no fast math",
+    "GPU timings use 3 warmups and 7 repeats; host wall and event arrays both retained",
+    "Original Python GB10 9.64ms and native C++ timings are separate entrypoint scopes; same-harness comparison is primary",
+    "Molecular-potential bonus not implemented; this is cuSpa HIP portability validation, not a cuPotential replacement"
+  ]
+}

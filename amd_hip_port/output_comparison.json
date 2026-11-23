@@ -1,0 +1,26 @@
+{
+  "assignment.bin": {
+    "equal": true,
+    "amd_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+    "gb10_sha256": "f5ae2379e529ec834bca3d721c6590c1417e7157251e8a7bc6929e723f656099",
+    "bytes": 8000000
+  },
+  "indptr.bin": {
+    "equal": true,
+    "amd_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+    "gb10_sha256": "200f0098261371dd71b39614bd1f38d66debbb18ecba73ff4971fed45c07509c",
+    "bytes": 200004
+  },
+  "indices.bin": {
+    "equal": true,
+    "amd_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+    "gb10_sha256": "922e893643c2f3f4ac9a546434212e9963e4703ec48146ffc447a6d66ae1b84a",
+    "bytes": 3122252
+  },
+  "data.bin": {
+    "equal": true,
+    "amd_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+    "gb10_sha256": "c3771ef663e8af44edc6bc88d0141153c9b91f2d684d0846ba5820465db72a52",
+    "bytes": 3122252
+  }
+}
