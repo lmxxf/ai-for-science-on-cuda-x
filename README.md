@@ -45,8 +45,12 @@
 | ![fig3](./visuals/fig3_unimol_3d_finetune_vs_baselines.svg) | ![fig4](./visuals/fig4_cuspa_cell_polygon_raycasting.svg) |
 | **图 5：`BBBP` 血脑屏障 `Uni-Mol` 逐原子遮挡归因与 AMD 注意力核** | **图 6：开源非键分子力场 `open-cupotential` (`128K` 原子 `9070 XT 22.43ms`)** |
 | ![fig5](./visuals/fig5_bbbp_unimol_roc_and_atom_attribution.svg) | ![fig6](./visuals/fig6_open_cupotential_md_forcefield_amd_vs_nvidia.svg) |
-| **图 7：蛋白质专有大模型 `ESM-2` 真机微调 (`Spearman 0.898`) 与 80 格突变热图** | |
-| ![fig7](./visuals/fig7_protein_esm2_finetune_and_mutation_scan.svg) | |
+| **图 7：蛋白质专有大模型 `ESM-2` 真机微调 (`Spearman 0.898`) 与 80 格突变热图** | **图 8：`PME 3D-FFT` 长程静电 + 1,000 步真 MD 轨迹 (`9070 XT 0.797s`)** |
+| ![fig7](./visuals/fig7_protein_esm2_finetune_and_mutation_scan.svg) | ![fig8](./visuals/fig8_pme_kspace_and_1000step_md_trajectory.svg) |
+| **图 9：`VASP Daviator` 64 k 点批处理量子 `Block-Davidson` 本征值 (`4.73e-14`)** | **图 10：`cuPhoton.xBeam` 6,710 万采样黑洞光子环 FX 相关与 CLEAN 成像** |
+| ![fig9](./visuals/fig9_daviator_batched_davidson_vasp_band.svg) | ![fig10](./visuals/fig10_cuphoton_eht_blackhole_correlator.svg) |
+| **图 11：`GPU-HMMER` 10 万条蛋白质序列维特比扫描 (`9070 XT 60.7ms` 快 3.86×)** | **图 12：深势 `Uni-Mol` 全 15 层 `47.3M` 参数 `AMD RX 9070 XT` 端到端推理 (`7.11e-15`)** |
+| ![fig11](./visuals/fig11_gpuhmmer_100k_protein_viterbi.svg) | ![fig12](./visuals/fig12_unimol_full15layer_end2end_amd9070.svg) |
 
 ---
 
