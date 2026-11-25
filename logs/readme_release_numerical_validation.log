@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "FX": {
+    "cuda": {
+      "visibility_L2_vs_CPU": 4.390270618689203e-16,
+      "CLEAN_L2_vs_CPU": 7.80573683165112e-16
+    },
+    "hip": {
+      "visibility_L2_vs_CPU": 4.389722006069269e-16,
+      "CLEAN_L2_vs_CPU": 7.535887678603185e-16
+    }
+  },
+  "FX_cross_visibility_L2": 2.9581074650571827e-16,
+  "FX_cross_CLEAN_L2": 6.729317944754583e-16,
+  "conformer_all_coordinates_and_histories_bitwise_equal": true,
+  "contacts": [
+    47,
+    0
+  ],
+  "bond_MAE_A": [
+    0.0720638817520505,
+    0.011285613544255757
+  ]
+}

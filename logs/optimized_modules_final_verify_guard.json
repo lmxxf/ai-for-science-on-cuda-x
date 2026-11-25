@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-25T18:10:44.938412+08:00",
+  "command": [
+    ".venv/bin/python",
+    "verify_optimized_modules.py"
+  ],
+  "elapsed_s": 2.2548178620636463,
+  "min_available_gib": 107.25680541992188,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

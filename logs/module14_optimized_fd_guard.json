@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-25T18:01:59.450778+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-c",
+    "import benchmark_conformer_optimized as b; b.gradients()"
+  ],
+  "elapsed_s": 1.2520075552165508,
+  "min_available_gib": 108.26969528198242,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

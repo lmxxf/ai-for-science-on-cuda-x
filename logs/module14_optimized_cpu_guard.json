@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-25T18:00:36.808016+08:00",
+  "command": [
+    "results/module14_optimized_build/conformer_cpu",
+    "results/module14_data",
+    "results/module14_optimized_cpu",
+    "benchmark",
+    "3"
+  ],
+  "elapsed_s": 42.30040137586184,
+  "min_available_gib": 104.85823822021484,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

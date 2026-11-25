@@ -1,0 +1,28 @@
+{
+  "device": "CPU NumPy complex128 FFT+X, same bin/frame/baseline arithmetic as original",
+  "complex_samples": 67108864,
+  "baseline_pairs": 120,
+  "warmup_passes": 1,
+  "repeats": 3,
+  "FFT_wall_seconds": [
+    0.2072679626289755,
+    0.20723356143571436,
+    0.20700445817783475
+  ],
+  "X_wall_seconds": [
+    0.8484838416334242,
+    0.8491375248413533,
+    0.8489995873533189
+  ],
+  "pipeline_wall_seconds": [
+    1.0557831961195916,
+    1.0564011810347438,
+    1.0560316930059344
+  ],
+  "FFT_wall_median_seconds": 0.20723356143571436,
+  "X_wall_median_seconds": 0.8489995873533189,
+  "pipeline_wall_median_seconds": 1.0560316930059344,
+  "warmup_wall_seconds": 1.0801572930067778,
+  "input_IO_seconds": 0.060055242851376534,
+  "scope": "Input fully resident in CPU RAM. Stage sums and overall complete-pass wall timed separately; no disk I/O in kernel timing."
+}

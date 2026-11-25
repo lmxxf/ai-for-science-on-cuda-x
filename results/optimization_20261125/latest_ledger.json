@@ -1,0 +1,490 @@
+{
+  "record_id": "same_source_optimization_20261125_warm5_rep7",
+  "updated": "2026-11-25T18:08:55.644526+08:00",
+  "timing_scope": "resident computation, synchronized wall medians; transfers/allocation/I/O separate; F/X and full F+X independently timed",
+  "FP64_noFMA": true,
+  "FX": {
+    "variant": "v2",
+    "source_sha256": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56",
+    "protocol": "5full-workload warmups +7repeats",
+    "backends": {
+      "cpu": {
+        "FFT_seconds": 0.20723356143571436,
+        "X_seconds": 0.8489995873533189,
+        "F_plus_X_seconds": 1.0560316930059344,
+        "raw_FFT_seconds": [
+          0.2072679626289755,
+          0.20723356143571436,
+          0.20700445817783475
+        ],
+        "raw_X_seconds": [
+          0.8484838416334242,
+          0.8491375248413533,
+          0.8489995873533189
+        ],
+        "raw_F_plus_X_seconds": [
+          1.0557831961195916,
+          1.0564011810347438,
+          1.0560316930059344
+        ],
+        "warmup_passes": 1,
+        "repeats": 3
+      },
+      "cuda": {
+        "FFT_seconds": 0.017435406,
+        "X_seconds": 0.022205913,
+        "F_plus_X_seconds": 0.039637526,
+        "raw_FFT_seconds": [
+          0.017436509,
+          0.017431869,
+          0.01743787,
+          0.017435406,
+          0.017430733,
+          0.017440462,
+          0.017434941
+        ],
+        "raw_X_seconds": [
+          0.022205657,
+          0.022205913,
+          0.022206456,
+          0.022210329,
+          0.022205577,
+          0.022419901,
+          0.022205785
+        ],
+        "raw_F_plus_X_seconds": [
+          0.039757529,
+          0.039634758,
+          0.039777769,
+          0.039634806,
+          0.039633638,
+          0.039637526,
+          0.039642934
+        ],
+        "warmup_passes": 5,
+        "repeats": 7,
+        "h2d_seconds": 0.018123228,
+        "d2h_seconds": 0.002132281,
+        "transfer_plus_pipeline_estimate_seconds": 0.059893035,
+        "same_harness_v0_F_plus_X_seconds": 0.133761674
+      },
+      "hip": {
+        "FFT_seconds": 0.0089639,
+        "X_seconds": 0.0110567,
+        "F_plus_X_seconds": 0.0198092,
+        "raw_FFT_seconds": [
+          0.0098938,
+          0.0094152,
+          0.0089825,
+          0.0089084,
+          0.0089639,
+          0.0089627,
+          0.0089498
+        ],
+        "raw_X_seconds": [
+          0.0119259,
+          0.0114105,
+          0.0109822,
+          0.0110567,
+          0.0109598,
+          0.0111202,
+          0.0110531
+        ],
+        "raw_F_plus_X_seconds": [
+          0.0210241,
+          0.0201617,
+          0.0197975,
+          0.0197307,
+          0.0197896,
+          0.0198092,
+          0.0198361
+        ],
+        "warmup_passes": 5,
+        "repeats": 7,
+        "h2d_seconds": 0.0867654,
+        "d2h_seconds": 0.0076623,
+        "transfer_plus_pipeline_estimate_seconds": 0.1142369,
+        "same_harness_v0_F_plus_X_seconds": 0.1252934
+      }
+    },
+    "validation": {
+      "cuda_v0": {
+        "visibility_relative_l2_vs_CPU": 4.426546298322925e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 0.0,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.949215308918063e-16,
+        "vis_sha256": "357393c7ef2b57931063804da7f1cca05159aa37d5c9b3c50136c97c49fec3aa"
+      },
+      "cuda_v1": {
+        "visibility_relative_l2_vs_CPU": 4.3902706186891945e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 2.823723732285754e-16,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.80573683165112e-16,
+        "vis_sha256": "cb7d7954c4390460549bc386cbb4d4afbd8810d9abb7f58c31069591d761ee1b"
+      },
+      "cuda_v2": {
+        "visibility_relative_l2_vs_CPU": 4.3902706186891945e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 2.823723732285754e-16,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.80573683165112e-16,
+        "vis_sha256": "cb7d7954c4390460549bc386cbb4d4afbd8810d9abb7f58c31069591d761ee1b"
+      },
+      "hip_v0": {
+        "visibility_relative_l2_vs_CPU": 4.422542103275216e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 0.0,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.966827412705244e-16,
+        "vis_sha256": "9751f6e3ae23237a2bfbc4f61b4a6f7b1b575d740e2658d46ab607a8e688c0cb"
+      },
+      "hip_v1": {
+        "visibility_relative_l2_vs_CPU": 4.389722006069261e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 2.5702083168567455e-16,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.535887678603185e-16,
+        "vis_sha256": "53003a518d3e92faea0ce05d4cac778d8da8bfe7bfa44fb101b47963ad3bc1e2"
+      },
+      "hip_v2": {
+        "visibility_relative_l2_vs_CPU": 4.389722006069261e-16,
+        "visibility_relative_l2_vs_old_same_GPU": 2.5702083168567455e-16,
+        "common_CPU_CLEAN_relative_l2_vs_CPU": 7.535887678603185e-16,
+        "vis_sha256": "53003a518d3e92faea0ce05d4cac778d8da8bfe7bfa44fb101b47963ad3bc1e2"
+      },
+      "v0_HIP_vs_CUDA": {
+        "visibility_relative_l2": 2.8363881584463424e-16,
+        "common_CPU_CLEAN_relative_l2": 7.508031063770153e-16
+      },
+      "v1_HIP_vs_CUDA": {
+        "visibility_relative_l2": 2.9581074650571773e-16,
+        "common_CPU_CLEAN_relative_l2": 6.729317944754583e-16
+      },
+      "v2_HIP_vs_CUDA": {
+        "visibility_relative_l2": 2.9581074650571773e-16,
+        "common_CPU_CLEAN_relative_l2": 6.729317944754583e-16
+      }
+    }
+  },
+  "conformer": {
+    "source_sha256": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104",
+    "protocol": {
+      "first_trial_archive": "history/conformer_optimization_20261125_175812/optimized_warm1_rep3",
+      "CPU_protocol": "one warmup + 3 repeats unchanged; only GPU retested hot",
+      "GPU_protocol": "five complete warmups + seven timed complete optimization runs, same context, same original inputs each run",
+      "force_and_GPU_kernel_prefix_sha256": "f5bcfc92a11bbeaea917cf06a931d59bca271f802c009ba89ff1bafeb618a861",
+      "only_source_change_after_trial": "main() warmup CLI argument parsing; force/kernel prefix byte-identical"
+    },
+    "backends": {
+      "cpu": {
+        "warmup_runs": 1,
+        "measured_repetitions": 3,
+        "raw_seconds": [
+          10.560909486,
+          10.566014739,
+          10.540641337
+        ],
+        "threads_per_conformer": 1,
+        "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+        "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+        "device": "CPU single-thread C++",
+        "conformers": 10000,
+        "molecules": 1000,
+        "steps": 200,
+        "seconds": 10.560909486,
+        "h2d_seconds": 0,
+        "d2h_seconds": 0,
+        "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+        "max_step_energy_increase": 0.0,
+        "collision_pairs_initial": 47,
+        "collision_pairs_final": 0,
+        "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+        "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+        "mean_initial_energy": 17.329140533753744,
+        "mean_final_energy": -27.427460328486887,
+        "last_output_raw_hashes": {
+          "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+          "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+          "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+        },
+        "old_single_run_seconds": 10.522151251,
+        "speedup_vs_old_single_run": 0.9963300286730628,
+        "raw_executable_GPU_launch_width_field": 32,
+        "raw_timing_peak_to_peak_percent_of_median": 0.24025773569630232,
+        "old_raw_regression": {
+          "coordinates_bitwise_equal": true,
+          "full_201step_history_bitwise_equal": true
+        }
+      },
+      "cuda": {
+        "warmup_runs": 5,
+        "measured_repetitions": 7,
+        "raw_seconds": [
+          0.689139211,
+          0.690981442,
+          0.688993549,
+          0.689565962,
+          0.689782956,
+          0.688222897,
+          0.689281369
+        ],
+        "threads_per_conformer": 32,
+        "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+        "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+        "device": "NVIDIA GB10",
+        "conformers": 10000,
+        "molecules": 1000,
+        "steps": 200,
+        "seconds": 0.689281369,
+        "h2d_seconds": 0.000483691,
+        "d2h_seconds": 0.000531867,
+        "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+        "max_step_energy_increase": 0.0,
+        "collision_pairs_initial": 47,
+        "collision_pairs_final": 0,
+        "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+        "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+        "mean_initial_energy": 17.329140533753744,
+        "mean_final_energy": -27.427460328486887,
+        "last_output_raw_hashes": {
+          "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+          "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+          "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+        },
+        "old_single_run_seconds": 3.229018878,
+        "speedup_vs_old_single_run": 4.6846165052808795,
+        "coverage": {
+          "shared_cache_conformers": 8320,
+          "global_scratch_fallback_conformers": 1680,
+          "total_conformers": 10000,
+          "fallback_shared_adjacency_bytes": 14752,
+          "global_term_scratch_bytes": 135000320
+        },
+        "raw_timing_peak_to_peak_percent_of_median": 0.4002059426039784,
+        "old_raw_regression": {
+          "coordinates_bitwise_equal": true,
+          "full_201step_history_bitwise_equal": true
+        }
+      },
+      "hip": {
+        "warmup_runs": 5,
+        "measured_repetitions": 7,
+        "raw_seconds": [
+          0.520322,
+          0.5174129,
+          0.5265597,
+          0.5252509,
+          0.5224643,
+          0.5222163,
+          0.5054358
+        ],
+        "threads_per_conformer": 32,
+        "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+        "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+        "device": "AMD Radeon RX 9070 XT",
+        "conformers": 10000,
+        "molecules": 1000,
+        "steps": 200,
+        "seconds": 0.5222163,
+        "h2d_seconds": 0.0027139,
+        "d2h_seconds": 0.0025899,
+        "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+        "max_step_energy_increase": 0.0,
+        "collision_pairs_initial": 47,
+        "collision_pairs_final": 0,
+        "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+        "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+        "mean_initial_energy": 17.329140533753744,
+        "mean_final_energy": -27.427460328486887,
+        "last_output_raw_hashes": {
+          "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+          "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+          "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+        },
+        "old_single_run_seconds": 3.8532994,
+        "speedup_vs_old_single_run": 7.3787421036072605,
+        "coverage": {
+          "shared_cache_conformers": 8320,
+          "global_scratch_fallback_conformers": 1680,
+          "total_conformers": 10000,
+          "fallback_shared_adjacency_bytes": 14752,
+          "global_term_scratch_bytes": 135000320
+        },
+        "raw_timing_peak_to_peak_percent_of_median": 4.045048000225189,
+        "old_raw_regression": {
+          "coordinates_bitwise_equal": true,
+          "full_201step_history_bitwise_equal": true
+        }
+      }
+    },
+    "validation": {
+      "cuda_vs_cpu": {
+        "coordinate_relative_l2": 0.0,
+        "all_201step_history_relative_l2": 0.0,
+        "coordinate_max_abs": 0.0,
+        "history_max_abs": 0.0,
+        "coordinates_bitwise_equal": true,
+        "full_histories_bitwise_equal": true
+      },
+      "hip_vs_cpu": {
+        "coordinate_relative_l2": 0.0,
+        "all_201step_history_relative_l2": 0.0,
+        "coordinate_max_abs": 0.0,
+        "history_max_abs": 0.0,
+        "coordinates_bitwise_equal": true,
+        "full_histories_bitwise_equal": true
+      },
+      "hip_vs_cuda": {
+        "coordinate_relative_l2": 0.0,
+        "all_201step_history_relative_l2": 0.0,
+        "coordinate_max_abs": 0.0,
+        "history_max_abs": 0.0,
+        "coordinates_bitwise_equal": true,
+        "full_histories_bitwise_equal": true
+      }
+    },
+    "gradient_validation": {
+      "directions": 18,
+      "max_abs_error": 1.9590129518576305e-10,
+      "checks": [
+        {
+          "molecule": 0,
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": -0.7752746286963467,
+          "analytic": -0.775274628892248,
+          "abs_error": 1.9590129518576305e-10
+        },
+        {
+          "molecule": 0,
+          "atom": 0,
+          "axis": 1,
+          "finite_difference": -2.3575805809746457,
+          "analytic": -2.357580580822721,
+          "abs_error": 1.5192469504654582e-10
+        },
+        {
+          "molecule": 0,
+          "atom": 0,
+          "axis": 2,
+          "finite_difference": 8.61012529297748,
+          "analytic": 8.610125292992075,
+          "abs_error": 1.4594547792512458e-11
+        },
+        {
+          "molecule": 0,
+          "atom": 2,
+          "axis": 0,
+          "finite_difference": 11.821515617249643,
+          "analytic": 11.821515617081964,
+          "abs_error": 1.6767920385518664e-10
+        },
+        {
+          "molecule": 0,
+          "atom": 2,
+          "axis": 1,
+          "finite_difference": 87.78144973039302,
+          "analytic": 87.78144973039669,
+          "abs_error": 3.666400516522117e-12
+        },
+        {
+          "molecule": 0,
+          "atom": 2,
+          "axis": 2,
+          "finite_difference": -58.41285216207599,
+          "analytic": -58.412852162171866,
+          "abs_error": 9.587353133611032e-11
+        },
+        {
+          "molecule": 1,
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": -10.204929790342819,
+          "analytic": -10.204929790409556,
+          "abs_error": 6.673772645626741e-11
+        },
+        {
+          "molecule": 1,
+          "atom": 0,
+          "axis": 1,
+          "finite_difference": -5.867335540132116,
+          "analytic": -5.86733554011187,
+          "abs_error": 2.0246027077064355e-11
+        },
+        {
+          "molecule": 1,
+          "atom": 0,
+          "axis": 2,
+          "finite_difference": 22.892118222275954,
+          "analytic": 22.892118222286175,
+          "abs_error": 1.0221157253909041e-11
+        },
+        {
+          "molecule": 1,
+          "atom": 2,
+          "axis": 0,
+          "finite_difference": -6.106239624241726,
+          "analytic": -6.106239624186387,
+          "abs_error": 5.5338844617836e-11
+        },
+        {
+          "molecule": 1,
+          "atom": 2,
+          "axis": 1,
+          "finite_difference": -67.93208286009155,
+          "analytic": -67.9320828599147,
+          "abs_error": 1.7685408693068894e-10
+        },
+        {
+          "molecule": 1,
+          "atom": 2,
+          "axis": 2,
+          "finite_difference": 14.327661489248465,
+          "analytic": 14.327661489354659,
+          "abs_error": 1.0619416457302577e-10
+        },
+        {
+          "molecule": 48,
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": 2.6581181582822446,
+          "analytic": 2.658118158234375,
+          "abs_error": 4.78697081973678e-11
+        },
+        {
+          "molecule": 48,
+          "atom": 0,
+          "axis": 1,
+          "finite_difference": -19.91528647796059,
+          "analytic": -19.915286478010113,
+          "abs_error": 4.952482868247898e-11
+        },
+        {
+          "molecule": 48,
+          "atom": 0,
+          "axis": 2,
+          "finite_difference": 8.644057397653171,
+          "analytic": 8.64405739759277,
+          "abs_error": 6.040146161012672e-11
+        },
+        {
+          "molecule": 48,
+          "atom": 2,
+          "axis": 0,
+          "finite_difference": -28.978974423795968,
+          "analytic": -28.978974423846218,
+          "abs_error": 5.0249582272954285e-11
+        },
+        {
+          "molecule": 48,
+          "atom": 2,
+          "axis": 1,
+          "finite_difference": 20.232455778466846,
+          "analytic": 20.23245577834009,
+          "abs_error": 1.2675727134592307e-10
+        },
+        {
+          "molecule": 48,
+          "atom": 2,
+          "axis": 2,
+          "finite_difference": 47.08086763110704,
+          "analytic": 47.08086763104946,
+          "abs_error": 5.758238330599852e-11
+        }
+      ],
+      "method": "unchanged analytic CPU force vs independent NumPy energy five-point h2e-4"
+    }
+  }
+}

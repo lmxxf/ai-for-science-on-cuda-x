@@ -1,0 +1,30 @@
+{
+  "status": "PASS",
+  "source_sha256": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104",
+  "comparisons": {
+    "cuda_vs_cpu": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    },
+    "hip_vs_cpu": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    },
+    "hip_vs_cuda": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    }
+  }
+}

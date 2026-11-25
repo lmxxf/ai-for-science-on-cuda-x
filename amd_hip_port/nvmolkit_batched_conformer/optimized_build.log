@@ -1,0 +1,122 @@
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:101:79: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                               ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:101:139: note: in instantiation of member function 'Mem<Mol>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                           ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:101:163: note: in instantiation of member function 'Mem<Term>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                   ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:101:187: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                                           ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:306:1: note: expanded from here
+  306 | hipFree
+      | ^
+conformer.cpp:101:229: note: in instantiation of member function 'Mem<TermOut>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                                                                                     ^
+5 warnings generated when compiling for gfx1201.
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:101:79: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                               ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:101:139: note: in instantiation of member function 'Mem<Mol>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                           ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:101:163: note: in instantiation of member function 'Mem<Term>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                   ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:101:187: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                                           ^
+conformer.cpp:94:89: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   94 | template<class T>struct Mem{T*p;Mem(size_t n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}};
+      |                                                                                         ^~~~~~~~~~~
+conformer.cpp:17:15: note: expanded from macro 'RT'
+   17 | #define RT(x) hip##x
+      |               ^
+<scratch space>:323:1: note: expanded from here
+  323 | hipFree
+      | ^
+conformer.cpp:101:229: note: in instantiation of member function 'Mem<TermOut>::~Mem' requested here
+  101 |  Prop prop{};CHECK(RT(GetDeviceProperties)(&prop,0));dev=prop.name;Mem<double>dx(x.size()),dy(x.size()),dh(h.size()),dg(g.size());Mem<Mol>dm(mol.size());Mem<Term>dt(term.size());Mem<int>dp(ptr.size()),da(adj.size());Mem<TermOut>scratch(size_t(nt)*10);
+      |                                                                                                                                                                                                                                     ^
+5 warnings generated when compiling for host.

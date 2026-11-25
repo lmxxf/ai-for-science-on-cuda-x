@@ -1,0 +1,15 @@
+{
+  "timestamp": "2026-11-25T18:01:59.352613+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_build/conformer_cpu",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_gradient_48",
+    "gradient",
+    "480"
+  ],
+  "elapsed_s": 0.25080270878970623,
+  "min_available_gib": 108.29577255249023,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

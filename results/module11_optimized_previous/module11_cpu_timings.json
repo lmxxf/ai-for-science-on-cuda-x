@@ -1,0 +1,8 @@
+{
+  "FFT_seconds": 0.16976686799898744,
+  "X_seconds": 0.9247765387408435,
+  "IO_seconds": 0.05630586622282863,
+  "transfer_seconds": 0,
+  "total_seconds": 1.1877279251348227,
+  "precision": "complex128"
+}

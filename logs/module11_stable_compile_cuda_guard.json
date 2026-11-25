@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-25T18:05:05.295720+08:00",
+  "command": [
+    "nvcc",
+    "-x",
+    "cu",
+    "-std=c++17",
+    "-O3",
+    "--fmad=false",
+    "-arch=sm_121",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cuphoton_xbeam_fx/fx.cpp",
+    "-o",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_build/fx_stable_cuda"
+  ],
+  "elapsed_s": 1.7529121621046215,
+  "min_available_gib": 107.94485473632812,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

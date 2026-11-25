@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-25T18:00:26.716499+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/exp9_cuphoton_blackhole_fx_hip.py",
+    "--optimized-cpu-only"
+  ],
+  "elapsed_s": 4.505853825015947,
+  "min_available_gib": 107.36257934570312,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

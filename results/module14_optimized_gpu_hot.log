@@ -1,0 +1,12 @@
+REMOTE PROCESS SNAPSHOT SAVED: inspect before GPU; no process killed
+RUN nvcc -x cu -std=c++17 -O3 --fmad=false -arch=sm_121 /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/nvmolkit_batched_conformer/conformer.cpp -o /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_build/conformer_cuda
+RUN /home/lmxxf/work/ai-for-science-on-cuda-x/.venv/bin/python /home/lmxxf/work/ai-for-science-on-cuda-x/guard_process.py --audit /home/lmxxf/work/ai-for-science-on-cuda-x/logs/module14_optimized_cuda_guard.json -- /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_build/conformer_cuda /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_cuda benchmark 7 5
+NVIDIA GB10 seconds=0.689281
+RUN scp -r /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/nvmolkit_batched_conformer amd9070:C:/AI4S-HIP-Lab/
+RUN scp /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/adj.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/initial.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/mols.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/ptr.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/terms.bin /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_data/params.txt amd9070:C:/AI4S-HIP-Lab/nvmolkit_batched_conformer/data/
+RUN ssh amd9070 C:\AI4S-HIP-Lab\nvmolkit_batched_conformer\optimized_build_windows.cmd
+RUN ssh amd9070 C:\AI4S-HIP-Lab\nvmolkit_batched_conformer\optimized_run_windows.cmd
+RUN scp -r amd9070:C:/AI4S-HIP-Lab/nvmolkit_batched_conformer/out_optimized_hip/. /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_hip
+RUN scp amd9070:C:/AI4S-HIP-Lab/nvmolkit_batched_conformer/optimized_build.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/nvmolkit_batched_conformer/optimized_build.log
+RUN scp amd9070:C:/AI4S-HIP-Lab/nvmolkit_batched_conformer/optimized_run.log /home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/nvmolkit_batched_conformer/optimized_run.log
+RUN scp amd9070:C:/AI4S-HIP-Lab/nvmolkit_batched_conformer/conformer.cpp /home/lmxxf/work/ai-for-science-on-cuda-x/results/module14_optimized_remote_source.cpp

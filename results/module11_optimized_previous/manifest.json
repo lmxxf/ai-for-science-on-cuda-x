@@ -1,0 +1,11 @@
+{
+  "module11_hip_vis.bin": "9751f6e3ae23237a2bfbc4f61b4a6f7b1b575d740e2658d46ab607a8e688c0cb",
+  "module11_cpu_vis.bin": "6f63ba4949435401c9687768c5aed446acc3066327c5203775f7ac2028166839",
+  "fx.cpp": "7c1212db5b2b8bf55ca1e982eabc215607ae58460cb696bbd8f19a6bd0286da9",
+  "module11_cpu_timings.json": "6f3a5aaf01c986b4481b90cb806b9ef02ab2ea86141142cfb5004a00caf57a89",
+  "module11_cuda_timings.json": "c541d305a0221df730deaadcf4fa4711bfa5c2b0d9a42e93f91ac865ac5e86b6",
+  "module11_cuda_vis.bin": "357393c7ef2b57931063804da7f1cca05159aa37d5c9b3c50136c97c49fec3aa",
+  "module11_hip_timings.json": "df605dcc9fd0fbef9a05db8da234894b7ead6040cefd303a08039d01fc5b5807",
+  "module11_results.json": "0eef77c8b7f59f34d36c161c566bd33fdeb0bcd76f30793f48c96d52ff16ef58",
+  "exp9_cuphoton_blackhole_fx_hip.py": "fc23bdfba707d8c2ef1b3836a333a168d2c1db92a935ca053964a43b062b699a"
+}

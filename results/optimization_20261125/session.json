@@ -1,0 +1,8 @@
+{
+  "started": "2026-11-25T17:58:46.941159+08:00",
+  "scope": "same-source FP64 noFMA FX and conformer optimization; no push; no article edits",
+  "original_input_hashes": {
+    "voltage": "ab071384230064119f38e1d8500907bd2728cf9ebf21a3c1788dcb5c185ecd86",
+    "conformer_initial": "3716b9a08c14a52e55a6633f1c62533d67950af5c963be29c16ba22cf5dd09ee"
+  }
+}

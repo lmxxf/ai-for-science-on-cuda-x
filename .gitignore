@@ -51,3 +51,7 @@ results/module14_*/*.bin
 results/module15_build/
 results/module15_data/
 results/module15_*.bin
+# 2026-11-25 optimization: preserve large raw runs locally, keep compact evidence
+results/module11_optimized_*/*.bin
+results/module14_optimized_build/
+history/conformer_optimization_*/**/*.bin

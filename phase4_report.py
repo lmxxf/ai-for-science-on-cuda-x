@@ -22,8 +22,15 @@ ESOL清洗表前1000条记录（991个不同canonical母体；吞吐按输入记
  text+='''一个block处理一个构象，坐标/候选/梯度状态驻留shared，确定性求和与回溯下降在kernel内连续200轮。拓扑参数仍从global读取，能量诊断也写global，准确说法是“**坐标迭代无需CPU往返**”，不是整个kernel零global访存。单原子无力场项的10个构象自然保持不动，不编造下降。200轮不等于所有构象达到严谨全局极小。
 
 '''
- text+='| 同源同任务：10k×200 | 单次优化墙钟 / s | 初始均能量 | 最终均能量 | 近碰撞对数：前→后 |\n|---|---:|---:|---:|---|\n'
- for bk,b in c['backends'].items():text+=f"| {bk} | {b['seconds']:.6f} | {b['energy_initial_mean']:.6f} | {b['energy_final_mean']:.6f} | {b['nonbonded_collision_pairs_initial']}→{b['nonbonded_collision_pairs_final']} |\n"
+ current_conformer=c.get('current_steady_state')
+ text+='| 同源同任务：10k×200 | 优化后稳态中位秒 | 初始均能量 | 最终均能量 | 近碰撞对数：前→后 |\n|---|---:|---:|---:|---|\n'
+ for bk,old_backend in c['backends'].items():
+  b=current_conformer['backends'][bk] if current_conformer else old_backend
+  initial=b.get('mean_initial_energy',old_backend['energy_initial_mean']);final=b.get('mean_final_energy',old_backend['energy_final_mean'])
+  before=b.get('collision_pairs_initial',old_backend['nonbonded_collision_pairs_initial']);after=b.get('collision_pairs_final',old_backend['nonbonded_collision_pairs_final'])
+  text+=f"| {bk} | {b['seconds']:.6f} | {initial:.6f} | {final:.6f} | {before}→{after} |\n"
+ if current_conformer:text+='\n2026-11-25优化后GPU预热5次＋7次，CPU1次＋3次；每次从相同初态重置。旧单次CPU10.522s/GB103.229s/AMD3.853s保存在原backends，新时账见current_steady_state。8320个构象共享全缓存，1680个完整fallback，未删样本。\n'
+
  text+=f'''
 全部10,000构象能量不升，9990严格下降；平均键长绝对偏差{cpu['bond_abs_deviation_initial_mean_A']:.6f}→{cpu['bond_abs_deviation_final_mean_A']:.6f}Å。三后端全部400,350个有效坐标、10,000个最终能量及10,000×201整段历史逐位一致，L2=0。不是只比较平均数。
 

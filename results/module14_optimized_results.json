@@ -1,0 +1,369 @@
+{
+  "status": "PASS",
+  "inputs": {
+    "molecules": 1000,
+    "conformers": 10000,
+    "conformers_per_molecule": 10,
+    "max_heavy_atoms": 55,
+    "heavy_atoms_total_all_conformers": 133450,
+    "etkdg_workers": 8,
+    "preparation_wall_seconds": 3.533790404908359,
+    "etkdg_plus_jitter_sum_worker_seconds": 26.480679751373827,
+    "retry_molecules": 0,
+    "bad_charge_atoms": 0,
+    "input": "fresh ETKDGv3(seed20261124+row), ten conformers per molecule, never MMFF optimized; deterministic Gaussian sigma0.06A positional perturbation added",
+    "force_field": "original simplified united-heavy-atom model: bond k400/r0 MMFF where available; cosangle k40/theta0 MMFF where available; torsion k0.2 with period2/3; softcore full LJ eps0.5 sigma0.85*(rvdw_i+rvdw_j) and Coulomb >=3 graph bonds, Gasteiger charges folded from H; energy kJ/mol, length A",
+    "not_comparable_to_mmff94": "original66.607885s singlecore/9.986772s8core includes new ETKDG plus actual RDKit MMFF94, not this model",
+    "topology_terms": {
+      "bond": 13754,
+      "angle": 18808,
+      "torsion": 23549,
+      "nonbonded": 73697
+    },
+    "hashes": {
+      "ptr.bin": "5e50b4426fa06fb59ad3d2e69a41735ed3f581935b771478b33daed5f8b05048",
+      "adj.bin": "71c100f82b6111d8a25100a9b581a367158a65c7906bbbb8e68d050e356272fb",
+      "terms.bin": "0ed00b2a3f1e795eb3d5a89641ffab7501054c49a452809030f6fab86075a22e",
+      "initial.bin": "3716b9a08c14a52e55a6633f1c62533d67950af5c963be29c16ba22cf5dd09ee",
+      "mols.bin": "890fca3ad41eeaff8c3e12a1a85b0cb528b4a8b52ae41210c13de923656e377c"
+    },
+    "parameter_revision": "epsilon0.05 prototype had47->1138 close contacts; epsilon increased to0.5kJ/mol, all initial ETKDG coordinates unchanged. Raw failed outputs and JSON preserved.",
+    "preparation_timing_scope": "8-worker pool elapsed including fresh ETKDG+jitter and per-molecule parameter extraction; excludes subsequent flattening/binary serialization"
+  },
+  "archived_baseline": {
+    "history": "history/conformer_optimization_20261125_175812",
+    "old_source_sha256": "ae576d69b1dcc6d395ff7c5e0628eb652141454526af40d16a9c4af4e919c904",
+    "old_result_sha256": "9c2e2733ed5724daff9163ba698c524b5db403b6899ba82c9353ba78366ae8bc"
+  },
+  "source_sha256": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104",
+  "gradient_validation": {
+    "directions": 18,
+    "max_abs_error": 1.9590129518576305e-10,
+    "checks": [
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -0.7752746286963467,
+        "analytic": -0.775274628892248,
+        "abs_error": 1.9590129518576305e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -2.3575805809746457,
+        "analytic": -2.357580580822721,
+        "abs_error": 1.5192469504654582e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 8.61012529297748,
+        "analytic": 8.610125292992075,
+        "abs_error": 1.4594547792512458e-11
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": 11.821515617249643,
+        "analytic": 11.821515617081964,
+        "abs_error": 1.6767920385518664e-10
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": 87.78144973039302,
+        "analytic": 87.78144973039669,
+        "abs_error": 3.666400516522117e-12
+      },
+      {
+        "molecule": 0,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": -58.41285216207599,
+        "analytic": -58.412852162171866,
+        "abs_error": 9.587353133611032e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -10.204929790342819,
+        "analytic": -10.204929790409556,
+        "abs_error": 6.673772645626741e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -5.867335540132116,
+        "analytic": -5.86733554011187,
+        "abs_error": 2.0246027077064355e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 22.892118222275954,
+        "analytic": 22.892118222286175,
+        "abs_error": 1.0221157253909041e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": -6.106239624241726,
+        "analytic": -6.106239624186387,
+        "abs_error": 5.5338844617836e-11
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": -67.93208286009155,
+        "analytic": -67.9320828599147,
+        "abs_error": 1.7685408693068894e-10
+      },
+      {
+        "molecule": 1,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": 14.327661489248465,
+        "analytic": 14.327661489354659,
+        "abs_error": 1.0619416457302577e-10
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": 2.6581181582822446,
+        "analytic": 2.658118158234375,
+        "abs_error": 4.78697081973678e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 1,
+        "finite_difference": -19.91528647796059,
+        "analytic": -19.915286478010113,
+        "abs_error": 4.952482868247898e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 0,
+        "axis": 2,
+        "finite_difference": 8.644057397653171,
+        "analytic": 8.64405739759277,
+        "abs_error": 6.040146161012672e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 0,
+        "finite_difference": -28.978974423795968,
+        "analytic": -28.978974423846218,
+        "abs_error": 5.0249582272954285e-11
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 1,
+        "finite_difference": 20.232455778466846,
+        "analytic": 20.23245577834009,
+        "abs_error": 1.2675727134592307e-10
+      },
+      {
+        "molecule": 48,
+        "atom": 2,
+        "axis": 2,
+        "finite_difference": 47.08086763110704,
+        "analytic": 47.08086763104946,
+        "abs_error": 5.758238330599852e-11
+      }
+    ],
+    "method": "unchanged analytic CPU force vs independent NumPy energy five-point h2e-4"
+  },
+  "backends": {
+    "cpu": {
+      "warmup_runs": 1,
+      "measured_repetitions": 3,
+      "raw_seconds": [
+        10.560909486,
+        10.566014739,
+        10.540641337
+      ],
+      "threads_per_conformer": 1,
+      "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+      "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+      "device": "CPU single-thread C++",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 10.560909486,
+      "h2d_seconds": 0,
+      "d2h_seconds": 0,
+      "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+      "max_step_energy_increase": 0.0,
+      "collision_pairs_initial": 47,
+      "collision_pairs_final": 0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+      "mean_initial_energy": 17.329140533753744,
+      "mean_final_energy": -27.427460328486887,
+      "last_output_raw_hashes": {
+        "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+        "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+        "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+      },
+      "old_single_run_seconds": 10.522151251,
+      "speedup_vs_old_single_run": 0.9963300286730628,
+      "raw_executable_GPU_launch_width_field": 32,
+      "raw_timing_peak_to_peak_percent_of_median": 0.24025773569630232,
+      "old_raw_regression": {
+        "coordinates_bitwise_equal": true,
+        "full_201step_history_bitwise_equal": true
+      }
+    },
+    "cuda": {
+      "warmup_runs": 5,
+      "measured_repetitions": 7,
+      "raw_seconds": [
+        0.689139211,
+        0.690981442,
+        0.688993549,
+        0.689565962,
+        0.689782956,
+        0.688222897,
+        0.689281369
+      ],
+      "threads_per_conformer": 32,
+      "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+      "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+      "device": "NVIDIA GB10",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 0.689281369,
+      "h2d_seconds": 0.000483691,
+      "d2h_seconds": 0.000531867,
+      "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+      "max_step_energy_increase": 0.0,
+      "collision_pairs_initial": 47,
+      "collision_pairs_final": 0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+      "mean_initial_energy": 17.329140533753744,
+      "mean_final_energy": -27.427460328486887,
+      "last_output_raw_hashes": {
+        "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+        "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+        "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+      },
+      "old_single_run_seconds": 3.229018878,
+      "speedup_vs_old_single_run": 4.6846165052808795,
+      "coverage": {
+        "shared_cache_conformers": 8320,
+        "global_scratch_fallback_conformers": 1680,
+        "total_conformers": 10000,
+        "fallback_shared_adjacency_bytes": 14752,
+        "global_term_scratch_bytes": 135000320
+      },
+      "raw_timing_peak_to_peak_percent_of_median": 0.4002059426039784,
+      "old_raw_regression": {
+        "coordinates_bitwise_equal": true,
+        "full_201step_history_bitwise_equal": true
+      }
+    },
+    "hip": {
+      "warmup_runs": 5,
+      "measured_repetitions": 7,
+      "raw_seconds": [
+        0.520322,
+        0.5174129,
+        0.5265597,
+        0.5252509,
+        0.5224643,
+        0.5222163,
+        0.5054358
+      ],
+      "threads_per_conformer": 32,
+      "GPU_term_evaluations": "once per term, original atom-order gather; energy-only trials; CPU intentionally retains original reference",
+      "scope_details": "shared topology and term gradients when <=40KiB dynamic; large molecules use global term-gradient scratch with shared ptr/adj; all conformers retained",
+      "device": "AMD Radeon RX 9070 XT",
+      "conformers": 10000,
+      "molecules": 1000,
+      "steps": 200,
+      "seconds": 0.5222163,
+      "h2d_seconds": 0.0027139,
+      "d2h_seconds": 0.0025899,
+      "scope": "median full optimization time, allocation excluded; shared-context warmup then repeated independent initial states; FP64 no FMA",
+      "max_step_energy_increase": 0.0,
+      "collision_pairs_initial": 47,
+      "collision_pairs_final": 0,
+      "bond_abs_deviation_initial_mean_A": 0.0720638817520505,
+      "bond_abs_deviation_final_mean_A": 0.011285613544255757,
+      "mean_initial_energy": 17.329140533753744,
+      "mean_final_energy": -27.427460328486887,
+      "last_output_raw_hashes": {
+        "max_gradient.bin": "04b4d0ff8ddd781173bb0b5ec6014c4d545828d7514620f753f6f76714a47de5",
+        "coordinates.bin": "e666e794176703ae902f51b8b6c002b4925311d57b04fbc38a435d56ed64e541",
+        "history.bin": "7f38055e94322e0632996654e0ea5f23189fcff8d4ffa0627d836853e6940baa"
+      },
+      "old_single_run_seconds": 3.8532994,
+      "speedup_vs_old_single_run": 7.3787421036072605,
+      "coverage": {
+        "shared_cache_conformers": 8320,
+        "global_scratch_fallback_conformers": 1680,
+        "total_conformers": 10000,
+        "fallback_shared_adjacency_bytes": 14752,
+        "global_term_scratch_bytes": 135000320
+      },
+      "raw_timing_peak_to_peak_percent_of_median": 4.045048000225189,
+      "old_raw_regression": {
+        "coordinates_bitwise_equal": true,
+        "full_201step_history_bitwise_equal": true
+      }
+    }
+  },
+  "comparisons": {
+    "cuda_vs_cpu": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    },
+    "hip_vs_cpu": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    },
+    "hip_vs_cuda": {
+      "coordinate_relative_l2": 0.0,
+      "all_201step_history_relative_l2": 0.0,
+      "coordinate_max_abs": 0.0,
+      "history_max_abs": 0.0,
+      "coordinates_bitwise_equal": true,
+      "full_histories_bitwise_equal": true
+    }
+  },
+  "scope": "same epsilon0.5 topology, same inputs, FP64 FMA disabled, same200steps/16backtracks/step clipping; once-per-term cached gradients and energy-only trial evaluation; atom ptr/adj and scalar energy accumulation order preserved. CPU reference unchanged arithmetic.",
+  "thermal_retest": {
+    "first_trial_archive": "history/conformer_optimization_20261125_175812/optimized_warm1_rep3",
+    "CPU_protocol": "one warmup + 3 repeats unchanged; only GPU retested hot",
+    "GPU_protocol": "five complete warmups + seven timed complete optimization runs, same context, same original inputs each run",
+    "force_and_GPU_kernel_prefix_sha256": "f5bcfc92a11bbeaea917cf06a931d59bca271f802c009ba89ff1bafeb618a861",
+    "only_source_change_after_trial": "main() warmup CLI argument parsing; force/kernel prefix byte-identical"
+  },
+  "root_module14_result_unchanged": true,
+  "source_remote_sha256": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104",
+  "AMD_repo_source_sha256": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104"
+}

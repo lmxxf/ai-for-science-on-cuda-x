@@ -64,7 +64,18 @@ GB10批处理核心速度收益{d['batch_speedups']['cuda']['GPU_core_only']:.3f
 | 平台 | F阶段FFT / s | X阶段相关 / s | F+X / s | 含I/O总墙钟 / s | 可见度对CPU相对L2 |
 |---|---:|---:|---:|---:|---:|
 '''
- for name,b in f['backends'].items():text+=f"| {name} | {b['FFT_seconds']:.6f} | {b['X_seconds']:.6f} | {b['FFT_seconds']+b['X_seconds']:.6f} | {b['total_seconds']:.6f} | {b['visibility_relative_l2_vs_cpu']:.3g} |\n"
+ current_fx=f.get('current_steady_state')
+ if current_fx:
+  text=text[:text.rfind('| 平台 | F阶段FFT / s')]
+  text+='2026-11-25优化后稳态（GPU预热5次＋7次，CPU预热1次＋3次；驻留计算，I/O与传输另计）：\n\n| 平台 | F阶段FFT / s | X阶段相关 / s | 独立整段F+X中位秒 | 可见度对CPU相对L2 |\n|---|---:|---:|---:|---:|\n'
+  for name,b in current_fx['backends'].items():
+   err=0. if name=='cpu' else current_fx['validation'][name+'_'+current_fx['variant']]['visibility_relative_l2_vs_CPU']
+   text+=f"| {name} | {b['FFT_seconds']:.6f} | {b['X_seconds']:.6f} | {b['F_plus_X_seconds']:.6f} | {err:.3g} |\n"
+  text+='\nF+X是独立测得的整段中位数，不直接相加两个阶段中位数。旧单次streamed基线仍保存在JSON原backends与optimization_history；最新时账在current_steady_state。\n'
+ else:
+  for name,b in f['backends'].items():text+=f"| {name} | {b['FFT_seconds']:.6f} | {b['X_seconds']:.6f} | {b['FFT_seconds']+b['X_seconds']:.6f} | {b['total_seconds']:.6f} | {b['visibility_relative_l2_vs_cpu']:.3g} |\n"
+ if current_fx:
+  precision=current_fx['validation'][current_fx['variant']+'_HIP_vs_CUDA'];f=dict(f);f['hip_vs_cuda_visibility_relative_l2']=precision['visibility_relative_l2'];f['hip_vs_cuda_clean_relative_l2']=precision['common_CPU_CLEAN_relative_l2']
  text+=f'''
 GPU为原生FP64 radix-2 FFT+复数相关；uv网格、2D IFFT、Högbom CLEAN是共同CPU后处理，未冒称全部GPU化。每uv格取平均后用binary mask，相当于uniform-per-cell权重，不是自然权重。CLEAN gain0.1、最多2000轮；恢复Gaussian sigma0.7pix是固定教学选择，不声称由EHT beam拟合。
 

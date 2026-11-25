@@ -1,0 +1,118 @@
+{
+  "status": "PASS",
+  "metadata": {
+    "workload": "synthetic asymmetric photon-ring sky, NOT real EHT/M87/SgrA data",
+    "seed": 20261124,
+    "antennas": 16,
+    "frames": 4096,
+    "FFT_length": 1024,
+    "time_bins": 64,
+    "frames_per_time_bin": 64,
+    "baselines": 120,
+    "frequency_groups": 16,
+    "channels_per_group": 64,
+    "center_frequency_GHz": 230.0,
+    "fractional_bandwidth": 0.04,
+    "bandwidth_GHz": 9.2,
+    "geometry": "16 noncollinear stations in wavelength/image-FOV units, rigid rotation over pi radians at 64 sparse snapshots across nominal 12h; not geographical EHT stations",
+    "cadence": "64 independent FFT frames per snapshot; sparse synthetic observing windows, not contiguous 12h ADC samples",
+    "sky_to_voltage": "C_ab(f,t)=sum_p I_p exp(-2pi i (u_a-u_b)\u00b7l_p); S=L z where LL*=C+0.02I, z iid circular complex Gaussian; time voltage=IFFT(S)",
+    "frequency_approximation": "narrowband piecewise constant geometry/covariance in each 64-channel group; 16 group center frequencies spanning +/-2%",
+    "receiver_noise_covariance_diagonal": 0.02,
+    "voltage_samples_complex": 67108864,
+    "generation_seconds": 2.4227336649782956,
+    "voltage_sha256": "ab071384230064119f38e1d8500907bd2728cf9ebf21a3c1788dcb5c185ecd86"
+  },
+  "backends": {
+    "cpu": {
+      "FFT_seconds": 0.16976686799898744,
+      "X_seconds": 0.9247765387408435,
+      "IO_seconds": 0.05630586622282863,
+      "transfer_seconds": 0,
+      "total_seconds": 1.1877279251348227,
+      "precision": "complex128",
+      "visibility_relative_l2_vs_cpu": 0.0,
+      "clean_PSNR_vs_input_sky_dB": 15.226103356485526,
+      "clean_iterations": 2000,
+      "clean_hit_iteration_cap": true,
+      "clean_relative_l2_vs_cpu": 0.0,
+      "uv_grid_occupied": 1344,
+      "dirty_PSNR_vs_sky_dB": null
+    },
+    "cuda": {
+      "FFT_seconds": 0.118098404,
+      "X_seconds": 0.02201291199999999,
+      "transfer_seconds": 0.021998755000000002,
+      "IO_seconds": 0.10027078400000002,
+      "total_seconds": 0.262530246,
+      "antennas": 16,
+      "frames": 4096,
+      "FFT_length": 1024,
+      "baselines": 120,
+      "time_bins": 64,
+      "precision": "complex128",
+      "visibility_relative_l2_vs_cpu": 4.426546298322925e-16,
+      "clean_PSNR_vs_input_sky_dB": 15.226103356485531,
+      "clean_iterations": 2000,
+      "clean_hit_iteration_cap": true,
+      "clean_relative_l2_vs_cpu": 7.949215308918063e-16,
+      "uv_grid_occupied": 1344,
+      "dirty_PSNR_vs_sky_dB": null
+    },
+    "hip": {
+      "FFT_seconds": 0.25228039999999996,
+      "X_seconds": 0.03998660000000002,
+      "transfer_seconds": 0.12401009999999996,
+      "IO_seconds": 0.9126553000000003,
+      "total_seconds": 1.3296952,
+      "antennas": 16,
+      "frames": 4096,
+      "FFT_length": 1024,
+      "baselines": 120,
+      "time_bins": 64,
+      "precision": "complex128",
+      "visibility_relative_l2_vs_cpu": 4.422542103275216e-16,
+      "clean_PSNR_vs_input_sky_dB": 15.226103356485531,
+      "clean_iterations": 2000,
+      "clean_hit_iteration_cap": true,
+      "clean_relative_l2_vs_cpu": 7.966827412705244e-16,
+      "uv_grid_occupied": 1344,
+      "dirty_PSNR_vs_sky_dB": null
+    }
+  },
+  "image_pipeline": "observed FX spectra -> average channels within each of 16 narrowband groups -> nearest-grid uv per-cell mean then uniform occupied-cell weighting with conjugate symmetry -> dirty IFFT -> Hogbom CLEAN gain0.1 up to2000 iterations threshold0.005*initialpeak -> Gaussian restore sigma0.7pix + residual; no target ring injected into reconstruction",
+  "sample_covariance_vs_sky_fourier_relative_l2": 0.12286496180206034,
+  "independent_direct_fourier_pixel_sum_checks": [
+    {
+      "timebin": 0,
+      "frequency_group": 0,
+      "baseline": 0,
+      "abs_diff": 3.469446951953614e-17
+    },
+    {
+      "timebin": 7,
+      "frequency_group": 3,
+      "baseline": 11,
+      "abs_diff": 1.2911750880923164e-16
+    },
+    {
+      "timebin": 31,
+      "frequency_group": 8,
+      "baseline": 63,
+      "abs_diff": 3.469446951953614e-17
+    },
+    {
+      "timebin": 63,
+      "frequency_group": 15,
+      "baseline": 119,
+      "abs_diff": 1.2663488626623028e-16
+    }
+  ],
+  "reconstruction_caveats": [
+    "No zero-spacing/autocorrelation measurement: dirty map DC is missing and sum near zero. Dirty flux-normalized PSNR undefined.",
+    "Restored CLEAN image normalized by its recovered flux for PSNR; 2000 iteration cap reached, not a claim of converged optimal reconstruction.",
+    "Gaussian restoration sigma0.7pix is an illustrative beam, not an EHT-derived beam fit."
+  ],
+  "hip_vs_cuda_visibility_relative_l2": 2.836388158446342e-16,
+  "hip_vs_cuda_clean_relative_l2": 7.508031063770153e-16
+}

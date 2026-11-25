@@ -1,0 +1,18 @@
+{
+  "timestamp": "2026-11-25T18:04:36.312697+08:00",
+  "command": [
+    ".venv/bin/python",
+    "benchmark_conformer_optimized.py",
+    "--stage",
+    "gpu",
+    "--gpu-warmups",
+    "5",
+    "--gpu-repetitions",
+    "7"
+  ],
+  "elapsed_s": 29.54768870701082,
+  "min_available_gib": 107.47793579101562,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

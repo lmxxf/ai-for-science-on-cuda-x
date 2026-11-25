@@ -211,3 +211,49 @@
 - 图9/13均白底文泉驿640px，主线程打开PNG实看通过。报告生成器初次多行字符串语法错误已修，不触发任何实验重跑。全实验结束、GPU释放。
 - 补齐再生成能力：弱LJ旧参数输入若未随Git携带，可从最终terms仅还原epsilon0.05，SHA与真实失败旧参数完全相同；没有生成或伪造旧solver输出，旧raw仍保留实验机。
 - 完整三阶段+第四阶段reuse入口在统一内存guard下全部PASS。第四阶段正文验收是只读审稿完成且有发现，非“稿件事实全通过”。两实验仓同步后本地提交，公众号仓仅单独提交新增审稿意见，不碰原稿或预存297无关目录。
+
+
+## 2026-11-25 17:54–18:12 +08:00 — 模块4/6同源性能优化与严格数值回归
+
+- 远端第一条操作即Win32_Process完整进程检查；GPU前再次检查。未见游戏本体，Steam/trainer/MuMu后台保留，无杀进程。所有Spark重进程包guard，最低可用统一内存仍大于104GiB。
+- 两模块同一新C++源码与同一选中变体在GB10/CUDA和9070XT/HIP分别重编重跑；FP64、nvcc --fmad=false / HIP -ffp-contract=off，无fastmath。两仓源码/驱动与远端编译源SHA核一致；未push、未改公众号文件。
+
+### FX：统一v2；预计算twiddle消除内核双精度trig
+
+- v0保留旧trig FFT/逐baseline相关算法，但用同一新resident harness重测；v1=twiddle+register复用，GB10 X反而变慢；v2=twiddle+512线程FFT+两通道/64frame/16antenna共享面板。两卡都选v2，不拼各卡不同最优项。
+- 完整67108864 complex128采样、7864320可见度、120基线，输入SHA保持ab071384230064119f38e1d8500907bd2728cf9ebf21a3c1788dcb5c185ecd86。CLEAN仍共同CPU后处理，不计入FX时间。
+- 初始1warm+3rep出现AMD时序递减，因此只补一次5warm+7rep稳定性测量，无新增调参；保留试跑JSON/raw。CPU1warm+3rep已稳，不重复计时。GPU未锁频，AMD波动范围如实保留。
+
+| FX平台 | FFT中位秒 | X中位秒 | 独立整段F+X中位秒 |
+|---|---:|---:|---:|
+| cpu | 0.207233561 | 0.848999587 | 1.056031693 |
+| cuda | 0.017435406 | 0.022205913 | 0.039637526 |
+| hip | 0.008963900 | 0.011056700 | 0.019809200 |
+
+- 整段中位数不等于两个独立阶段中位数相加；I/O、H2D/D2H、编译与warmup均另列。transfer+pipeline是组合估算，不冒称实测应用端到端。
+- cuda同harness v0=0.133761674s → v2=0.039637526s；7次v2范围[0.039633638,0.039777769]s。
+- hip同harness v0=0.125293400s → v2=0.019809200s；7次v2范围[0.019730700,0.021024100]s。
+- 收益主要来自FFT，X复用本轮未稳定快于同协议旧X，阴性结果不删。旧0.140/0.292s为更早单次streamed实验，不能当成同一稳态协议纯kernel加速比。原核本轮热态时序也已变化，不能把历史两卡差距全归因优化。
+- 主线程独立重读完整新vis并重算共同CPU CLEAN：对CPU可见度L2约4.39e-16，CLEAN最大约7.81e-16；跨GPU分别2.958e-16/6.729e-16，全部低于1e-14。旧源码/driver/JSON/全输出保留results/module11_optimized_previous。
+
+### 构象：term一次计算、拓扑缓存与32线程
+
+- 每term的E/4原子梯度只算一次，按原ptr/adj顺序gather；trial只算能量，不做废弃梯度。32线程/构象；小中分子共享缓存，8320构象走shared全缓存，1680大构象走完整global-term-scratch+shared-adjacency，未截断/过滤。
+- gm=max并行归约；E仍按原原子次序相加以保持回溯决定逐位一致，保留这55项以内短循环，不为形式上删tid0破坏数值。初始坐标、epsilon0.5和全部拓扑/200步/16回溯/步长规则未变。
+- CPU保持原参考算术，1warm+3rep；GPU5warm+7rep，每次从同一immutable初始坐标重置，不接着上一轮终态继续优化。
+
+| 构象平台 | 中位秒 | 最小–最大秒 |
+|---|---:|---|
+| cpu | 10.560909486 | 10.540641337–10.566014739 |
+| cuda | 0.689281369 | 0.688222897–0.690981442 |
+| hip | 0.522216300 | 0.505435800–0.526559700 |
+
+- AMD构象7次范围约4.05%、FX范围约6.5%，不是锁频条件下的恒定值。CPU和GB10相对更稳，所有raw/event数组保存。
+- 10000构象、400350有效坐标、全部10000×201历史与CPU及旧版raw逐字节一致，L2=0；18方向FD max1.959e-10，碰撞固定定义仍47→0，键MAE .072064→.011286Å。没有换FF/弱化排斥/改阈值换性能。
+- 旧单次3.229/3.853s与新median只作历史比较，不伪称完全同协议speedup；旧源/JSON/所有raw在history/conformer_optimization_20261125_175812，旧弱排斥失败案例也未覆盖。仍是简化FF，不等价MMFF94或完整nvMolKit。
+
+### 账本、同步与验收
+
+- results/module11_results.json / module14_results.json追加current_steady_state（新当前时账）、active_performance_record与optimization_history；原backends保留原实验快照，避免把新resident中位数与旧含I/O总秒混搭。当前数值以current_steady_state为准。
+- 独立总账results/optimization_20261125/latest_ledger.json；两份*_optimized_results.json含完整原始重复/对照/误差。MODULE11_OPTIMIZATION_NOTES.md与MODULE14_OPTIMIZATION_NOTES.md保留设计、阴性与波动。
+- verify_optimized_modules.py已在guard下从完整原始输出独立重算精度、CLEAN、碰撞/键偏差、输入哈希、median和主/AMD源一致性，PASS。两仓源与新JSON同步对齐；无Git提交或push。

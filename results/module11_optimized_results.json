@@ -1,0 +1,616 @@
+{
+  "status": "PASS",
+  "metadata": {
+    "workload": "synthetic asymmetric photon-ring sky, NOT real EHT/M87/SgrA data",
+    "seed": 20261124,
+    "antennas": 16,
+    "frames": 4096,
+    "FFT_length": 1024,
+    "time_bins": 64,
+    "frames_per_time_bin": 64,
+    "baselines": 120,
+    "frequency_groups": 16,
+    "channels_per_group": 64,
+    "center_frequency_GHz": 230.0,
+    "fractional_bandwidth": 0.04,
+    "bandwidth_GHz": 9.2,
+    "geometry": "16 noncollinear stations in wavelength/image-FOV units, rigid rotation over pi radians at 64 sparse snapshots across nominal 12h; not geographical EHT stations",
+    "cadence": "64 independent FFT frames per snapshot; sparse synthetic observing windows, not contiguous 12h ADC samples",
+    "sky_to_voltage": "C_ab(f,t)=sum_p I_p exp(-2pi i (u_a-u_b)\u00b7l_p); S=L z where LL*=C+0.02I, z iid circular complex Gaussian; time voltage=IFFT(S)",
+    "frequency_approximation": "narrowband piecewise constant geometry/covariance in each 64-channel group; 16 group center frequencies spanning +/-2%",
+    "receiver_noise_covariance_diagonal": 0.02,
+    "voltage_samples_complex": 67108864,
+    "generation_seconds": 2.4227336649782956,
+    "voltage_sha256": "ab071384230064119f38e1d8500907bd2728cf9ebf21a3c1788dcb5c185ecd86"
+  },
+  "old_source_sha256": "7c1212db5b2b8bf55ca1e982eabc215607ae58460cb696bbd8f19a6bd0286da9",
+  "new_source_sha256": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56",
+  "driver_sha256": "44032ccc5408f73d49111999e0de29a093e9d10f52f7177ffbb30743deb34258",
+  "previous_artifacts": "results/module11_optimized_previous: complete old source/driver/JSON/CPU-CUDA-HIP raw visibility files retained",
+  "CPU": {
+    "device": "CPU NumPy complex128 FFT+X, same bin/frame/baseline arithmetic as original",
+    "complex_samples": 67108864,
+    "baseline_pairs": 120,
+    "warmup_passes": 1,
+    "repeats": 3,
+    "FFT_wall_seconds": [
+      0.2072679626289755,
+      0.20723356143571436,
+      0.20700445817783475
+    ],
+    "X_wall_seconds": [
+      0.8484838416334242,
+      0.8491375248413533,
+      0.8489995873533189
+    ],
+    "pipeline_wall_seconds": [
+      1.0557831961195916,
+      1.0564011810347438,
+      1.0560316930059344
+    ],
+    "FFT_wall_median_seconds": 0.20723356143571436,
+    "X_wall_median_seconds": 0.8489995873533189,
+    "pipeline_wall_median_seconds": 1.0560316930059344,
+    "warmup_wall_seconds": 1.0801572930067778,
+    "input_IO_seconds": 0.060055242851376534,
+    "scope": "Input fully resident in CPU RAM. Stage sums and overall complete-pass wall timed separately; no disk I/O in kernel timing.",
+    "relative_l2_vs_historical_cpu": 0.0
+  },
+  "backends": {
+    "cuda": {
+      "device": "NVIDIA GB10",
+      "complex_samples": 67108864,
+      "frames": 4096,
+      "channels": 1024,
+      "baselines": 120,
+      "time_bins": 64,
+      "input_IO_seconds": 0.379072839,
+      "twiddle_setup_seconds": 1.6736e-05,
+      "h2d_seconds": 0.018123228,
+      "repeats": 7,
+      "warmup_passes": 5,
+      "variants": {
+        "v0": {
+          "description": "same-harness original trig FFT and per-baseline X",
+          "warmup_wall_seconds": 0.135268618,
+          "warmup_pipeline_wall_seconds": [
+            0.135268618,
+            0.134363385,
+            0.133939521,
+            0.133722812,
+            0.133737853
+          ],
+          "FFT_wall_seconds": [
+            0.113113025,
+            0.113070092,
+            0.113015771,
+            0.112941898,
+            0.112920169,
+            0.112934791,
+            0.112936534
+          ],
+          "FFT_event_seconds": [
+            0.11310569763183594,
+            0.11306246185302735,
+            0.11300857543945313,
+            0.11293475341796876,
+            0.11291280364990235,
+            0.11292752075195313,
+            0.11292953491210937
+          ],
+          "X_wall_seconds": [
+            0.020790064,
+            0.020789056,
+            0.020789695,
+            0.020786479,
+            0.020786415,
+            0.020786447,
+            0.021007715
+          ],
+          "X_event_seconds": [
+            0.02078489685058594,
+            0.020783584594726564,
+            0.020784191131591797,
+            0.020781248092651368,
+            0.020781055450439453,
+            0.02078115272521973,
+            0.02100239944458008
+          ],
+          "pipeline_wall_seconds": [
+            0.133831229,
+            0.133723385,
+            0.133826203,
+            0.133761674,
+            0.133846712,
+            0.133719589,
+            0.133718629
+          ],
+          "pipeline_event_seconds": [
+            0.13382400512695314,
+            0.1337161865234375,
+            0.13381837463378907,
+            0.1337540740966797,
+            0.13383920288085938,
+            0.1337120361328125,
+            0.13371142578125
+          ],
+          "FFT_wall_median_seconds": 0.112941898,
+          "X_wall_median_seconds": 0.020789056,
+          "pipeline_wall_median_seconds": 0.133761674,
+          "d2h_seconds": 0.002141609,
+          "output_IO_seconds": 0.041249928,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.15402651099999998
+        },
+        "v1": {
+          "description": "precomputed twiddle FFT1024 and register reuse X",
+          "warmup_wall_seconds": 0.060070288,
+          "warmup_pipeline_wall_seconds": [
+            0.060070288,
+            0.059600343,
+            0.059605016,
+            0.059558198,
+            0.059561031
+          ],
+          "FFT_wall_seconds": [
+            0.022027126,
+            0.021591342,
+            0.021589342,
+            0.021591373,
+            0.021591661,
+            0.021593422,
+            0.021668575
+          ],
+          "FFT_event_seconds": [
+            0.02202176094055176,
+            0.02158598327636719,
+            0.021584064483642577,
+            0.02158595275878906,
+            0.02158633613586426,
+            0.021587808609008788,
+            0.021663455963134765
+          ],
+          "X_wall_seconds": [
+            0.037971447,
+            0.037968935,
+            0.037969655,
+            0.037969256,
+            0.038105914,
+            0.037968679,
+            0.037971623
+          ],
+          "X_event_seconds": [
+            0.037965888977050784,
+            0.03796345520019531,
+            0.03796332931518555,
+            0.03796355056762695,
+            0.038100193023681644,
+            0.03796335983276367,
+            0.037966239929199216
+          ],
+          "pipeline_wall_seconds": [
+            0.059553013,
+            0.059558629,
+            0.059555269,
+            0.059557605,
+            0.059555829,
+            0.059558885,
+            0.059571989
+          ],
+          "pipeline_event_seconds": [
+            0.05954643249511719,
+            0.05955203247070313,
+            0.05954937744140625,
+            0.05955180740356445,
+            0.059549888610839846,
+            0.059552574157714845,
+            0.05956582260131836
+          ],
+          "FFT_wall_median_seconds": 0.021591661,
+          "X_wall_median_seconds": 0.037969655,
+          "pipeline_wall_median_seconds": 0.059557605,
+          "d2h_seconds": 0.002145578,
+          "output_IO_seconds": 0.042667249,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.079826411
+        },
+        "v2": {
+          "description": "precomputed FFT512 and 2-channel shared-panel X",
+          "warmup_wall_seconds": 0.0400736,
+          "warmup_pipeline_wall_seconds": [
+            0.0400736,
+            0.03964708,
+            0.039635911,
+            0.039973357,
+            0.039636806
+          ],
+          "FFT_wall_seconds": [
+            0.017436509,
+            0.017431869,
+            0.01743787,
+            0.017435406,
+            0.017430733,
+            0.017440462,
+            0.017434941
+          ],
+          "FFT_event_seconds": [
+            0.01743116760253906,
+            0.017426271438598633,
+            0.017432544708251955,
+            0.01743027114868164,
+            0.017425439834594728,
+            0.01743519973754883,
+            0.017429920196533204
+          ],
+          "X_wall_seconds": [
+            0.022205657,
+            0.022205913,
+            0.022206456,
+            0.022210329,
+            0.022205577,
+            0.022419901,
+            0.022205785
+          ],
+          "X_event_seconds": [
+            0.02220047950744629,
+            0.022200672149658204,
+            0.022201087951660158,
+            0.02220515251159668,
+            0.02220044708251953,
+            0.022414592742919924,
+            0.022200319290161134
+          ],
+          "pipeline_wall_seconds": [
+            0.039757529,
+            0.039634758,
+            0.039777769,
+            0.039634806,
+            0.039633638,
+            0.039637526,
+            0.039642934
+          ],
+          "pipeline_event_seconds": [
+            0.03975215911865235,
+            0.039629249572753905,
+            0.039771968841552735,
+            0.039629215240478514,
+            0.0396280632019043,
+            0.039632095336914065,
+            0.03963737487792969
+          ],
+          "FFT_wall_median_seconds": 0.017435406,
+          "X_wall_median_seconds": 0.022205913,
+          "pipeline_wall_median_seconds": 0.039637526,
+          "d2h_seconds": 0.002132281,
+          "output_IO_seconds": 0.042138422,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.059893035,
+          "pipeline_wall_min_seconds": 0.039633638,
+          "pipeline_wall_max_seconds": 0.039777769,
+          "pipeline_wall_range_over_median": 0.003636225933979803
+        }
+      },
+      "all_variants_program_wall_seconds": 5.338181163,
+      "scope": "All67108864 complex voltages and all7864320 visibilities. Resident input/output buffers, synchronized wall and separate events, configured complete-workload warmups then >=3 complete repeats. I/O and H2D/D2H separate; transfer+pipeline is estimate, not measured application end-to-end. No FMA/fastmath. CLEAN remains common CPU postprocessing.",
+      "selected_common_variant": "v2",
+      "same_harness_FX_speedup_vs_v0": 3.3746221699104026,
+      "historical_single_pass_JSON": {
+        "FFT_seconds": 0.118098404,
+        "X_seconds": 0.02201291199999999,
+        "transfer_seconds": 0.021998755000000002,
+        "IO_seconds": 0.10027078400000002,
+        "total_seconds": 0.262530246,
+        "antennas": 16,
+        "frames": 4096,
+        "FFT_length": 1024,
+        "baselines": 120,
+        "time_bins": 64,
+        "precision": "complex128"
+      }
+    },
+    "hip": {
+      "device": "AMD Radeon RX 9070 XT",
+      "complex_samples": 67108864,
+      "frames": 4096,
+      "channels": 1024,
+      "baselines": 120,
+      "time_bins": 64,
+      "input_IO_seconds": 1.1639289,
+      "twiddle_setup_seconds": 1.87e-05,
+      "h2d_seconds": 0.0867654,
+      "repeats": 7,
+      "warmup_passes": 5,
+      "variants": {
+        "v0": {
+          "description": "same-harness original trig FFT and per-baseline X",
+          "warmup_wall_seconds": 0.2248483,
+          "warmup_pipeline_wall_seconds": [
+            0.2248483,
+            0.221894,
+            0.1909304,
+            0.1463117,
+            0.1287287
+          ],
+          "FFT_wall_seconds": [
+            0.1153579,
+            0.1184866,
+            0.1142533,
+            0.1117151,
+            0.1111815,
+            0.1057901,
+            0.1106596
+          ],
+          "FFT_event_seconds": [
+            0.11517598724365234,
+            0.11828065490722657,
+            0.11406361389160156,
+            0.11155150604248047,
+            0.11099337768554687,
+            0.1056312026977539,
+            0.11044924163818359
+          ],
+          "X_wall_seconds": [
+            0.0110621,
+            0.0135859,
+            0.0109175,
+            0.0108064,
+            0.0109095,
+            0.0107459,
+            0.0107146
+          ],
+          "X_event_seconds": [
+            0.010869979858398438,
+            0.013393779754638672,
+            0.010760199546813965,
+            0.010539500236511231,
+            0.01074948024749756,
+            0.010588279724121094,
+            0.010548760414123535
+          ],
+          "pipeline_wall_seconds": [
+            0.1274689,
+            0.1257319,
+            0.1260906,
+            0.1252934,
+            0.1159296,
+            0.1130189,
+            0.120997
+          ],
+          "pipeline_event_seconds": [
+            0.12734812164306641,
+            0.12554265594482422,
+            0.12594876098632812,
+            0.12514961242675782,
+            0.11576508331298828,
+            0.1128948974609375,
+            0.12083952331542969
+          ],
+          "FFT_wall_median_seconds": 0.1117151,
+          "X_wall_median_seconds": 0.0109095,
+          "pipeline_wall_median_seconds": 0.1252934,
+          "d2h_seconds": 0.009373,
+          "output_IO_seconds": 0.0677814,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.22143179999999998
+        },
+        "v1": {
+          "description": "precomputed twiddle FFT1024 and register reuse X",
+          "warmup_wall_seconds": 0.0260009,
+          "warmup_pipeline_wall_seconds": [
+            0.0260009,
+            0.024085,
+            0.0233687,
+            0.0227732,
+            0.0222177
+          ],
+          "FFT_wall_seconds": [
+            0.0104634,
+            0.0099902,
+            0.0095031,
+            0.0094841,
+            0.0096432,
+            0.0094982,
+            0.0095361
+          ],
+          "FFT_event_seconds": [
+            0.010308639526367187,
+            0.009819600105285644,
+            0.009345060348510742,
+            0.009319600105285646,
+            0.009370280265808106,
+            0.009358499526977539,
+            0.00937261962890625
+          ],
+          "X_wall_seconds": [
+            0.0113487,
+            0.0109773,
+            0.0104117,
+            0.0104516,
+            0.0105078,
+            0.0105243,
+            0.0105032
+          ],
+          "X_event_seconds": [
+            0.011196999549865723,
+            0.010800040245056153,
+            0.010314399719238282,
+            0.010281100273132324,
+            0.010342459678649902,
+            0.010377059936523438,
+            0.010334099769592285
+          ],
+          "pipeline_wall_seconds": [
+            0.0211388,
+            0.0201648,
+            0.0197408,
+            0.0197377,
+            0.0198205,
+            0.0197864,
+            0.0198263
+          ],
+          "pipeline_event_seconds": [
+            0.020964580535888674,
+            0.020018180847167968,
+            0.01956995964050293,
+            0.019586540222167968,
+            0.019695659637451172,
+            0.019612600326538086,
+            0.019693260192871095
+          ],
+          "FFT_wall_median_seconds": 0.0095361,
+          "X_wall_median_seconds": 0.0105078,
+          "pipeline_wall_median_seconds": 0.0198205,
+          "d2h_seconds": 0.0080191,
+          "output_IO_seconds": 0.0662842,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.11460500000000001
+        },
+        "v2": {
+          "description": "precomputed FFT512 and 2-channel shared-panel X",
+          "warmup_wall_seconds": 0.0251159,
+          "warmup_pipeline_wall_seconds": [
+            0.0251159,
+            0.0238151,
+            0.0233106,
+            0.0226732,
+            0.0221394
+          ],
+          "FFT_wall_seconds": [
+            0.0098938,
+            0.0094152,
+            0.0089825,
+            0.0089084,
+            0.0089639,
+            0.0089627,
+            0.0089498
+          ],
+          "FFT_event_seconds": [
+            0.009654279708862306,
+            0.00921247959136963,
+            0.00882137966156006,
+            0.008716739654541016,
+            0.008798219680786134,
+            0.008742219924926757,
+            0.00878048038482666
+          ],
+          "X_wall_seconds": [
+            0.0119259,
+            0.0114105,
+            0.0109822,
+            0.0110567,
+            0.0109598,
+            0.0111202,
+            0.0110531
+          ],
+          "X_event_seconds": [
+            0.011750479698181153,
+            0.011257220268249511,
+            0.010804340362548829,
+            0.010888179779052735,
+            0.010835920333862305,
+            0.010875100135803223,
+            0.010899999618530274
+          ],
+          "pipeline_wall_seconds": [
+            0.0210241,
+            0.0201617,
+            0.0197975,
+            0.0197307,
+            0.0197896,
+            0.0198092,
+            0.0198361
+          ],
+          "pipeline_event_seconds": [
+            0.020887100219726562,
+            0.020008440017700194,
+            0.019637939453125,
+            0.019553619384765627,
+            0.01963913917541504,
+            0.01964703941345215,
+            0.019657840728759767
+          ],
+          "FFT_wall_median_seconds": 0.0089639,
+          "X_wall_median_seconds": 0.0110567,
+          "pipeline_wall_median_seconds": 0.0198092,
+          "d2h_seconds": 0.0076623,
+          "output_IO_seconds": 0.0732381,
+          "host_transfer_plus_pipeline_estimate_seconds": 0.1142369,
+          "pipeline_wall_min_seconds": 0.0197307,
+          "pipeline_wall_max_seconds": 0.0210241,
+          "pipeline_wall_range_over_median": 0.06529289421077077
+        }
+      },
+      "all_variants_program_wall_seconds": 5.1232467,
+      "scope": "All67108864 complex voltages and all7864320 visibilities. Resident input/output buffers, synchronized wall and separate events, configured complete-workload warmups then >=3 complete repeats. I/O and H2D/D2H separate; transfer+pipeline is estimate, not measured application end-to-end. No FMA/fastmath. CLEAN remains common CPU postprocessing.",
+      "selected_common_variant": "v2",
+      "same_harness_FX_speedup_vs_v0": 6.325010601134826,
+      "historical_single_pass_JSON": {
+        "FFT_seconds": 0.25228039999999996,
+        "X_seconds": 0.03998660000000002,
+        "transfer_seconds": 0.12401009999999996,
+        "IO_seconds": 0.9126553000000003,
+        "total_seconds": 1.3296952,
+        "antennas": 16,
+        "frames": 4096,
+        "FFT_length": 1024,
+        "baselines": 120,
+        "time_bins": 64,
+        "precision": "complex128"
+      }
+    }
+  },
+  "comparisons": {
+    "cuda_v0": {
+      "visibility_relative_l2_vs_CPU": 4.426546298322925e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 0.0,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.949215308918063e-16,
+      "vis_sha256": "357393c7ef2b57931063804da7f1cca05159aa37d5c9b3c50136c97c49fec3aa"
+    },
+    "cuda_v1": {
+      "visibility_relative_l2_vs_CPU": 4.3902706186891945e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 2.823723732285754e-16,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.80573683165112e-16,
+      "vis_sha256": "cb7d7954c4390460549bc386cbb4d4afbd8810d9abb7f58c31069591d761ee1b"
+    },
+    "cuda_v2": {
+      "visibility_relative_l2_vs_CPU": 4.3902706186891945e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 2.823723732285754e-16,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.80573683165112e-16,
+      "vis_sha256": "cb7d7954c4390460549bc386cbb4d4afbd8810d9abb7f58c31069591d761ee1b"
+    },
+    "hip_v0": {
+      "visibility_relative_l2_vs_CPU": 4.422542103275216e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 0.0,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.966827412705244e-16,
+      "vis_sha256": "9751f6e3ae23237a2bfbc4f61b4a6f7b1b575d740e2658d46ab607a8e688c0cb"
+    },
+    "hip_v1": {
+      "visibility_relative_l2_vs_CPU": 4.389722006069261e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 2.5702083168567455e-16,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.535887678603185e-16,
+      "vis_sha256": "53003a518d3e92faea0ce05d4cac778d8da8bfe7bfa44fb101b47963ad3bc1e2"
+    },
+    "hip_v2": {
+      "visibility_relative_l2_vs_CPU": 4.389722006069261e-16,
+      "visibility_relative_l2_vs_old_same_GPU": 2.5702083168567455e-16,
+      "common_CPU_CLEAN_relative_l2_vs_CPU": 7.535887678603185e-16,
+      "vis_sha256": "53003a518d3e92faea0ce05d4cac778d8da8bfe7bfa44fb101b47963ad3bc1e2"
+    },
+    "v0_HIP_vs_CUDA": {
+      "visibility_relative_l2": 2.8363881584463424e-16,
+      "common_CPU_CLEAN_relative_l2": 7.508031063770153e-16
+    },
+    "v1_HIP_vs_CUDA": {
+      "visibility_relative_l2": 2.9581074650571773e-16,
+      "common_CPU_CLEAN_relative_l2": 6.729317944754583e-16
+    },
+    "v2_HIP_vs_CUDA": {
+      "visibility_relative_l2": 2.9581074650571773e-16,
+      "common_CPU_CLEAN_relative_l2": 6.729317944754583e-16
+    }
+  },
+  "selected_common_variant": "v2",
+  "protocol": "5full-workload warmups +7repeats",
+  "trial_summary": "results/module11_optimized_trial_results.json",
+  "notes": [
+    "All variants process complete67108864 complex samples and7864320 visibility values, 120baselines.",
+    "Common source, common launch/tile parameters on both cards. No tensor-core/TF32 or FMA/fastmath.",
+    "v0 rebenchmarks original kernels under the same new resident full-workload harness; old single-pass64-bin-I/O timings are historical only.",
+    "CLEAN is common CPU postprocessing, separately checked; not included in FX timing."
+  ]
+}

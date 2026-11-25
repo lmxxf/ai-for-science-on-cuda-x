@@ -83,9 +83,63 @@ def render(r):
  ax=fig.add_subplot(gs[3,:]);ax.axis('off');t=[f"64,000,000级复采样：16天线 × 4096帧 × 1024FFT",f"GPU与CPU可见度相对L2：CUDA {r['backends']['cuda']['visibility_relative_l2_vs_cpu']:.2e}",f"HIP {r['backends']['hip']['visibility_relative_l2_vs_cpu']:.2e}；跨GPU图像 {r['hip_vs_cuda_clean_relative_l2']:.2e}",f"恢复PSNR {r['backends']['cuda']['clean_PSNR_vs_input_sky_dB']:.2f} dB；有限uv覆盖与采样噪声会限制清晰度。",'电压协方差来自同一输入天空的傅里叶变换。','恢复图只使用FX输出，不直接拼接输入环图。','频域/时间块独立高斯场；教学原型，非官方cuPhoton性能。'];ax.text(0,1,'\n'.join(t),va='top',linespacing=1.7,fontsize=11)
  fig.tight_layout(rect=(0,0,1,.96));out=ROOT/'visuals/fig10_cuphoton_eht_blackhole_correlator.svg';fig.savefig(out,facecolor='#ffffff');plt.close(fig);s=out.read_text().replace('<svg ','<svg font-family="\'WenQuanYi Micro Hei\',\'Noto Sans CJK SC\',sans-serif" ',1).replace('width="460.8pt"','width="640"').replace('height="936pt"','height="1300"');out.write_text(s)
  import cairosvg;cairosvg.svg2png(url=str(out),write_to=str(out.with_suffix('.png')))
+def optimized_cpu():
+ """Identical full-workload NumPy baseline, input resident, warmup +3 passes."""
+ start=time.perf_counter();voltage=np.fromfile(DAT/'voltage.bin','<c16').reshape(64,64,16,1024);input_io=time.perf_counter()-start;ab=np.load(DAT/'baselines.npy');vis=np.empty((64,120,1024),np.complex128);fw=[];xw=[];pw=[]
+ for repeat in range(4):
+  ft=xt=0.;start=time.perf_counter()
+  for b in range(64):
+   t=time.perf_counter();s=np.fft.fft(voltage[b],axis=-1);ft+=time.perf_counter()-t;t=time.perf_counter();vis[b]=np.stack([(s[:,a,:]*s[:,bb,:].conj()).mean(0) for a,bb in ab]);xt+=time.perf_counter()-t
+  seconds=time.perf_counter()-start
+  if repeat:fw.append(ft);xw.append(xt);pw.append(seconds)
+  else:warmup=seconds
+ vis.astype('<c16').tofile(RES/'module11_optimized_cpu_vis.bin')
+ r=dict(device='CPU NumPy complex128 FFT+X, same bin/frame/baseline arithmetic as original',complex_samples=67108864,baseline_pairs=120,warmup_passes=1,repeats=3,FFT_wall_seconds=fw,X_wall_seconds=xw,pipeline_wall_seconds=pw,FFT_wall_median_seconds=float(np.median(fw)),X_wall_median_seconds=float(np.median(xw)),pipeline_wall_median_seconds=float(np.median(pw)),warmup_wall_seconds=warmup,input_IO_seconds=input_io,scope='Input fully resident in CPU RAM. Stage sums and overall complete-pass wall timed separately; no disk I/O in kernel timing.')
+ (RES/'module11_optimized_cpu_timings.json').write_text(json.dumps(r,indent=2));print(json.dumps(r),flush=True)
+
+def optimized_gpus(refresh_cpu=True):
+ """Refresh CPU baseline then final same-source warm5/repeat7 GPU protocol."""
+ if refresh_cpu or not (RES/'module11_optimized_cpu_timings.json').exists():guard([PY,ROOT/'exp9_cuphoton_blackhole_fx_hip.py','--optimized-cpu-only'],'optimized_cpu')
+ optimized_stability_gpus()
+
+def optimized_stability_gpus():
+ for b in ['cuda','hip']:(RES/f'module11_optimized_stable_{b}').mkdir(exist_ok=True)
+ guard(['nvcc','-x','cu','-std=c++17','-O3','--fmad=false','-arch=sm_121',SRC/'fx.cpp','-o',BUILD/'fx_stable_cuda'],'stable_compile_cuda')
+ guard([BUILD/'fx_stable_cuda',DAT,RES/'module11_optimized_stable_cuda','7','5'],'stable_cuda')
+ optimized_remote()
+
+def optimized_remote():
+ remote='C:/AI4S-HIP-Lab/cuphoton_xbeam_fx'
+ run(['scp',SRC/'fx.cpp',SRC/'build_optimized_windows.cmd',SRC/'run_optimized_windows.cmd',f'amd9070:{remote}/'])
+ # Existing input is reused only after verifying its entire SHA256 on the target.
+ import base64
+ expected=json.loads((DAT/'metadata.json').read_text())['voltage_sha256'];ps=f"$ErrorActionPreference='Stop'; $h=(Get-FileHash 'C:\\AI4S-HIP-Lab\\cuphoton_xbeam_fx\\data\\voltage.bin' -Algorithm SHA256).Hash.ToLower(); if ($h -ne '{expected}') {{throw 'input SHA mismatch'}}; Get-CimInstance Win32_Process | Select-Object Name,ExecutablePath | ConvertTo-Json -Compress"
+ encoded=base64.b64encode(ps.encode('utf-16-le')).decode();audit=subprocess.run(['ssh','amd9070','powershell -NoProfile -EncodedCommand '+encoded],check=True,capture_output=True,text=True,errors='replace');(RES/'module11_optimized_remote_processes.json').write_text(audit.stdout)
+ processes=json.loads(audit.stdout);game=[p for p in processes if p.get('ExecutablePath') and ('steamapps' in p['ExecutablePath'].lower() or any(t in p['Name'].lower() for t in ['eldenring','cyberpunk','kingdomcome','horizon','witcher','hogwarts','rdr2','blackmyth','wukong','palworld']))]
+ if game:raise RuntimeError('Possible game process; no GPU launch: '+str(game))
+ run(['ssh','amd9070',r'C:\AI4S-HIP-Lab\cuphoton_xbeam_fx\build_optimized_windows.cmd']);run(['ssh','amd9070',r'C:\AI4S-HIP-Lab\cuphoton_xbeam_fx\run_optimized_windows.cmd'])
+ run(['scp','-r',f'amd9070:{remote}/optimized_stable_hip/.',RES/'module11_optimized_stable_hip'])
+ for n in ['build_optimized.log','run_optimized.log']:run(['scp',f'amd9070:{remote}/{n}',SRC/n])
+
+def optimized_summary(stable=True):
+ label='stable_' if stable else '';previous=RES/'module11_optimized_previous';old=json.loads((previous/'module11_results.json').read_text());r=dict(status='PASS',metadata=json.loads((DAT/'metadata.json').read_text()),old_source_sha256=hashlib.sha256((previous/'fx.cpp').read_bytes()).hexdigest(),new_source_sha256=hashlib.sha256((SRC/'fx.cpp').read_bytes()).hexdigest(),driver_sha256=hashlib.sha256((ROOT/'exp9_cuphoton_blackhole_fx_hip.py').read_bytes()).hexdigest(),previous_artifacts='results/module11_optimized_previous: complete old source/driver/JSON/CPU-CUDA-HIP raw visibility files retained',CPU=json.loads((RES/'module11_optimized_cpu_timings.json').read_text()),backends={},comparisons={},selected_common_variant=None,protocol='5full-workload warmups +7repeats' if stable else '1warmup+3repeats',trial_summary='results/module11_optimized_trial_results.json',notes=['All variants process complete67108864 complex samples and7864320 visibility values, 120baselines.','Common source, common launch/tile parameters on both cards. No tensor-core/TF32 or FMA/fastmath.','v0 rebenchmarks original kernels under the same new resident full-workload harness; old single-pass64-bin-I/O timings are historical only.','CLEAN is common CPU postprocessing, separately checked; not included in FX timing.'])
+ shape=(64,120,1024);ref=np.memmap(RES/'module11_optimized_cpu_vis.bin',dtype='<c16',mode='r',shape=shape);oldcpu=np.memmap(previous/'module11_cpu_vis.bin',dtype='<c16',mode='r',shape=shape);r['CPU']['relative_l2_vs_historical_cpu']=float(np.linalg.norm(ref-oldcpu)/np.linalg.norm(oldcpu));_,refimage,_,_,_=image(ref);images={}
+ for backend in ['cuda','hip']:
+  out=RES/f'module11_optimized_{label}{backend}';tim=json.loads((out/'timings.json').read_text());r['backends'][backend]=tim;hist=np.memmap(previous/f'module11_{backend}_vis.bin',dtype='<c16',mode='r',shape=shape)
+  for variant in ['v0','v1','v2']:
+   vis=np.memmap(out/f'{variant}_vis.bin',dtype='<c16',mode='r',shape=shape);rel=float(np.linalg.norm(vis-ref)/np.linalg.norm(ref));oldrel=float(np.linalg.norm(vis-hist)/np.linalg.norm(hist));_,clean,_,_,_=image(vis);imrel=float(np.linalg.norm(clean-refimage)/np.linalg.norm(refimage));assert rel<1e-14,(backend,variant,rel);assert imrel<1e-14,(backend,variant,imrel);images[backend,variant]=clean;key=backend+'_'+variant;r['comparisons'][key]=dict(visibility_relative_l2_vs_CPU=rel,visibility_relative_l2_vs_old_same_GPU=oldrel,common_CPU_CLEAN_relative_l2_vs_CPU=imrel,vis_sha256=hashlib.sha256((out/f'{variant}_vis.bin').read_bytes()).hexdigest());np.save(RES/f'module11_optimized_{label}{key}_clean.npy',clean)
+ for v in ['v0','v1','v2']:
+  a=np.memmap(RES/f'module11_optimized_{label}cuda/{v}_vis.bin',dtype='<c16',mode='r',shape=shape);b=np.memmap(RES/f'module11_optimized_{label}hip/{v}_vis.bin',dtype='<c16',mode='r',shape=shape);r['comparisons'][v+'_HIP_vs_CUDA']=dict(visibility_relative_l2=float(np.linalg.norm(a-b)/np.linalg.norm(a)),common_CPU_CLEAN_relative_l2=float(np.linalg.norm(images['hip',v]-images['cuda',v])/np.linalg.norm(images['cuda',v])));assert r['comparisons'][v+'_HIP_vs_CUDA']['visibility_relative_l2']<1e-14;assert r['comparisons'][v+'_HIP_vs_CUDA']['common_CPU_CLEAN_relative_l2']<1e-14
+ # Choose one common candidate by geometric-mean speed over both cards, never mix tile configs.
+ candidates=['v1','v2'];chosen=min(candidates,key=lambda v:np.sqrt(np.prod([r['backends'][b]['variants'][v]['pipeline_wall_median_seconds'] for b in ['cuda','hip']])));r['selected_common_variant']=chosen
+ for b in ['cuda','hip']:
+  t=r['backends'][b];t['selected_common_variant']=chosen;t['same_harness_FX_speedup_vs_v0']=t['variants']['v0']['pipeline_wall_median_seconds']/t['variants'][chosen]['pipeline_wall_median_seconds'];sel=t['variants'][chosen];sel['pipeline_wall_min_seconds']=min(sel['pipeline_wall_seconds']);sel['pipeline_wall_max_seconds']=max(sel['pipeline_wall_seconds']);sel['pipeline_wall_range_over_median']=float((max(sel['pipeline_wall_seconds'])-min(sel['pipeline_wall_seconds']))/sel['pipeline_wall_median_seconds']);t['historical_single_pass_JSON']=json.loads((previous/f'module11_{b}_timings.json').read_text())
+ (RES/'module11_optimized_results.json').write_text(json.dumps(r,indent=2));print(json.dumps(r,indent=2))
+
 if __name__=='__main__':
- p=argparse.ArgumentParser();p.add_argument('--prepare-only',action='store_true');p.add_argument('--gpu-only',action='store_true');p.add_argument('--summarize-only',action='store_true');a=p.parse_args()
- if not a.gpu_only and not a.summarize_only:prepare()
+ p=argparse.ArgumentParser();p.add_argument('--prepare-only',action='store_true');p.add_argument('--gpu-only',action='store_true');p.add_argument('--summarize-only',action='store_true');p.add_argument('--optimized-cpu-only',action='store_true');a=p.parse_args()
+ if a.optimized_cpu_only:optimized_cpu();sys.exit(0)
+ if not (DAT/'voltage.bin').exists():prepare()
  if a.prepare_only:sys.exit(0)
- if not a.summarize_only:gpus()
- summary()
+ if not a.summarize_only:optimized_gpus(refresh_cpu=not a.gpu_only)
+ optimized_summary()

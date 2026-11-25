@@ -1,0 +1,1 @@
+{"FFT_seconds":0.118098404,"X_seconds":0.022012911999999989,"transfer_seconds":0.021998755000000002,"IO_seconds":0.10027078400000002,"total_seconds":0.26253024600000002,"antennas":16,"frames":4096,"FFT_length":1024,"baselines":120,"time_bins":64,"precision":"complex128"}

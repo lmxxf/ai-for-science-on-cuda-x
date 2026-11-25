@@ -1,0 +1,13 @@
+{
+  "timestamp": "2026-11-25T18:05:44.549955+08:00",
+  "command": [
+    ".venv/bin/python",
+    "-c",
+    "import exp9_cuphoton_blackhole_fx_hip as m;m.optimized_stability_gpus();m.optimized_summary(stable=True)"
+  ],
+  "elapsed_s": 41.06142697692849,
+  "min_available_gib": 104.85401153564453,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

@@ -1,0 +1,58 @@
+{
+  "amd_hip_port/cuphoton_xbeam_fx/fx.cpp": {
+    "cuda_repository_sha256": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56",
+    "amd_repository_sha256": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56",
+    "identical": true,
+    "remote_windows_sha256": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56"
+  },
+  "amd_hip_port/cuphoton_xbeam_fx/build_optimized_windows.cmd": {
+    "cuda_repository_sha256": "f7309b7ef05af8fefa7a305ee3d7318568cedbd6006543a39190e8216bdc44bf",
+    "amd_repository_sha256": "f7309b7ef05af8fefa7a305ee3d7318568cedbd6006543a39190e8216bdc44bf",
+    "identical": true
+  },
+  "amd_hip_port/cuphoton_xbeam_fx/run_optimized_windows.cmd": {
+    "cuda_repository_sha256": "d3757e7abe6f6686a7be420cc68fe24c7c54d5725b72a4063865555e5739c892",
+    "amd_repository_sha256": "d3757e7abe6f6686a7be420cc68fe24c7c54d5725b72a4063865555e5739c892",
+    "identical": true
+  },
+  "amd_hip_port/cuphoton_xbeam_fx/OPTIMIZATION_NOTES.md": {
+    "cuda_repository_sha256": "b9c35701a719121564b0357d62ed0bb0d4e369d0091e55720fa0c11fc4107368",
+    "amd_repository_sha256": "b9c35701a719121564b0357d62ed0bb0d4e369d0091e55720fa0c11fc4107368",
+    "identical": true
+  },
+  "amd_hip_port/cuphoton_xbeam_fx/build_optimized.log": {
+    "cuda_repository_sha256": "94f45289de5683d64aae9f26424862c1dc8fce570ceb68db531eb05d5cbd0dd2",
+    "amd_repository_sha256": "94f45289de5683d64aae9f26424862c1dc8fce570ceb68db531eb05d5cbd0dd2",
+    "identical": true
+  },
+  "amd_hip_port/cuphoton_xbeam_fx/run_optimized.log": {
+    "cuda_repository_sha256": "360ddfbd2c547c6fe642c377f328d62eb06785e80ab3acb2f7dd733322e50326",
+    "amd_repository_sha256": "360ddfbd2c547c6fe642c377f328d62eb06785e80ab3acb2f7dd733322e50326",
+    "identical": true
+  },
+  "exp9_cuphoton_blackhole_fx_hip.py": {
+    "cuda_repository_sha256": "44032ccc5408f73d49111999e0de29a093e9d10f52f7177ffbb30743deb34258",
+    "amd_repository_sha256": "44032ccc5408f73d49111999e0de29a093e9d10f52f7177ffbb30743deb34258",
+    "identical": true
+  },
+  "MODULE11_OPTIMIZATION_NOTES.md": {
+    "cuda_repository_sha256": "b9c35701a719121564b0357d62ed0bb0d4e369d0091e55720fa0c11fc4107368",
+    "amd_repository_sha256": "b9c35701a719121564b0357d62ed0bb0d4e369d0091e55720fa0c11fc4107368",
+    "identical": true
+  },
+  "results/module11_optimized_results.json": {
+    "cuda_repository_sha256": "5bde0681690d2eb8c394232dd828d4d32b5f8741581337ebd98331ef97bed6df",
+    "amd_repository_sha256": "5bde0681690d2eb8c394232dd828d4d32b5f8741581337ebd98331ef97bed6df",
+    "identical": true
+  },
+  "results/module11_optimized_trial_results.json": {
+    "cuda_repository_sha256": "3bb821d0ca052ff594289658766a5ce1d4a3330e9af88877ea09f9c24f92dd09",
+    "amd_repository_sha256": "3bb821d0ca052ff594289658766a5ce1d4a3330e9af88877ea09f9c24f92dd09",
+    "identical": true
+  },
+  "results/module11_optimized_cpu_timings.json": {
+    "cuda_repository_sha256": "84d2ce50d2a0cd94d43569c33c40dfa98949ce7f2156ac13c4dfb8a3585c7ff6",
+    "amd_repository_sha256": "84d2ce50d2a0cd94d43569c33c40dfa98949ce7f2156ac13c4dfb8a3585c7ff6",
+    "identical": true
+  }
+}

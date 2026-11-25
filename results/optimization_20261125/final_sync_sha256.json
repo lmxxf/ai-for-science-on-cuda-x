@@ -1,0 +1,10 @@
+{
+  "amd_hip_port/cuphoton_xbeam_fx/fx.cpp": "b8e0b8c906c29e4f5fd274f986503f3e131a7949925906cb4809ad5ec5c47c56",
+  "amd_hip_port/nvmolkit_batched_conformer/conformer.cpp": "08f03069a59d7b4717aae34c6a8c2cf9d9f4ec96f4bca86e2fe65d50d3ab7104",
+  "exp9_cuphoton_blackhole_fx_hip.py": "44032ccc5408f73d49111999e0de29a093e9d10f52f7177ffbb30743deb34258",
+  "exp12_open_nvmolkit_batched_conformer_hip.py": "dbe0cfe5f3633c5179adfd9e213feade93cf8aef1d74b9220bc74a12ead740b9",
+  "benchmark_conformer_optimized.py": "6d5e74f1bba742a3ed6284944c91d827f74c50779ab55840385e241b792a7ccb",
+  "results/module11_results.json": "e064b452009401416700c0e74530fc01da5bad55e487b005abfab5494c7cc0d9",
+  "results/module14_results.json": "a16e5e04db9454a1bc648e1eb80b25e1e0399737bc23578731ead3cb0d884ce3",
+  "results/optimization_20261125/latest_ledger.json": "fbeb03ec875207a5b57de477e6c484971da25a95d19f6121b3a987b4077cad22"
+}

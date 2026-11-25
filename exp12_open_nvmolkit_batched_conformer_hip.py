@@ -143,4 +143,8 @@ def main():
  if a.stage in ['run','all']:execute()
  if a.stage=='gpu':execute(gpu_only=True)
  if a.stage in ['summarize','all']:summarize()
-if __name__=='__main__':main()
+if __name__=='__main__':
+ if '--optimized' in sys.argv:
+  sys.argv.remove('--optimized')
+  run([sys.executable,ROOT/'benchmark_conformer_optimized.py',*sys.argv[1:]])
+ else:main()

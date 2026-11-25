@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-25T18:00:22.189440+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_build/fx_optimized_cuda",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_data",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module11_optimized_cuda",
+    "3"
+  ],
+  "elapsed_s": 3.004237953107804,
+  "min_available_gib": 104.85823822021484,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}
