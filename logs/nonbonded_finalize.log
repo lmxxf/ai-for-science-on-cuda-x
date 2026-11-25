@@ -1,0 +1,27 @@
+[
+  {
+    "n": 32000,
+    "input_sha256": "003cec4c76d285d8fbc377f6ebb0de43be5e6c41269d59dcaa54174686ad2a32",
+    "backends": {
+      "cpu": {
+        "description": "original ordered index indirection, exact pair sqrt",
+        "warmup_pipeline_ms": [
+          61.193954,
+          61.097169,
+          61.053634,
+          61.065521,
+          61.060289
+        ],
+        "index_ms": [
+          0.08064,
+          0.081425,
+          0.080928,
+          0.081488,
+          0.083136,
+          0.084129,
+          0.083904
+        ],
+        "reorder_ms": [
+          3.2e-05,
+          3.2e-05,
+Updated versioned module7 and matched README rows; v0 remains default

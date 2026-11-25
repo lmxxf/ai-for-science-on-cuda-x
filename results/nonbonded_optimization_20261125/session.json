@@ -1,0 +1,9 @@
+{
+  "started": "2026-11-25T18:39:00.109173+08:00",
+  "article382_sha256": "937168f32be259022add472536d60a615325fbcdad43388592ff2ceed323e1c1",
+  "scope": "FP64 ordered spatially sorted nonbonded kernels, 32k/128k; no article edits",
+  "input_hashes": {
+    "32000": "003cec4c76d285d8fbc377f6ebb0de43be5e6c41269d59dcaa54174686ad2a32",
+    "128000": "74e421bf4e3929aa8e6f4e2e54ef23a65491f9cc06e8bb7050c08bde8cccfa80"
+  }
+}

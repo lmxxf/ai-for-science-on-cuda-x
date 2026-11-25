@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-11-25T18:43:33.209307+08:00",
+  "command": [
+    ".venv/bin/python",
+    "benchmark_nonbonded_optimized.py",
+    "--stage",
+    "summarize"
+  ],
+  "elapsed_s": 0.250661991070956,
+  "min_available_gib": 108.35403442382812,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

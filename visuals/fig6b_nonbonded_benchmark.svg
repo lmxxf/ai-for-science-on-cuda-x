@@ -1,26 +1,44 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="640" height="330" viewBox="0 0 640 330" font-family="'WenQuanYi Micro Hei','Noto Sans CJK SC',sans-serif">
-<rect width="640" height="330" fill="#ffffff"/>
-<text x="24" y="34" font-size="19" font-weight="bold" fill="#0f172a">三维分子非键力场真机对决：12.8 万原子 RX 9070 XT 反超 17.5%</text>
-<text x="24" y="56" font-size="12.5" fill="#047857" font-weight="bold">双精度 float64：全部 128,000 个能量与 384,000 个受力分量三端逐值一致（相对 L2 差 = 0）</text>
-<text x="24" y="88" font-size="14" font-weight="bold" fill="#0f172a">① 32,000 原子体系（96,000 个三维受力分量，含分桶＋能量＋解析力）</text>
-<text x="24" y="114" font-size="12.8" font-weight="normal" fill="#334155">CPU 单核编译 C++</text>
-<rect x="192" y="101" width="255.0" height="17" rx="3.5" fill="#94a3b8"/>
-<text x="457.0" y="114" font-size="12.5" font-weight="normal" fill="#334155">61.17 ms</text>
-<text x="24" y="141" font-size="12.8" font-weight="normal" fill="#334155">NVIDIA GB10 (CUDA)</text>
-<rect x="192" y="128" width="33.3" height="17" rx="3.5" fill="#2563eb"/>
-<text x="235.3" y="141" font-size="12.5" font-weight="normal" fill="#334155">7.99 ms  (快 7.7×)</text>
-<text x="24" y="168" font-size="12.8" font-weight="bold" fill="#0f172a">AMD RX 9070 XT (HIP)</text>
-<rect x="192" y="155" width="32.9" height="17" rx="3.5" fill="#dc2626"/>
-<text x="234.9" y="168" font-size="12.5" font-weight="bold" fill="#0f172a">7.90 ms  (快 7.7×，追平 GB10)</text>
-<text x="24" y="204" font-size="14" font-weight="bold" fill="#0f172a">② 128,000 原子体系（384,000 个三维受力分量，含分桶＋能量＋解析力）</text>
-<text x="24" y="230" font-size="12.8" font-weight="normal" fill="#334155">CPU 单核编译 C++</text>
-<rect x="192" y="217" width="255.0" height="17" rx="3.5" fill="#94a3b8"/>
-<text x="457.0" y="230" font-size="12.5" font-weight="normal" fill="#334155">242.57 ms</text>
-<text x="24" y="257" font-size="12.8" font-weight="normal" fill="#334155">NVIDIA GB10 (CUDA)</text>
-<rect x="192" y="244" width="28.6" height="17" rx="3.5" fill="#2563eb"/>
-<text x="230.6" y="257" font-size="12.5" font-weight="normal" fill="#334155">27.19 ms  (快 8.9×)</text>
-<text x="24" y="284" font-size="12.8" font-weight="bold" fill="#0f172a">AMD RX 9070 XT (HIP)</text>
-<rect x="192" y="271" width="23.6" height="17" rx="3.5" fill="#dc2626"/>
-<text x="225.6" y="284" font-size="12.5" font-weight="bold" fill="#0f172a">22.43 ms  (快 10.8×，反超 GB10 17.5%)</text>
-<text x="24" y="316" font-size="11.5" fill="#64748b">数据源：DGX Spark (GB10) 与 AMD RX 9070 XT 同源二进制实测（module7）；排版经 Gemini 润色</text>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="1030" viewBox="0 0 640 1030" font-family="'WenQuanYi Micro Hei','Noto Sans CJK SC',sans-serif"><rect width="640" height="1030" fill="#ffffff"/>
+<text x="24" y="39" font-size="25" fill="#203449">非键力场：同源布局优化对照</text>
+<text x="24" y="75" font-size="17" fill="#203449">32K / 128K原子 · float64 · 5次预热＋7次计时</text>
+<text x="24" y="122" font-size="21" fill="#203449">32,000原子：索引＋重排＋全部能量/受力</text>
+<text x="24" y="153" font-size="16" fill="#203449">CPU原公式参考：61.091 ms</text>
+<text x="24" y="189" font-size="17" fill="#203449">默认v0</text>
+<rect x="25" y="197" width="401.467" height="15" fill="#2b82ba"/>
+<text x="485" y="210" font-size="16" fill="#203449">7.992 ms</text>
+<rect x="25" y="219" width="390.199" height="15" fill="#cb5360"/>
+<text x="485" y="232" font-size="16" fill="#203449">7.767 ms</text>
+<text x="24" y="267" font-size="17" fill="#203449">AoS7＋预sqrt v2（前轮）</text>
+<rect x="25" y="275" width="445.000" height="15" fill="#2b82ba"/>
+<text x="485" y="288" font-size="16" fill="#203449">8.858 ms</text>
+<rect x="25" y="297" width="314.277" height="15" fill="#cb5360"/>
+<text x="485" y="310" font-size="16" fill="#203449">6.256 ms</text>
+<text x="24" y="345" font-size="17" fill="#203449">SoA7＋预sqrt v3</text>
+<rect x="25" y="353" width="441.127" height="15" fill="#2b82ba"/>
+<text x="485" y="366" font-size="16" fill="#203449">8.781 ms</text>
+<rect x="25" y="375" width="357.234" height="15" fill="#cb5360"/>
+<text x="485" y="388" font-size="16" fill="#203449">7.111 ms</text>
+<text x="24" y="462" font-size="21" fill="#203449">128,000原子：索引＋重排＋全部能量/受力</text>
+<text x="24" y="493" font-size="16" fill="#203449">CPU原公式参考：240.925 ms</text>
+<text x="24" y="529" font-size="17" fill="#203449">默认v0</text>
+<rect x="25" y="537" width="385.593" height="15" fill="#2b82ba"/>
+<text x="485" y="550" font-size="16" fill="#203449">27.137 ms</text>
+<rect x="25" y="559" width="297.645" height="15" fill="#cb5360"/>
+<text x="485" y="572" font-size="16" fill="#203449">20.948 ms</text>
+<text x="24" y="607" font-size="17" fill="#203449">AoS7＋预sqrt v2（前轮）</text>
+<rect x="25" y="615" width="445.000" height="15" fill="#2b82ba"/>
+<text x="485" y="628" font-size="16" fill="#203449">31.318 ms</text>
+<rect x="25" y="637" width="282.041" height="15" fill="#cb5360"/>
+<text x="485" y="650" font-size="16" fill="#203449">19.850 ms</text>
+<text x="24" y="685" font-size="17" fill="#203449">SoA7＋预sqrt v3</text>
+<rect x="25" y="693" width="440.806" height="15" fill="#2b82ba"/>
+<text x="485" y="706" font-size="16" fill="#203449">31.023 ms</text>
+<rect x="25" y="715" width="287.343" height="15" fill="#cb5360"/>
+<text x="485" y="728" font-size="16" fill="#203449">20.223 ms</text>
+<text x="24" y="817" font-size="17" fill="#203449">蓝：GB10 CUDA　红：RX 9070 XT HIP</text>
+<text x="24" y="854" font-size="17" fill="#203449">候选在AMD有局部收益，GB10回退；默认保留v0。</text>
+<text x="24" y="890" font-size="16" fill="#203449">全部逐原子E / 3N受力：对原CPU相对L2 ≤ 6.70e-17</text>
+<text x="24" y="922" font-size="16" fill="#203449">同变体跨卡全数组一致（L2=0）；独立物理检查通过。</text>
+<text x="24" y="956" font-size="16" fill="#203449">完整任务中位数；传输/分配/I/O另计，不混两卡变体。</text>
+<text x="24" y="991" font-size="15" fill="#667789">128K AMD v3范围20.073–23.258ms，原始时序完整保留。</text>
 </svg>

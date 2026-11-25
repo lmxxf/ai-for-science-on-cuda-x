@@ -1,0 +1,16 @@
+{
+  "timestamp": "2026-11-25T18:41:01.869620+08:00",
+  "command": [
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_build/open_nonbonded_optimized_cpu",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_data/128000",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_optimized/cpu/128000",
+    "opt",
+    "7",
+    "5"
+  ],
+  "elapsed_s": 13.525640454143286,
+  "min_available_gib": 108.2469367980957,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

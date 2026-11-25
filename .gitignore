@@ -55,3 +55,8 @@ results/module15_*.bin
 results/module11_optimized_*/*.bin
 results/module14_optimized_build/
 history/conformer_optimization_*/**/*.bin
+# Nonbonded layout trial arrays/build products remain local
+results/module7_optimized/**/*.bin
+results/module7_optimized_soa/**/*.bin
+results/module7_optimized_previous/**/*.bin
+results/module7_optimized_build/

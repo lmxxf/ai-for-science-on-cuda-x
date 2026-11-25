@@ -1,0 +1,435 @@
+{
+  "physics": {
+    "pair_potential": "Lennard-Jones12-6 plus reaction-field Coulomb, Lorentz-Berthelot mixing",
+    "cutoff_angstrom": 10.0,
+    "rf_dielectric": 78.3,
+    "ke_kj_angstrom_mol_e2": 1389.354576,
+    "lj_shift": "none: hard cutoff, LJ energy/force discontinuous at cutoff; finite differences avoid boundary",
+    "electrostatics": "reaction field, not PME/Ewald; RF energy shifted to zero at cutoff",
+    "exclusions": "none; synthetic atoms, no bonds/1-4 scaling",
+    "pbc": "cubic minimum image; cell width >= cutoff and >=3 cells/axis",
+    "precision": "float64, contraction disabled"
+  },
+  "validation": {
+    "atoms": 216,
+    "box_angstrom": 33.0,
+    "cutoff_angstrom": 10,
+    "cell_side": 3,
+    "bruteforce_energy_kj_mol": -22.435214731397092,
+    "cell_list_energy_kj_mol": -22.43521473139709,
+    "energy_relative_error": 1.5835434255187382e-16,
+    "force_relative_l2": 3.1267416318528884e-16,
+    "net_force_l2": 2.820163168744236e-15,
+    "finite_difference_step": 0.0001,
+    "cutoff_margin": 0.10314331162534351,
+    "finite_difference_max_abs_error": 1.051547737773717e-10,
+    "finite_difference_checks": [
+      {
+        "atom": 0,
+        "axis": 0,
+        "finite_difference": -0.008843786076795368,
+        "analytic": -0.008843786069588957,
+        "abs_error": 7.20641081530804e-12
+      },
+      {
+        "atom": 1,
+        "axis": 1,
+        "finite_difference": -0.7641696345039861,
+        "analytic": -0.7641696343988313,
+        "abs_error": 1.051547737773717e-10
+      },
+      {
+        "atom": 17,
+        "axis": 2,
+        "finite_difference": -0.2278144970091489,
+        "analytic": -0.22781449692797884,
+        "abs_error": 8.117007066488213e-11
+      },
+      {
+        "atom": 53,
+        "axis": 0,
+        "finite_difference": -0.01911142641475294,
+        "analytic": -0.019111426413012004,
+        "abs_error": 1.740937255467756e-12
+      },
+      {
+        "atom": 100,
+        "axis": 1,
+        "finite_difference": 0.014037388407217577,
+        "analytic": 0.014037388396956096,
+        "abs_error": 1.0261480901108122e-11
+      },
+      {
+        "atom": 200,
+        "axis": 2,
+        "finite_difference": -0.10352199174334942,
+        "analytic": -0.10352199179798749,
+        "abs_error": 5.4638071844692604e-11
+      }
+    ],
+    "periodic_translation_force_relative_l2": 1.2301641488325457e-15,
+    "periodic_translation_energy_abs_diff": 2.1316282072803006e-14
+  },
+  "systems": [
+    {
+      "n": 32000,
+      "metadata": {
+        "atoms": 32000,
+        "box_angstrom": 112.0,
+        "seed": 20261123,
+        "minimum_spacing_lower_bound_angstrom": 3.2,
+        "units": {
+          "position": "angstrom",
+          "charge": "elementary e",
+          "sigma": "angstrom",
+          "epsilon": "kJ/mol",
+          "force": "kJ/(mol angstrom)"
+        },
+        "rf_dielectric": 78.3,
+        "net_charge": 7.460698725481052e-14,
+        "input_sha256": "003cec4c76d285d8fbc377f6ebb0de43be5e6c41269d59dcaa54174686ad2a32",
+        "workload": "synthetic jittered lattice of neutral total charge, NOT a validated molecular topology or solvent trajectory"
+      },
+      "backends": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201773,
+          "h2d_ms": 0,
+          "d2h_ms": 0,
+          "cold_pipeline_ms": 61.471011,
+          "index_ms": [
+            0.081857,
+            0.081233,
+            0.081074
+          ],
+          "force_ms": [
+            61.084684,
+            61.120301,
+            61.036795
+          ],
+          "pipeline_ms": [
+            61.168222,
+            61.291248,
+            61.105661
+          ],
+          "index_median_ms": 0.081233,
+          "force_median_ms": 61.084684,
+          "pipeline_median_ms": 61.168222,
+          "evaluations_per_s": 16.34835813929658,
+          "warmups": 2,
+          "repeats": 3,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 1.6761312341463297e-13,
+          "canonical_numpy_total_energy_kj_mol": -27324.631620201777,
+          "reported_host_total_relative_error_vs_cpu": 0.0,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201773,
+          "h2d_ms": 0.059809,
+          "d2h_ms": 0.045872,
+          "cold_pipeline_ms": 8.046659,
+          "index_ms": [
+            0.073265,
+            0.073506,
+            0.072817,
+            0.073041,
+            0.073441,
+            0.073297,
+            0.072193
+          ],
+          "force_ms": [
+            7.920848,
+            7.922288,
+            7.919649,
+            7.920976,
+            7.92136,
+            7.923473,
+            7.921072
+          ],
+          "pipeline_ms": [
+            7.992897,
+            7.994769,
+            7.990993,
+            7.99549,
+            7.994753,
+            7.991185,
+            7.992194
+          ],
+          "index_median_ms": 0.073265,
+          "force_median_ms": 7.921072,
+          "pipeline_median_ms": 7.992897,
+          "evaluations_per_s": 125.11108300282113,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 1.6761312341463297e-13,
+          "canonical_numpy_total_energy_kj_mol": -27324.631620201777,
+          "reported_host_total_relative_error_vs_cpu": 0.0,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201722,
+          "h2d_ms": 7.9122,
+          "d2h_ms": 0.9681,
+          "cold_pipeline_ms": 18.5927,
+          "index_ms": [
+            0.2028,
+            0.1733,
+            0.1857,
+            0.1988,
+            0.1701,
+            0.1773,
+            0.1715
+          ],
+          "force_ms": [
+            8.7619,
+            8.3021,
+            8.1117,
+            7.9016,
+            7.7154,
+            7.5696,
+            7.4079
+          ],
+          "pipeline_ms": [
+            8.5344,
+            8.3067,
+            8.0419,
+            7.901,
+            7.7441,
+            7.5803,
+            7.465
+          ],
+          "index_median_ms": 0.1773,
+          "force_median_ms": 7.9016,
+          "pipeline_median_ms": 7.901,
+          "evaluations_per_s": 126.56625743576762,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 1.6761312341463297e-13,
+          "canonical_numpy_total_energy_kj_mol": -27324.631620201777,
+          "reported_host_total_relative_error_vs_cpu": 1.863948396714304e-15,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        }
+      },
+      "hip_vs_cuda": {
+        "energy_relative_error": 0.0,
+        "force_relative_l2": 0.0,
+        "force_max_abs_diff": 0.0
+      }
+    },
+    {
+      "n": 128000,
+      "metadata": {
+        "atoms": 128000,
+        "box_angstrom": 178.5,
+        "seed": 20261123,
+        "minimum_spacing_lower_bound_angstrom": 3.2,
+        "units": {
+          "position": "angstrom",
+          "charge": "elementary e",
+          "sigma": "angstrom",
+          "epsilon": "kJ/mol",
+          "force": "kJ/(mol angstrom)"
+        },
+        "rf_dielectric": 78.3,
+        "net_charge": 3.907985046680551e-14,
+        "input_sha256": "74e421bf4e3929aa8e6f4e2e54ef23a65491f9cc06e8bb7050c08bde8cccfa80",
+        "workload": "synthetic jittered lattice of neutral total charge, NOT a validated molecular topology or solvent trajectory"
+      },
+      "backends": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.98975443607,
+          "h2d_ms": 0,
+          "d2h_ms": 0,
+          "cold_pipeline_ms": 241.774715,
+          "index_ms": [
+            0.4302,
+            0.882496,
+            0.503209
+          ],
+          "force_ms": [
+            240.913402,
+            242.461297,
+            241.3103
+          ],
+          "pipeline_ms": [
+            241.837912,
+            243.172799,
+            242.56688
+          ],
+          "index_median_ms": 0.503209,
+          "force_median_ms": 241.3103,
+          "pipeline_median_ms": 242.56688,
+          "evaluations_per_s": 4.122574359698241,
+          "warmups": 2,
+          "repeats": 3,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 9.376150185387877e-12,
+          "canonical_numpy_total_energy_kj_mol": -111438.98975443607,
+          "reported_host_total_relative_error_vs_cpu": 0.0,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.98975443607,
+          "h2d_ms": 0.14693,
+          "d2h_ms": 0.096977,
+          "cold_pipeline_ms": 27.208344,
+          "index_ms": [
+            0.088145,
+            0.087713,
+            0.087586,
+            0.087665,
+            0.087713,
+            0.087889,
+            0.086961
+          ],
+          "force_ms": [
+            26.997941,
+            27.064214,
+            27.104086,
+            27.251465,
+            27.039525,
+            27.132358,
+            27.128743
+          ],
+          "pipeline_ms": [
+            27.239704,
+            27.201143,
+            27.235544,
+            27.166071,
+            27.076646,
+            27.187688,
+            27.106598
+          ],
+          "index_median_ms": 0.087713,
+          "force_median_ms": 27.104086,
+          "pipeline_median_ms": 27.187688,
+          "evaluations_per_s": 36.78135485444735,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 9.376150185387877e-12,
+          "canonical_numpy_total_energy_kj_mol": -111438.98975443607,
+          "reported_host_total_relative_error_vs_cpu": 0.0,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.9897544373,
+          "h2d_ms": 8.0193,
+          "d2h_ms": 1.361,
+          "cold_pipeline_ms": 42.3166,
+          "index_ms": [
+            0.28,
+            0.2542,
+            0.2705,
+            0.2785,
+            0.2894,
+            0.2261,
+            0.2286
+          ],
+          "force_ms": [
+            28.4369,
+            25.866,
+            24.1813,
+            23.1128,
+            21.497,
+            20.5189,
+            19.7061
+          ],
+          "pipeline_ms": [
+            27.3093,
+            25.4352,
+            23.6548,
+            22.4264,
+            21.2392,
+            20.321,
+            19.4669
+          ],
+          "index_median_ms": 0.2705,
+          "force_median_ms": 23.1128,
+          "pipeline_median_ms": 22.4264,
+          "evaluations_per_s": 44.59030428423643,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate",
+          "energy_relative_error_vs_cpu": 0.0,
+          "force_relative_l2_vs_cpu": 0.0,
+          "force_max_abs_diff_vs_cpu": 0.0,
+          "net_force_l2": 9.376150185387877e-12,
+          "canonical_numpy_total_energy_kj_mol": -111438.98975443607,
+          "reported_host_total_relative_error_vs_cpu": 1.096887975991494e-14,
+          "energy_array_bitwise_equal_cpu": true,
+          "force_array_bitwise_equal_cpu": true
+        }
+      },
+      "hip_vs_cuda": {
+        "energy_relative_error": 0.0,
+        "force_relative_l2": 0.0,
+        "force_max_abs_diff": 0.0
+      }
+    }
+  ]
+}

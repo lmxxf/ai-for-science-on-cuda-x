@@ -1,5 +1,8 @@
 # Open nonbonded CPU / CUDA / HIP
 
+
+2026-11-25布局对照已完成：默认保留v0，AoS/SoA候选的AMD局部收益与GB10回退见[最新优化记录](OPTIMIZATION_NOTES.md)。下面原计时表为初版基线；完整复测入口：`python exp5_open_cupotential_hip.py --optimized`（在仓库根目录）。
+
 Original MIT implementation for this experiment. **Not NVIDIA cuPotential, not libcupo source, not API-compatible, not a complete molecular dynamics engine.** `open_nonbonded.cpp` is the same source compiled for CPU, CUDA or HIP; vendor primitives are CUB/hipCUB, which remain separately licensed dependencies.
 
 ## Physics and scope

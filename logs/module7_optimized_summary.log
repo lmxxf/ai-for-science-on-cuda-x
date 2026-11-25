@@ -1,0 +1,2089 @@
+{
+  "status": "PASS",
+  "precision": "same CPU/CUDA/HIP source, FP64 noFMA/no fastmath",
+  "protocol": "5 complete warmups +7 measured complete repeats; independently measured index/reorder/force and full pipeline synchronized host wall; allocations I/O/H2D/D2H separate",
+  "source_sha256": "ed74b96b35c183e7e6215bf8d0952f5d16c71258a87ca2b4e9989683a2f1b4f0",
+  "benchmark_sha256": "85964ed8fbd1ca404be82191cde22f65f624e56a81dd36bced75e4624688f706",
+  "physics_validation": {
+    "v0": {
+      "energy_relative_error_vs_independent_bruteforce": 1.5835434255187382e-16,
+      "force_relative_l2_vs_independent_bruteforce": 3.1267416318528884e-16,
+      "net_force_l2": 2.820163168744236e-15,
+      "periodic_translation_force_relative_l2": 1.2301641488325457e-15,
+      "periodic_translation_energy_abs_diff": 2.1316282072803006e-14,
+      "finite_difference_step_A": 0.0001,
+      "cutoff_margin_A": 0.10314331162534351,
+      "finite_difference_checks": [
+        {
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": -0.008843786076795368,
+          "analytic": -0.008843786069588957,
+          "abs_error": 7.20641081530804e-12
+        },
+        {
+          "atom": 1,
+          "axis": 1,
+          "finite_difference": -0.7641696345039861,
+          "analytic": -0.7641696343988313,
+          "abs_error": 1.051547737773717e-10
+        },
+        {
+          "atom": 17,
+          "axis": 2,
+          "finite_difference": -0.2278144970091489,
+          "analytic": -0.22781449692797884,
+          "abs_error": 8.117007066488213e-11
+        },
+        {
+          "atom": 53,
+          "axis": 0,
+          "finite_difference": -0.01911142641475294,
+          "analytic": -0.019111426413012004,
+          "abs_error": 1.740937255467756e-12
+        },
+        {
+          "atom": 100,
+          "axis": 1,
+          "finite_difference": 0.014037388407217577,
+          "analytic": 0.014037388396956096,
+          "abs_error": 1.0261480901108122e-11
+        },
+        {
+          "atom": 200,
+          "axis": 2,
+          "finite_difference": -0.10352199174334942,
+          "analytic": -0.10352199179798749,
+          "abs_error": 5.4638071844692604e-11
+        }
+      ]
+    },
+    "v1": {
+      "energy_relative_error_vs_independent_bruteforce": 1.5835434255187382e-16,
+      "force_relative_l2_vs_independent_bruteforce": 3.1267416318528884e-16,
+      "net_force_l2": 2.820163168744236e-15,
+      "periodic_translation_force_relative_l2": 1.2301641488325457e-15,
+      "periodic_translation_energy_abs_diff": 2.1316282072803006e-14,
+      "finite_difference_step_A": 0.0001,
+      "cutoff_margin_A": 0.10314331162534351,
+      "finite_difference_checks": [
+        {
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": -0.008843786076795368,
+          "analytic": -0.008843786069588957,
+          "abs_error": 7.20641081530804e-12
+        },
+        {
+          "atom": 1,
+          "axis": 1,
+          "finite_difference": -0.7641696345039861,
+          "analytic": -0.7641696343988313,
+          "abs_error": 1.051547737773717e-10
+        },
+        {
+          "atom": 17,
+          "axis": 2,
+          "finite_difference": -0.2278144970091489,
+          "analytic": -0.22781449692797884,
+          "abs_error": 8.117007066488213e-11
+        },
+        {
+          "atom": 53,
+          "axis": 0,
+          "finite_difference": -0.01911142641475294,
+          "analytic": -0.019111426413012004,
+          "abs_error": 1.740937255467756e-12
+        },
+        {
+          "atom": 100,
+          "axis": 1,
+          "finite_difference": 0.014037388407217577,
+          "analytic": 0.014037388396956096,
+          "abs_error": 1.0261480901108122e-11
+        },
+        {
+          "atom": 200,
+          "axis": 2,
+          "finite_difference": -0.10352199174334942,
+          "analytic": -0.10352199179798749,
+          "abs_error": 5.4638071844692604e-11
+        }
+      ]
+    },
+    "v2": {
+      "energy_relative_error_vs_independent_bruteforce": 1.5835434255187382e-16,
+      "force_relative_l2_vs_independent_bruteforce": 3.190480463285777e-16,
+      "net_force_l2": 4.072037137502106e-15,
+      "periodic_translation_force_relative_l2": 1.23240130751086e-15,
+      "periodic_translation_energy_abs_diff": 2.1316282072803006e-14,
+      "finite_difference_step_A": 0.0001,
+      "cutoff_margin_A": 0.10314331162534351,
+      "finite_difference_checks": [
+        {
+          "atom": 0,
+          "axis": 0,
+          "finite_difference": -0.008843786076795368,
+          "analytic": -0.008843786069588957,
+          "abs_error": 7.20641081530804e-12
+        },
+        {
+          "atom": 1,
+          "axis": 1,
+          "finite_difference": -0.7641696345039861,
+          "analytic": -0.7641696343988313,
+          "abs_error": 1.051547737773717e-10
+        },
+        {
+          "atom": 17,
+          "axis": 2,
+          "finite_difference": -0.2278144970091489,
+          "analytic": -0.22781449692797884,
+          "abs_error": 8.117007066488213e-11
+        },
+        {
+          "atom": 53,
+          "axis": 0,
+          "finite_difference": -0.01911142641475294,
+          "analytic": -0.019111426413011997,
+          "abs_error": 1.74094419436166e-12
+        },
+        {
+          "atom": 100,
+          "axis": 1,
+          "finite_difference": 0.014037388407217577,
+          "analytic": 0.014037388396956096,
+          "abs_error": 1.0261480901108122e-11
+        },
+        {
+          "atom": 200,
+          "axis": 2,
+          "finite_difference": -0.10352199174334942,
+          "analytic": -0.10352199179798749,
+          "abs_error": 5.4638071844692604e-11
+        }
+      ]
+    }
+  },
+  "systems": [
+    {
+      "n": 32000,
+      "input_sha256": "003cec4c76d285d8fbc377f6ebb0de43be5e6c41269d59dcaa54174686ad2a32",
+      "backends": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 0,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                61.193954,
+                61.097169,
+                61.053634,
+                61.065521,
+                61.060289
+              ],
+              "index_ms": [
+                0.08064,
+                0.081425,
+                0.080928,
+                0.081488,
+                0.083136,
+                0.084129,
+                0.083904
+              ],
+              "reorder_ms": [
+                3.2e-05,
+                3.2e-05,
+                1.6e-05,
+                1.6e-05,
+                3.2e-05,
+                3.2e-05,
+                3.2e-05
+              ],
+              "force_ms": [
+                60.969201,
+                61.000129,
+                61.027921,
+                61.039217,
+                61.004305,
+                60.983937,
+                61.034785
+              ],
+              "pipeline_ms": [
+                61.063777,
+                61.091233,
+                61.256227,
+                61.09997,
+                61.087777,
+                61.095569,
+                61.070274
+              ],
+              "index_median_ms": 0.081488,
+              "reorder_median_ms": 3.2e-05,
+              "force_median_ms": 61.004305,
+              "pipeline_median_ms": 61.091233,
+              "pipeline_min_ms": 61.063777,
+              "pipeline_max_ms": 61.256227,
+              "d2h_ms": 0
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                56.927788,
+                56.684426,
+                56.613818,
+                56.556793,
+                56.562986
+              ],
+              "index_ms": [
+                0.083312,
+                0.081393,
+                0.081665,
+                0.084321,
+                0.084528,
+                0.080209,
+                0.082065
+              ],
+              "reorder_ms": [
+                0.052945,
+                0.052672,
+                0.053456,
+                0.054128,
+                0.054176,
+                0.054384,
+                0.056256
+              ],
+              "force_ms": [
+                56.465385,
+                56.491257,
+                56.605706,
+                56.477785,
+                56.486058,
+                56.434425,
+                56.470329
+              ],
+              "pipeline_ms": [
+                56.607225,
+                56.650314,
+                56.612297,
+                56.568026,
+                56.573401,
+                56.581817,
+                56.610602
+              ],
+              "index_median_ms": 0.082065,
+              "reorder_median_ms": 0.054128,
+              "force_median_ms": 56.477785,
+              "pipeline_median_ms": 56.607225,
+              "pipeline_min_ms": 56.568026,
+              "pipeline_max_ms": 56.650314,
+              "d2h_ms": 0
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                56.161112,
+                55.728965,
+                55.857029,
+                55.72047,
+                55.715845
+              ],
+              "index_ms": [
+                0.08216,
+                0.081248,
+                0.088081,
+                0.0832,
+                0.084208,
+                0.088401,
+                0.082305
+              ],
+              "reorder_ms": [
+                0.058576,
+                0.057536,
+                0.05888,
+                0.058145,
+                0.057633,
+                0.061888,
+                0.055056
+              ],
+              "force_ms": [
+                55.584101,
+                55.629093,
+                55.606965,
+                55.592388,
+                55.550148,
+                55.672213,
+                55.617236
+              ],
+              "pipeline_ms": [
+                55.710981,
+                55.786341,
+                55.748629,
+                55.698213,
+                55.770245,
+                55.787653,
+                55.745174
+              ],
+              "index_median_ms": 0.0832,
+              "reorder_median_ms": 0.058145,
+              "force_median_ms": 55.606965,
+              "pipeline_median_ms": 55.748629,
+              "pipeline_min_ms": 55.698213,
+              "pipeline_max_ms": 55.787653,
+              "d2h_ms": 0
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              56.161112,
+              55.728965,
+              55.857029,
+              55.72047,
+              55.715845
+            ],
+            "index_ms": [
+              0.08216,
+              0.081248,
+              0.088081,
+              0.0832,
+              0.084208,
+              0.088401,
+              0.082305
+            ],
+            "reorder_ms": [
+              0.058576,
+              0.057536,
+              0.05888,
+              0.058145,
+              0.057633,
+              0.061888,
+              0.055056
+            ],
+            "force_ms": [
+              55.584101,
+              55.629093,
+              55.606965,
+              55.592388,
+              55.550148,
+              55.672213,
+              55.617236
+            ],
+            "pipeline_ms": [
+              55.710981,
+              55.786341,
+              55.748629,
+              55.698213,
+              55.770245,
+              55.787653,
+              55.745174
+            ],
+            "index_median_ms": 0.0832,
+            "reorder_median_ms": 0.058145,
+            "force_median_ms": 55.606965,
+            "pipeline_median_ms": 55.748629,
+            "pipeline_min_ms": 55.698213,
+            "pipeline_max_ms": 55.787653,
+            "d2h_ms": 0
+          },
+          "same_harness_speedup_vs_v0": 1.0958338186217997,
+          "selected_pipeline_CV_percent": 0.058229244711307734
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 0.064385,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                8.050314,
+                7.992618,
+                7.99081,
+                7.987642,
+                7.991594
+              ],
+              "index_ms": [
+                0.073345,
+                0.073169,
+                0.072561,
+                0.162528,
+                0.073456,
+                0.073168,
+                0.073712
+              ],
+              "reorder_ms": [
+                0.000272,
+                0.000272,
+                0.000256,
+                0.000272,
+                0.000256,
+                0.000256,
+                0.000224
+              ],
+              "force_ms": [
+                7.921689,
+                7.919385,
+                7.922089,
+                7.923162,
+                8.212651,
+                7.961098,
+                7.922794
+              ],
+              "pipeline_ms": [
+                7.990074,
+                7.991322,
+                8.046539,
+                8.075403,
+                8.281084,
+                7.992474,
+                7.992634
+              ],
+              "index_median_ms": 0.073345,
+              "reorder_median_ms": 0.000256,
+              "force_median_ms": 7.922794,
+              "pipeline_median_ms": 7.992634,
+              "pipeline_min_ms": 7.990074,
+              "pipeline_max_ms": 8.281084,
+              "d2h_ms": 0.043728
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                9.33901,
+                9.302768,
+                9.300369,
+                9.296961,
+                9.300033
+              ],
+              "index_ms": [
+                0.072992,
+                0.073152,
+                0.074657,
+                0.072816,
+                0.072784,
+                0.073232,
+                0.070673
+              ],
+              "reorder_ms": [
+                0.018512,
+                0.018544,
+                0.018896,
+                0.018753,
+                0.018768,
+                0.01864,
+                0.018752
+              ],
+              "force_ms": [
+                9.211041,
+                9.211265,
+                9.214048,
+                9.212896,
+                9.210433,
+                9.211008,
+                9.213632
+              ],
+              "pipeline_ms": [
+                9.297105,
+                9.295392,
+                9.299121,
+                9.299601,
+                9.310721,
+                9.298625,
+                9.297953
+              ],
+              "index_median_ms": 0.072992,
+              "reorder_median_ms": 0.018752,
+              "force_median_ms": 9.211265,
+              "pipeline_median_ms": 9.298625,
+              "pipeline_min_ms": 9.295392,
+              "pipeline_max_ms": 9.310721,
+              "d2h_ms": 0.033072
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                8.899135,
+                8.863759,
+                8.85891,
+                8.859791,
+                8.855662
+              ],
+              "index_ms": [
+                0.072881,
+                0.072833,
+                0.072784,
+                0.072912,
+                0.072864,
+                0.07312,
+                0.07328
+              ],
+              "reorder_ms": [
+                0.018208,
+                0.018592,
+                0.01856,
+                0.018608,
+                0.018464,
+                0.018768,
+                0.018448
+              ],
+              "force_ms": [
+                8.774702,
+                8.77651,
+                8.772606,
+                8.773918,
+                8.775214,
+                8.776174,
+                8.804175
+              ],
+              "pipeline_ms": [
+                8.85547,
+                8.859487,
+                8.858159,
+                8.861023,
+                8.856543,
+                8.858223,
+                8.85611
+              ],
+              "index_median_ms": 0.072881,
+              "reorder_median_ms": 0.01856,
+              "force_median_ms": 8.775214,
+              "pipeline_median_ms": 8.858159,
+              "pipeline_min_ms": 8.85547,
+              "pipeline_max_ms": 8.861023,
+              "d2h_ms": 0.031824
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              8.899135,
+              8.863759,
+              8.85891,
+              8.859791,
+              8.855662
+            ],
+            "index_ms": [
+              0.072881,
+              0.072833,
+              0.072784,
+              0.072912,
+              0.072864,
+              0.07312,
+              0.07328
+            ],
+            "reorder_ms": [
+              0.018208,
+              0.018592,
+              0.01856,
+              0.018608,
+              0.018464,
+              0.018768,
+              0.018448
+            ],
+            "force_ms": [
+              8.774702,
+              8.77651,
+              8.772606,
+              8.773918,
+              8.775214,
+              8.776174,
+              8.804175
+            ],
+            "pipeline_ms": [
+              8.85547,
+              8.859487,
+              8.858159,
+              8.861023,
+              8.856543,
+              8.858223,
+              8.85611
+            ],
+            "index_median_ms": 0.072881,
+            "reorder_median_ms": 0.01856,
+            "force_median_ms": 8.775214,
+            "pipeline_median_ms": 8.858159,
+            "pipeline_min_ms": 8.85547,
+            "pipeline_max_ms": 8.861023,
+            "d2h_ms": 0.031824
+          },
+          "same_harness_speedup_vs_v0": 0.9022906452683903,
+          "selected_pipeline_CV_percent": 0.020633010476432203
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 13.1716,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                19.3653,
+                8.7556,
+                8.7133,
+                8.6408,
+                8.5273
+              ],
+              "index_ms": [
+                0.1742,
+                0.1892,
+                0.1667,
+                0.1549,
+                0.1739,
+                0.1717,
+                0.1693
+              ],
+              "reorder_ms": [
+                0.0004,
+                0.0003,
+                0.0003,
+                0.0003,
+                0.0002,
+                0.0005,
+                0.0003
+              ],
+              "force_ms": [
+                8.2784,
+                8.1009,
+                7.9135,
+                7.7317,
+                7.5864,
+                7.4133,
+                7.2707
+              ],
+              "pipeline_ms": [
+                8.2645,
+                8.0203,
+                7.909,
+                7.7232,
+                7.6282,
+                7.414,
+                7.2254
+              ],
+              "index_median_ms": 0.1717,
+              "reorder_median_ms": 0.0003,
+              "force_median_ms": 7.7317,
+              "pipeline_median_ms": 7.7232,
+              "pipeline_min_ms": 7.2254,
+              "pipeline_max_ms": 8.2645,
+              "d2h_ms": 0.9775
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                8.3669,
+                8.3354,
+                8.2425,
+                8.3028,
+                8.0088
+              ],
+              "index_ms": [
+                0.1618,
+                0.1616,
+                0.1742,
+                0.1995,
+                0.1496,
+                0.1487,
+                0.1512
+              ],
+              "reorder_ms": [
+                0.0892,
+                0.0937,
+                0.0827,
+                0.0878,
+                0.071,
+                0.0742,
+                0.0859
+              ],
+              "force_ms": [
+                7.8707,
+                7.7058,
+                7.5633,
+                7.4207,
+                7.312,
+                7.19,
+                7.0609
+              ],
+              "pipeline_ms": [
+                7.854,
+                7.8423,
+                7.6447,
+                7.4222,
+                7.2972,
+                7.1856,
+                7.0689
+              ],
+              "index_median_ms": 0.1616,
+              "reorder_median_ms": 0.0859,
+              "force_median_ms": 7.4207,
+              "pipeline_median_ms": 7.4222,
+              "pipeline_min_ms": 7.0689,
+              "pipeline_max_ms": 7.854,
+              "d2h_ms": 0.5664
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                6.8055,
+                6.6449,
+                6.6023,
+                6.5312,
+                6.5108
+              ],
+              "index_ms": [
+                0.164,
+                0.1692,
+                0.1424,
+                0.1448,
+                0.1389,
+                0.1469,
+                0.2468
+              ],
+              "reorder_ms": [
+                0.09,
+                0.0913,
+                0.0778,
+                0.0726,
+                0.0882,
+                0.1496,
+                0.135
+              ],
+              "force_ms": [
+                6.3915,
+                6.3132,
+                6.2431,
+                6.1075,
+                6.0947,
+                6.0839,
+                6.0351
+              ],
+              "pipeline_ms": [
+                6.4226,
+                6.2823,
+                6.256,
+                6.4704,
+                6.1506,
+                6.1769,
+                6.1199
+              ],
+              "index_median_ms": 0.1469,
+              "reorder_median_ms": 0.09,
+              "force_median_ms": 6.1075,
+              "pipeline_median_ms": 6.256,
+              "pipeline_min_ms": 6.1199,
+              "pipeline_max_ms": 6.4704,
+              "d2h_ms": 0.6003
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              6.8055,
+              6.6449,
+              6.6023,
+              6.5312,
+              6.5108
+            ],
+            "index_ms": [
+              0.164,
+              0.1692,
+              0.1424,
+              0.1448,
+              0.1389,
+              0.1469,
+              0.2468
+            ],
+            "reorder_ms": [
+              0.09,
+              0.0913,
+              0.0778,
+              0.0726,
+              0.0882,
+              0.1496,
+              0.135
+            ],
+            "force_ms": [
+              6.3915,
+              6.3132,
+              6.2431,
+              6.1075,
+              6.0947,
+              6.0839,
+              6.0351
+            ],
+            "pipeline_ms": [
+              6.4226,
+              6.2823,
+              6.256,
+              6.4704,
+              6.1506,
+              6.1769,
+              6.1199
+            ],
+            "index_median_ms": 0.1469,
+            "reorder_median_ms": 0.09,
+            "force_median_ms": 6.1075,
+            "pipeline_median_ms": 6.256,
+            "pipeline_min_ms": 6.1199,
+            "pipeline_max_ms": 6.4704,
+            "d2h_ms": 0.6003
+          },
+          "same_harness_speedup_vs_v0": 1.2345268542199488,
+          "selected_pipeline_CV_percent": 1.9928110946611854
+        }
+      },
+      "comparisons": {
+        "cpu_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.692090895590576e-17,
+          "force_array_relative_l2": 6.478282650562961e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.692090895590576e-17,
+          "force_array_relative_l2": 6.478282650562961e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.692090895590576e-17,
+          "force_array_relative_l2": 6.478282650562961e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v0_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v1_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v2_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        }
+      },
+      "previous_single_run_timings": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201773,
+          "h2d_ms": 0,
+          "d2h_ms": 0,
+          "cold_pipeline_ms": 61.471011,
+          "index_ms": [
+            0.081857,
+            0.081233,
+            0.081074
+          ],
+          "force_ms": [
+            61.084684,
+            61.120301,
+            61.036795
+          ],
+          "pipeline_ms": [
+            61.168222,
+            61.291248,
+            61.105661
+          ],
+          "index_median_ms": 0.081233,
+          "force_median_ms": 61.084684,
+          "pipeline_median_ms": 61.168222,
+          "evaluations_per_s": 16.34835813929658,
+          "warmups": 2,
+          "repeats": 3,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201773,
+          "h2d_ms": 0.059809,
+          "d2h_ms": 0.045872,
+          "cold_pipeline_ms": 8.046659,
+          "index_ms": [
+            0.073265,
+            0.073506,
+            0.072817,
+            0.073041,
+            0.073441,
+            0.073297,
+            0.072193
+          ],
+          "force_ms": [
+            7.920848,
+            7.922288,
+            7.919649,
+            7.920976,
+            7.92136,
+            7.923473,
+            7.921072
+          ],
+          "pipeline_ms": [
+            7.992897,
+            7.994769,
+            7.990993,
+            7.99549,
+            7.994753,
+            7.991185,
+            7.992194
+          ],
+          "index_median_ms": 0.073265,
+          "force_median_ms": 7.921072,
+          "pipeline_median_ms": 7.992897,
+          "evaluations_per_s": 125.11108300282113,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 32000,
+          "box_angstrom": 112,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 11,
+          "energy_kj_per_mol": -27324.631620201722,
+          "h2d_ms": 7.9122,
+          "d2h_ms": 0.9681,
+          "cold_pipeline_ms": 18.5927,
+          "index_ms": [
+            0.2028,
+            0.1733,
+            0.1857,
+            0.1988,
+            0.1701,
+            0.1773,
+            0.1715
+          ],
+          "force_ms": [
+            8.7619,
+            8.3021,
+            8.1117,
+            7.9016,
+            7.7154,
+            7.5696,
+            7.4079
+          ],
+          "pipeline_ms": [
+            8.5344,
+            8.3067,
+            8.0419,
+            7.901,
+            7.7441,
+            7.5803,
+            7.465
+          ],
+          "index_median_ms": 0.1773,
+          "force_median_ms": 7.9016,
+          "pipeline_median_ms": 7.901,
+          "evaluations_per_s": 126.56625743576762,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        }
+      }
+    },
+    {
+      "n": 128000,
+      "input_sha256": "74e421bf4e3929aa8e6f4e2e54ef23a65491f9cc06e8bb7050c08bde8cccfa80",
+      "backends": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 0,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                241.169988,
+                241.113764,
+                240.968628,
+                241.067971,
+                241.040276
+              ],
+              "index_ms": [
+                0.36789,
+                0.366994,
+                0.368946,
+                0.356738,
+                0.36125,
+                0.36109,
+                0.350546
+              ],
+              "reorder_ms": [
+                1.6e-05,
+                1.6e-05,
+                1.6e-05,
+                1.6e-05,
+                1.6e-05,
+                1.6e-05,
+                1.6e-05
+              ],
+              "force_ms": [
+                240.665905,
+                240.546993,
+                240.772706,
+                240.657457,
+                240.638145,
+                240.646385,
+                240.784898
+              ],
+              "pipeline_ms": [
+                240.924563,
+                240.82789,
+                240.872739,
+                241.081252,
+                241.068227,
+                240.981715,
+                240.914211
+              ],
+              "index_median_ms": 0.36125,
+              "reorder_median_ms": 1.6e-05,
+              "force_median_ms": 240.657457,
+              "pipeline_median_ms": 240.924563,
+              "pipeline_min_ms": 240.82789,
+              "pipeline_max_ms": 241.081252,
+              "d2h_ms": 0
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                229.647639,
+                229.312485,
+                229.279605,
+                229.133445,
+                229.1333
+              ],
+              "index_ms": [
+                0.436051,
+                0.427299,
+                0.420178,
+                0.427378,
+                0.414018,
+                0.432099,
+                0.427666
+              ],
+              "reorder_ms": [
+                0.565667,
+                0.545667,
+                0.524803,
+                0.561059,
+                0.522707,
+                0.539651,
+                0.515699
+              ],
+              "force_ms": [
+                228.092143,
+                228.414976,
+                228.146175,
+                228.255007,
+                228.187231,
+                228.125438,
+                228.26456
+              ],
+              "pipeline_ms": [
+                229.214484,
+                229.194821,
+                229.314358,
+                229.41327,
+                229.247413,
+                229.394166,
+                229.068163
+              ],
+              "index_median_ms": 0.427378,
+              "reorder_median_ms": 0.539651,
+              "force_median_ms": 228.187231,
+              "pipeline_median_ms": 229.247413,
+              "pipeline_min_ms": 229.068163,
+              "pipeline_max_ms": 229.41327,
+              "d2h_ms": 0
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                228.131807,
+                227.593244,
+                227.513532,
+                227.533211,
+                227.667133
+              ],
+              "index_ms": [
+                0.445474,
+                0.420082,
+                0.425682,
+                0.431058,
+                0.424994,
+                0.436242,
+                0.441282
+              ],
+              "reorder_ms": [
+                0.598963,
+                0.531523,
+                0.563715,
+                0.540387,
+                0.531747,
+                0.523779,
+                0.551251
+              ],
+              "force_ms": [
+                226.636903,
+                226.462358,
+                226.596823,
+                226.650807,
+                226.51095,
+                226.51279,
+                226.584743
+              ],
+              "pipeline_ms": [
+                227.776605,
+                227.612796,
+                227.590428,
+                227.634124,
+                227.430395,
+                227.656172,
+                227.794764
+              ],
+              "index_median_ms": 0.431058,
+              "reorder_median_ms": 0.540387,
+              "force_median_ms": 226.584743,
+              "pipeline_median_ms": 227.634124,
+              "pipeline_min_ms": 227.430395,
+              "pipeline_max_ms": 227.794764,
+              "d2h_ms": 0
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              228.131807,
+              227.593244,
+              227.513532,
+              227.533211,
+              227.667133
+            ],
+            "index_ms": [
+              0.445474,
+              0.420082,
+              0.425682,
+              0.431058,
+              0.424994,
+              0.436242,
+              0.441282
+            ],
+            "reorder_ms": [
+              0.598963,
+              0.531523,
+              0.563715,
+              0.540387,
+              0.531747,
+              0.523779,
+              0.551251
+            ],
+            "force_ms": [
+              226.636903,
+              226.462358,
+              226.596823,
+              226.650807,
+              226.51095,
+              226.51279,
+              226.584743
+            ],
+            "pipeline_ms": [
+              227.776605,
+              227.612796,
+              227.590428,
+              227.634124,
+              227.430395,
+              227.656172,
+              227.794764
+            ],
+            "index_median_ms": 0.431058,
+            "reorder_median_ms": 0.540387,
+            "force_median_ms": 226.584743,
+            "pipeline_median_ms": 227.634124,
+            "pipeline_min_ms": 227.430395,
+            "pipeline_max_ms": 227.794764,
+            "d2h_ms": 0
+          },
+          "same_harness_speedup_vs_v0": 1.0583850908047512,
+          "selected_pipeline_CV_percent": 0.04981233298106044
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 0.145169,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                27.367872,
+                27.282111,
+                27.185311,
+                27.218367,
+                27.17115
+              ],
+              "index_ms": [
+                0.087681,
+                0.087505,
+                0.086128,
+                0.087312,
+                0.087456,
+                0.087664,
+                0.087264
+              ],
+              "reorder_ms": [
+                0.000288,
+                0.000256,
+                0.000288,
+                0.000288,
+                0.000272,
+                0.000256,
+                0.00024
+              ],
+              "force_ms": [
+                27.012462,
+                27.140302,
+                26.954078,
+                27.031022,
+                27.01987,
+                27.232223,
+                26.991086
+              ],
+              "pipeline_ms": [
+                27.13763,
+                27.099615,
+                27.075678,
+                27.117615,
+                27.115007,
+                27.099871,
+                27.442784
+              ],
+              "index_median_ms": 0.087456,
+              "reorder_median_ms": 0.000272,
+              "force_median_ms": 27.01987,
+              "pipeline_median_ms": 27.115007,
+              "pipeline_min_ms": 27.075678,
+              "pipeline_max_ms": 27.442784,
+              "d2h_ms": 0.100832
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                32.927741,
+                32.821116,
+                32.813405,
+                32.818348,
+                32.8039
+              ],
+              "index_ms": [
+                0.087153,
+                0.087744,
+                0.087552,
+                0.086944,
+                0.087361,
+                0.087153,
+                0.086753
+              ],
+              "reorder_ms": [
+                0.065264,
+                0.064977,
+                0.066337,
+                0.066192,
+                0.063536,
+                0.0756,
+                0.063216
+              ],
+              "force_ms": [
+                32.673324,
+                32.673931,
+                32.658635,
+                32.672428,
+                32.66694,
+                32.672188,
+                32.676187
+              ],
+              "pipeline_ms": [
+                32.802828,
+                32.824333,
+                32.811133,
+                32.802444,
+                32.876108,
+                32.802012,
+                32.815533
+              ],
+              "index_median_ms": 0.087153,
+              "reorder_median_ms": 0.065264,
+              "force_median_ms": 32.672428,
+              "pipeline_median_ms": 32.811133,
+              "pipeline_min_ms": 32.802012,
+              "pipeline_max_ms": 32.876108,
+              "d2h_ms": 0.089936
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                31.436773,
+                31.350005,
+                31.310148,
+                31.318517,
+                31.318804
+              ],
+              "index_ms": [
+                0.087153,
+                0.087937,
+                0.087377,
+                0.087121,
+                0.087297,
+                0.087377,
+                0.087056
+              ],
+              "reorder_ms": [
+                0.067824,
+                0.0672,
+                0.066512,
+                0.0656,
+                0.065712,
+                0.069152,
+                0.066528
+              ],
+              "force_ms": [
+                31.16338,
+                31.170388,
+                31.161444,
+                31.171156,
+                31.179588,
+                31.168084,
+                31.163156
+              ],
+              "pipeline_ms": [
+                31.31586,
+                31.318372,
+                31.31194,
+                31.317156,
+                31.330084,
+                31.319173,
+                31.334597
+              ],
+              "index_median_ms": 0.087297,
+              "reorder_median_ms": 0.066528,
+              "force_median_ms": 31.168084,
+              "pipeline_median_ms": 31.318372,
+              "pipeline_min_ms": 31.31194,
+              "pipeline_max_ms": 31.334597,
+              "d2h_ms": 0.087152
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              31.436773,
+              31.350005,
+              31.310148,
+              31.318517,
+              31.318804
+            ],
+            "index_ms": [
+              0.087153,
+              0.087937,
+              0.087377,
+              0.087121,
+              0.087297,
+              0.087377,
+              0.087056
+            ],
+            "reorder_ms": [
+              0.067824,
+              0.0672,
+              0.066512,
+              0.0656,
+              0.065712,
+              0.069152,
+              0.066528
+            ],
+            "force_ms": [
+              31.16338,
+              31.170388,
+              31.161444,
+              31.171156,
+              31.179588,
+              31.168084,
+              31.163156
+            ],
+            "pipeline_ms": [
+              31.31586,
+              31.318372,
+              31.31194,
+              31.317156,
+              31.330084,
+              31.319173,
+              31.334597
+            ],
+            "index_median_ms": 0.087297,
+            "reorder_median_ms": 0.066528,
+            "force_median_ms": 31.168084,
+            "pipeline_median_ms": 31.318372,
+            "pipeline_min_ms": 31.31194,
+            "pipeline_max_ms": 31.334597,
+            "d2h_ms": 0.087152
+          },
+          "same_harness_speedup_vs_v0": 0.8657859674187406,
+          "selected_pipeline_CV_percent": 0.024162507927319832
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "warmups": 5,
+          "repeats": 7,
+          "h2d_ms": 12.465,
+          "variants": {
+            "v0": {
+              "description": "original ordered index indirection, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                43.1544,
+                31.8604,
+                30.6348,
+                28.9314,
+                27.731
+              ],
+              "index_ms": [
+                0.3115,
+                0.265,
+                0.3074,
+                0.2497,
+                0.2397,
+                0.2937,
+                0.2176
+              ],
+              "reorder_ms": [
+                0.0005,
+                0.0005,
+                0.0004,
+                0.0005,
+                0.0004,
+                0.0006,
+                0.0003
+              ],
+              "force_ms": [
+                26.1843,
+                24.1723,
+                22.999,
+                21.9729,
+                20.3571,
+                19.5132,
+                18.7635
+              ],
+              "pipeline_ms": [
+                25.1815,
+                23.8742,
+                22.6286,
+                21.0771,
+                20.3823,
+                20.0055,
+                20.2307
+              ],
+              "index_median_ms": 0.265,
+              "reorder_median_ms": 0.0005,
+              "force_median_ms": 21.9729,
+              "pipeline_median_ms": 21.0771,
+              "pipeline_min_ms": 20.0055,
+              "pipeline_max_ms": 25.1815,
+              "d2h_ms": 1.3972
+            },
+            "v1": {
+              "description": "sorted contiguous AoS7, exact pair sqrt",
+              "warmup_pipeline_ms": [
+                23.464,
+                21.6192,
+                21.4344,
+                21.3232,
+                21.28
+              ],
+              "index_ms": [
+                0.2031,
+                0.2258,
+                0.2341,
+                0.2166,
+                0.2147,
+                0.216,
+                0.3896
+              ],
+              "reorder_ms": [
+                0.0787,
+                0.1118,
+                0.1109,
+                0.1354,
+                0.112,
+                0.1115,
+                0.1016
+              ],
+              "force_ms": [
+                21.0734,
+                21.1528,
+                21.1233,
+                21.2949,
+                21.0857,
+                21.0867,
+                21.0932
+              ],
+              "pipeline_ms": [
+                21.3024,
+                21.3667,
+                21.3235,
+                21.2662,
+                21.2535,
+                21.2552,
+                21.2843
+              ],
+              "index_median_ms": 0.2166,
+              "reorder_median_ms": 0.1115,
+              "force_median_ms": 21.0932,
+              "pipeline_median_ms": 21.2843,
+              "pipeline_min_ms": 21.2535,
+              "pipeline_max_ms": 21.3667,
+              "d2h_ms": 0.7253
+            },
+            "v2": {
+              "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+              "warmup_pipeline_ms": [
+                20.7101,
+                20.0953,
+                21.2387,
+                20.0281,
+                20.0142
+              ],
+              "index_ms": [
+                0.1964,
+                0.2158,
+                0.1883,
+                0.2108,
+                0.2077,
+                0.2424,
+                0.2082
+              ],
+              "reorder_ms": [
+                0.1432,
+                0.1113,
+                0.0971,
+                0.1197,
+                0.0983,
+                0.1108,
+                0.0952
+              ],
+              "force_ms": [
+                19.735,
+                19.7573,
+                19.6861,
+                19.7042,
+                19.7247,
+                19.7511,
+                19.6598
+              ],
+              "pipeline_ms": [
+                19.9103,
+                19.8664,
+                19.8496,
+                21.1081,
+                19.8409,
+                19.8112,
+                19.7988
+              ],
+              "index_median_ms": 0.2082,
+              "reorder_median_ms": 0.1108,
+              "force_median_ms": 19.7247,
+              "pipeline_median_ms": 19.8496,
+              "pipeline_min_ms": 19.7988,
+              "pipeline_max_ms": 21.1081,
+              "d2h_ms": 0.6469
+            }
+          },
+          "scope": "resident input; 5warm+7repeat defaults; synchronized host wall stage medians and separately timed complete index+reorder+force; transfers allocation and disk I/O excluded; double noFMA; same 27cell and stable within-cell summation order; write back original atom IDs",
+          "selected_variant": "v2",
+          "selected_timing": {
+            "description": "sorted contiguous AoS7, pre-sqrt epsilon product",
+            "warmup_pipeline_ms": [
+              20.7101,
+              20.0953,
+              21.2387,
+              20.0281,
+              20.0142
+            ],
+            "index_ms": [
+              0.1964,
+              0.2158,
+              0.1883,
+              0.2108,
+              0.2077,
+              0.2424,
+              0.2082
+            ],
+            "reorder_ms": [
+              0.1432,
+              0.1113,
+              0.0971,
+              0.1197,
+              0.0983,
+              0.1108,
+              0.0952
+            ],
+            "force_ms": [
+              19.735,
+              19.7573,
+              19.6861,
+              19.7042,
+              19.7247,
+              19.7511,
+              19.6598
+            ],
+            "pipeline_ms": [
+              19.9103,
+              19.8664,
+              19.8496,
+              21.1081,
+              19.8409,
+              19.8112,
+              19.7988
+            ],
+            "index_median_ms": 0.2082,
+            "reorder_median_ms": 0.1108,
+            "force_median_ms": 19.7247,
+            "pipeline_median_ms": 19.8496,
+            "pipeline_min_ms": 19.7988,
+            "pipeline_max_ms": 21.1081,
+            "d2h_ms": 0.6469
+          },
+          "same_harness_speedup_vs_v0": 1.061840037078833,
+          "selected_pipeline_CV_percent": 2.2114218123927323
+        }
+      },
+      "comparisons": {
+        "cpu_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.484457867682318e-17,
+          "force_array_relative_l2": 6.596792055478172e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "cpu_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.484457867682318e-17,
+          "force_array_relative_l2": 6.596792055478172e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "cuda_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v0_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v1_vs_cpu_v0": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v2_vs_cpu_v0": {
+          "energy_array_relative_l2": 6.484457867682318e-17,
+          "force_array_relative_l2": 6.596792055478172e-17,
+          "energy_array_max_abs": 3.552713678800501e-15,
+          "force_array_max_abs": 1.7763568394002505e-15,
+          "energy_array_bitwise_equal": false,
+          "force_array_bitwise_equal": false,
+          "total_energy_relative_error": 0.0
+        },
+        "hip_v0_vs_historical": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v0_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v1_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        },
+        "v2_HIP_vs_CUDA": {
+          "energy_array_relative_l2": 0.0,
+          "force_array_relative_l2": 0.0,
+          "energy_array_max_abs": 0.0,
+          "force_array_max_abs": 0.0,
+          "energy_array_bitwise_equal": true,
+          "force_array_bitwise_equal": true,
+          "total_energy_relative_error": 0.0
+        }
+      },
+      "previous_single_run_timings": {
+        "cpu": {
+          "device": "single-thread compiled C++ CPU",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.98975443607,
+          "h2d_ms": 0,
+          "d2h_ms": 0,
+          "cold_pipeline_ms": 241.774715,
+          "index_ms": [
+            0.4302,
+            0.882496,
+            0.503209
+          ],
+          "force_ms": [
+            240.913402,
+            242.461297,
+            241.3103
+          ],
+          "pipeline_ms": [
+            241.837912,
+            243.172799,
+            242.56688
+          ],
+          "index_median_ms": 0.503209,
+          "force_median_ms": 241.3103,
+          "pipeline_median_ms": 242.56688,
+          "evaluations_per_s": 4.122574359698241,
+          "warmups": 2,
+          "repeats": 3,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        },
+        "cuda": {
+          "device": "NVIDIA GB10",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.98975443607,
+          "h2d_ms": 0.14693,
+          "d2h_ms": 0.096977,
+          "cold_pipeline_ms": 27.208344,
+          "index_ms": [
+            0.088145,
+            0.087713,
+            0.087586,
+            0.087665,
+            0.087713,
+            0.087889,
+            0.086961
+          ],
+          "force_ms": [
+            26.997941,
+            27.064214,
+            27.104086,
+            27.251465,
+            27.039525,
+            27.132358,
+            27.128743
+          ],
+          "pipeline_ms": [
+            27.239704,
+            27.201143,
+            27.235544,
+            27.166071,
+            27.076646,
+            27.187688,
+            27.106598
+          ],
+          "index_median_ms": 0.087713,
+          "force_median_ms": 27.104086,
+          "pipeline_median_ms": 27.187688,
+          "evaluations_per_s": 36.78135485444735,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        },
+        "hip": {
+          "device": "AMD Radeon RX 9070 XT",
+          "atoms": 128000,
+          "box_angstrom": 178.5,
+          "cutoff_angstrom": 10,
+          "rf_dielectric": 78.3,
+          "grid_side": 17,
+          "energy_kj_per_mol": -111438.9897544373,
+          "h2d_ms": 8.0193,
+          "d2h_ms": 1.361,
+          "cold_pipeline_ms": 42.3166,
+          "index_ms": [
+            0.28,
+            0.2542,
+            0.2705,
+            0.2785,
+            0.2894,
+            0.2261,
+            0.2286
+          ],
+          "force_ms": [
+            28.4369,
+            25.866,
+            24.1813,
+            23.1128,
+            21.497,
+            20.5189,
+            19.7061
+          ],
+          "pipeline_ms": [
+            27.3093,
+            25.4352,
+            23.6548,
+            22.4264,
+            21.2392,
+            20.321,
+            19.4669
+          ],
+          "index_median_ms": 0.2705,
+          "force_median_ms": 23.1128,
+          "pipeline_median_ms": 22.4264,
+          "evaluations_per_s": 44.59030428423643,
+          "warmups": 2,
+          "repeats": 7,
+          "precision": "float64; contraction disabled; no fastmath",
+          "scope": "nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+        }
+      }
+    }
+  ],
+  "common_variant": "v2",
+  "selection_scope": "same best requested reorder candidate v1/v2 across both sizes/cards, not a claim to beat baseline v0 on every platform; legacy default remains v0",
+  "previous_artifacts": "results/module7_optimized_previous; old source/driver/JSON/raw preserved"
+}

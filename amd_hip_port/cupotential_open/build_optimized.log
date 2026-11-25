@@ -1,0 +1,74 @@
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:102:1: note: expanded from here
+  102 | hipFree
+      | ^
+open_nonbonded.cpp:72:13: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   72 |  Mem<double>da(atoms.size()),de(c.n),df(forces.size());Mem<I>key(c.n),key_sorted(c.n),ids(c.n),sorted(c.n),off(c.cells+1);CHECK(RT(DeviceSynchronize)());h2d=elapsed([&]{CHECK(RT(Memcpy)(da.p,atoms.data(),atoms.size()*8,RT(MemcpyHostToDevice)));});
+      |             ^
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:102:1: note: expanded from here
+  102 | hipFree
+      | ^
+open_nonbonded.cpp:72:62: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   72 |  Mem<double>da(atoms.size()),de(c.n),df(forces.size());Mem<I>key(c.n),key_sorted(c.n),ids(c.n),sorted(c.n),off(c.cells+1);CHECK(RT(DeviceSynchronize)());h2d=elapsed([&]{CHECK(RT(Memcpy)(da.p,atoms.data(),atoms.size()*8,RT(MemcpyHostToDevice)));});
+      |                                                              ^
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:102:1: note: expanded from here
+  102 | hipFree
+      | ^
+open_nonbonded.cpp:73:194: note: in instantiation of member function 'Mem<char>::~Mem' requested here
+   73 |  size_t sb=0,scanb=0;CHECK(cub::DeviceRadixSort::SortPairs(nullptr,sb,key.p,key_sorted.p,ids.p,sorted.p,c.n));CHECK(cub::DeviceScan::ExclusiveSum(nullptr,scanb,off.p,off.p,c.cells+1));Mem<char>scratch(std::max(sb,scanb));
+      |                                                                                                                                                                                                  ^
+3 warnings generated when compiling for gfx1201.
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:14:1: note: expanded from here
+   14 | hipFree
+      | ^
+open_nonbonded.cpp:72:13: note: in instantiation of member function 'Mem<double>::~Mem' requested here
+   72 |  Mem<double>da(atoms.size()),de(c.n),df(forces.size());Mem<I>key(c.n),key_sorted(c.n),ids(c.n),sorted(c.n),off(c.cells+1);CHECK(RT(DeviceSynchronize)());h2d=elapsed([&]{CHECK(RT(Memcpy)(da.p,atoms.data(),atoms.size()*8,RT(MemcpyHostToDevice)));});
+      |             ^
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:14:1: note: expanded from here
+   14 | hipFree
+      | ^
+open_nonbonded.cpp:72:62: note: in instantiation of member function 'Mem<int>::~Mem' requested here
+   72 |  Mem<double>da(atoms.size()),de(c.n),df(forces.size());Mem<I>key(c.n),key_sorted(c.n),ids(c.n),sorted(c.n),off(c.cells+1);CHECK(RT(DeviceSynchronize)());h2d=elapsed([&]{CHECK(RT(Memcpy)(da.p,atoms.data(),atoms.size()*8,RT(MemcpyHostToDevice)));});
+      |                                                              ^
+open_nonbonded.cpp:54:120: warning: ignoring return value of type 'hipError_t' declared with 'nodiscard' attribute [-Wunused-value]
+   54 | template<class T>struct Mem{T*p=nullptr;size_t n;explicit Mem(size_t n):n(n){CHECK(RT(Malloc)(&p,n*sizeof(T)));}~Mem(){RT(Free)(p);}Mem(Mem const&)=delete;};
+      |                                                                                                                        ^~~~~~~~~~~
+open_nonbonded.cpp:20:15: note: expanded from macro 'RT'
+   20 | #define RT(x) hip##x
+      |               ^
+<scratch space>:14:1: note: expanded from here
+   14 | hipFree
+      | ^
+open_nonbonded.cpp:73:194: note: in instantiation of member function 'Mem<char>::~Mem' requested here
+   73 |  size_t sb=0,scanb=0;CHECK(cub::DeviceRadixSort::SortPairs(nullptr,sb,key.p,key_sorted.p,ids.p,sorted.p,c.n));CHECK(cub::DeviceScan::ExclusiveSum(nullptr,scanb,off.p,off.p,c.cells+1));Mem<char>scratch(std::max(sb,scanb));
+      |                                                                                                                                                                                                  ^
+3 warnings generated when compiling for host.

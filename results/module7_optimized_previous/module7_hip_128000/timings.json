@@ -1,0 +1,23 @@
+{
+"device":"AMD Radeon RX 9070 XT",
+"atoms":128000,
+"box_angstrom":178.5,
+"cutoff_angstrom":10,
+"rf_dielectric":78.299999999999997,
+"grid_side":17,
+"energy_kj_per_mol":-111438.98975443729,
+"h2d_ms":8.0192999999999994,
+"d2h_ms":1.361,
+"cold_pipeline_ms":42.316600000000001,
+"index_ms":[0.28000000000000003,0.25419999999999998,0.27050000000000002,0.27850000000000003,0.28939999999999999,0.2261,0.2286],
+"force_ms":[28.436900000000001,25.866,24.1813,23.1128,21.497,20.518899999999999,19.706099999999999],
+"pipeline_ms":[27.3093,25.435199999999998,23.654800000000002,22.426400000000001,21.2392,20.321000000000002,19.466899999999999],
+"index_median_ms":0.27050000000000002,
+"force_median_ms":23.1128,
+"pipeline_median_ms":22.426400000000001,
+"evaluations_per_s":44.590304284236431,
+"warmups":2,
+"repeats":7,
+"precision":"float64; contraction disabled; no fastmath",
+"scope":"nonbonded evaluation, not complete MD step or PME; inputs resident, transfers separate"
+}

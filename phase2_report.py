@@ -60,11 +60,18 @@ def report_text():
 | 原子数 | CPU C++ / ms | GB10 CUDA / ms | RX9070XT HIP / ms | HIP/CUDA全受力相对L2 |
 |---:|---:|---:|---:|---:|
 '''
- for a in f['systems']:
+ active_nonbonded=f.get('current_steady_state');display_systems=active_nonbonded['systems'] if active_nonbonded else f['systems']
+ for a in display_systems:
   t=a['backends'];text+=f"| {a['n']:,} | {t['cpu']['pipeline_median_ms']:.4f} | {t['cuda']['pipeline_median_ms']:.4f} | {t['hip']['pipeline_median_ms']:.4f} | {a['hip_vs_cuda']['force_relative_l2']:.3g} |\n"
  text+='\n阶段拆账（独立计时，不与完整流程简单相加）：\n\n| 原子数 | 设备 | Cell-List / ms | 能量+全部受力 / ms | 非键求值次数/s |\n|---:|---|---:|---:|---:|\n'
- for a in f['systems']:
+ for a in display_systems:
   for name,t in a['backends'].items():text+=f"| {a['n']:,} | {name} | {t['index_median_ms']:.4f} | {t['force_median_ms']:.4f} | {t['evaluations_per_s']:.2f} |\n"
+ if active_nonbonded:
+  text+='\n2026-11-25同源布局对照：5次预热＋7次计时，表中为保留默认的v0全流程（index＋reorder接口＋force）。CPU是原公式单线程参考。原始单次成绩仍保存在JSON systems；当前记录在current_steady_state。\n\n| 原子数 | 候选 | GB10 / ms | AMD / ms |\n|---:|---|---:|---:|\n'
+  for a in display_systems:
+   for label,key in [('AoS7预sqrt v2（前轮）','candidate_round1'),('SoA7预sqrt v3','candidate_soa')]:
+    t=a[key];text+=f"| {a['n']:,} | {label} | {t['cuda']['pipeline_median_ms']:.6f} | {t['hip']['pipeline_median_ms']:.6f} |\n"
+  text+='\n两候选对原CPU的全部逐原子E/3N受力相对L2≤6.70e-17，跨GPU全数组一致；两卡使用相同候选，不混基线与优化。候选在AMD有局部收益、GB10回退，128K AMD时序也有波动，因此保留v0默认。原始逐项/完整重复、阴性结果见module7_optimized_results.json与Round1快照。\n'
  text+=f'''
 所有N个能量分量与3N个受力分量，在CPU/CUDA/HIP之间逐值完全一致（L2=0），不是空数组：32k体系力范围约[-8.17,8.06]、全力范数458.39；128k全力范数912.24。相同求和顺序、FP64与禁止FMA使本负载达成逐值相同，不扩展成所有体系必然零误差。单独由C++ long double累加的总E日志在Linux/Windows末位可有约1.1e-14相对差（long double宽度不同）；用同一NumPy归约全部能量分量后再对账，总E一致，原始与canonical总E均保留。
 
@@ -72,7 +79,7 @@ def report_text():
 
 GPU先预热再重复，驻留同步墙钟；分桶与力核均真实在对应GPU执行。H2D/D2H和冷启动另存JSON；CPU为Spark单线程编译基线，非CPU并行上限，结果不是通用GPU排名。
 
-![开源非键力场](visuals/fig6_open_cupotential_md_forcefield_amd_vs_nvidia.svg)
+![非键力场机制](visuals/fig6a_nonbonded_potential.svg)\n\n![非键力场最新布局对照](visuals/fig6b_nonbonded_benchmark.svg)
 
 ## 模块八：真实 GB1 实验与官方 ESM-2 全参数微调
 

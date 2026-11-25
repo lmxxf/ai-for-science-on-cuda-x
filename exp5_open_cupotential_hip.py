@@ -86,6 +86,8 @@ def summarize():
  (RES/'module7_results.json').write_text(json.dumps(r,indent=2,ensure_ascii=False));from render_module7 import render;render();print(json.dumps(r,indent=2,ensure_ascii=False))
 
 def main():
+ if '--optimized' in sys.argv[1:]:
+  args=[a for a in sys.argv[1:] if a!='--optimized'];guard([PY,ROOT/'benchmark_nonbonded_optimized.py',*args],'optimized_forward');return
  ap=argparse.ArgumentParser();ap.add_argument('--prepare-only',action='store_true');ap.add_argument('--gpu-only',action='store_true');ap.add_argument('--summarize-only',action='store_true');a=ap.parse_args()
  if not a.gpu_only and not a.summarize_only:prepare()
  if a.prepare_only:return

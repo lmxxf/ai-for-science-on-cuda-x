@@ -1,0 +1,20 @@
+{
+  "timestamp": "2026-11-25T18:46:35.860093+08:00",
+  "command": [
+    "nvcc",
+    "-x",
+    "cu",
+    "-std=c++17",
+    "-O3",
+    "--fmad=false",
+    "-arch=sm_121",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/amd_hip_port/cupotential_open/open_nonbonded.cpp",
+    "-o",
+    "/home/lmxxf/work/ai-for-science-on-cuda-x/results/module7_build/open_nonbonded_optimized_cuda"
+  ],
+  "elapsed_s": 6.00592381414026,
+  "min_available_gib": 106.98292922973633,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}

@@ -257,3 +257,27 @@
 - results/module11_results.json / module14_results.json追加current_steady_state（新当前时账）、active_performance_record与optimization_history；原backends保留原实验快照，避免把新resident中位数与旧含I/O总秒混搭。当前数值以current_steady_state为准。
 - 独立总账results/optimization_20261125/latest_ledger.json；两份*_optimized_results.json含完整原始重复/对照/误差。MODULE11_OPTIMIZATION_NOTES.md与MODULE14_OPTIMIZATION_NOTES.md保留设计、阴性与波动。
 - verify_optimized_modules.py已在guard下从完整原始输出独立重算精度、CLEAN、碰撞/键偏差、输入哈希、median和主/AMD源一致性，PASS。两仓源与新JSON同步对齐；无Git提交或push。
+
+
+## 2026-11-25T18:58+08:00 — 模块2同源布局优化：保留v0默认，收益与回退全部公开
+
+- 远端首次SSH即Win32_Process全名单，基准前再次检查；无游戏本体，Steam/trainer/MuMu不关闭。Spark编译/CPU/GPU大任务全部guard。公众号382未写入。
+- 两卡同一C++源码、FP64、禁FMA，无fastmath；32k/128k固定原输入SHA，5次完整预热＋7次实测，所有index/reorder/force及完整pipeline同步墙钟分别记raw/median。每次包括index，候选也包括重排，不漏开销。
+- v0原核；v1稳定cell排序后连续AoS7、保留sqrt(ei*ej)；v2同布局预存sqrt(eps)乘积；唯一补测v3换7个field-plane SoA。按sorted位置计算，按原ID写回，27邻格dz/dy/dx及格内累加顺序不变，自项排除与PBC/MIC不变。
+- v1对原CPU逐位一致；v2/v3对原CPU全部逐原子E/3N受力相对L2≤6.70e-17（max_abs E约3.55e-15/F约1.78e-15），跨GPU同variant全数组逐位一致。不能拿总E抵消替代全数组，已独立重算所有值。
+
+| 原子数 | 同一变体 | GB10 pipeline ms | AMD pipeline ms |
+|---:|---|---:|---:|
+| 32000 | 最新v0默认 | 7.991593 | 7.767300 |
+| 32000 | Round1 v2 AoS预sqrt | 8.858159 | 6.256000 |
+| 32000 | v3 SoA预sqrt | 8.781069 | 7.111100 |
+| 128000 | 最新v0默认 | 27.137404 | 20.947800 |
+| 128000 | Round1 v2 AoS预sqrt | 31.318372 | 19.849600 |
+| 128000 | v3 SoA预sqrt | 31.023216 | 20.222700 |
+
+- 本轮没有两卡共同收益：v2/v3都使GB10回退约10–15%；AMD有局部中位数收益，但128k v3 raw20.0731–23.2577ms有波动，不能包装确定提速。因此保留v0为默认，不混CUDA v0+HIP v2凑比较；候选全部留参数入口和同配置成绩。
+- 独立216原子全配对、6方向有限差分、周期平移与净力全部PASS；新布局FDmax约1.05e-10、brute force L2约3.19e-16。CPU保留真实v0参考计时，未把旧v2标签改成未计时CPU v3。
+- 最终只补一次SoA，不继续无限tile调参；旧原单次基线与Round1 v0/v1/v2 source/driver/JSON/raw均保留。v0/候选各自exact source SHA与同协议时间指明，不把热态重测变化全算布局收益。
+- 复现入口审计发现并修正：新benchmark all/local会先guard编译；缺原输入按固定生成器恢复并验SHA；缺CPU参考会生成；历史Round1 JSON/v2 raw缺失时标Unavailable，不阻碍当前v0/v3验收。exp5 --optimized只转发新基准，legacy默认v0原样。入口mock/缺历史汇总/flag测试已通过，无额外GPU重跑。
+- 主JSON原systems是原始实验快照，current_steady_state为默认v0新5warm+7时账和候选表；optimization_history保留旧记录。README两仓相同总表、候选正文、REPORT对应表和仓内fig6b已更新；公众号382未修改。
+- 数值独立验收见logs/nonbonded_final_verify.log；图6b白底中文PNG自检通过。发布前检查暂存>500KB .bin/.npz/.pt并排除原始大数据；按用户指令commit/push两仓，无Co-Authored-By。

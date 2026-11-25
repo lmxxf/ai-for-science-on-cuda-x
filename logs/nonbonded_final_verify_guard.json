@@ -1,0 +1,12 @@
+{
+  "timestamp": "2026-11-25T18:56:02.842351+08:00",
+  "command": [
+    ".venv/bin/python",
+    "verify_nonbonded_optimized.py"
+  ],
+  "elapsed_s": 0.25082383397966623,
+  "min_available_gib": 108.3156967163086,
+  "threshold_gib": 20,
+  "killed": false,
+  "returncode": 0
+}
